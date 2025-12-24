@@ -1,4 +1,4 @@
-const TITLE = "Implementation - discoverySearch";
+const TITLE = "Implementation - search";
 
 const bookRepoInterface = require("./bookRepoInterface.js");
 const bookRepoImplementation = require("./bookRepoImplementation.js");

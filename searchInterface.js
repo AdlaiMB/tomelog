@@ -1,4 +1,4 @@
-const TITLE = "Interface - discoverySearch";
+const TITLE = "Interface - search";
 
 function discoverySearch(query, implementation) {
   console.log(TITLE);
