@@ -3,6 +3,9 @@ const API_BASE_URL = "https://openlibrary.org/search.json";
 
 const assert = require("node:assert/strict");
 
+const storageInterface = require("./storageInterface.js");
+const storageImplementation = require("./storageImplementation.js");
+
 async function queryByTitle(title) {
   // console.log(CLASS);
 
@@ -18,4 +21,13 @@ async function queryByTitle(title) {
   return openlibraryData["docs"];
 }
 
-module.exports = { queryByTitle };
+function storeBook(bookID) {
+  // console.log(CLASS);
+
+  return storageInterface.writeBookByBookID(
+    bookID,
+    storageImplementation.writeBookByBookID
+  );
+}
+
+module.exports = { queryByTitle, storeBook };

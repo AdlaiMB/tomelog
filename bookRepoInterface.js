@@ -1,9 +1,15 @@
 const CLASS = "Interface - bookRepo";
 
-function queryByTitle(titleSearch, implementation) {
+function queryByTitle(title, implementation) {
   // console.log(CLASS);
   // call any implementation
-  return implementation(titleSearch);
+  return implementation(title);
 }
 
-module.exports = { queryByTitle };
+function storeBook(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
+
+module.exports = { queryByTitle, storeBook };
