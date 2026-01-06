@@ -1,19 +1,28 @@
-const TITLE = "Implementation - search";
+const CLASS = "Implementation - search";
+
+const assert = require("node:assert/strict");
 
 const bookRepoInterface = require("./bookRepoInterface.js");
 const bookRepoImplementation = require("./bookRepoImplementation.js");
 
-function searchByTitle(title) {
-  return bookRepoInterface.queryByTitle(
+async function searchByTitle(title) {
+  const books = await bookRepoInterface.queryByTitle(
     title,
     bookRepoImplementation.queryByTitle
   );
+
+  assert.strictEqual(books instanceof Array, true, "Books is not an array");
+
+  return books;
 }
 
-function discoverySearch(query) {
-  console.log(TITLE);
-  const results = searchByTitle(query);
-  return results;
+async function discoverySearch(search) {
+  // console.log(CLASS);
+  const { query } = search;
+
+  const books = await searchByTitle(query);
+
+  return { books };
 }
 
 module.exports = { discoverySearch };

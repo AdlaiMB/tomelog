@@ -1,9 +1,9 @@
-const TITLE = "Interface - search";
+const CLASS = "Interface - search";
 
-function discoverySearch(query, implementation) {
-  console.log(TITLE);
+function discoverySearch(search, implementation) {
+  // console.log(CLASS);
   // call any implementation
-  return implementation(query);
+  return implementation(search);
 }
 
 module.exports = { discoverySearch };
