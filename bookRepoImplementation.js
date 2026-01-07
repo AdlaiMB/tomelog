@@ -1,5 +1,5 @@
 const CLASS = "Implementation - bookRepo";
-const API_BASE_URL = "https://openlibrary.org/search.json";
+const API_BASE_URL = "https://openlibrary.org";
 
 const assert = require("node:assert/strict");
 
@@ -9,7 +9,9 @@ const storageImplementation = require("./storageImplementation.js");
 async function queryByTitle(title) {
   // console.log(CLASS);
 
-  const openLibraryResponse = await fetch(API_BASE_URL + `?q=${title}&limit=5`);
+  const openLibraryResponse = await fetch(
+    API_BASE_URL + "/search.json" + `?q=${title}&limit=5`
+  );
   const openlibraryData = await openLibraryResponse.json();
 
   assert.strictEqual(
@@ -30,4 +32,21 @@ function storeBook(bookID) {
   );
 }
 
-module.exports = { queryByTitle, storeBook };
+async function getBookByBookID(bookID) {
+  // console.log(CLASS);
+
+  const openLibraryResponse = await fetch(
+    API_BASE_URL + `/books/${bookID}.json`
+  );
+  const openlibraryData = await openLibraryResponse.json();
+
+  assert.strictEqual(
+    Object.hasOwn(openlibraryData, "error"),
+    false,
+    "Invalid BookID provided"
+  );
+
+  return openlibraryData;
+}
+
+module.exports = { queryByTitle, storeBook, getBookByBookID };

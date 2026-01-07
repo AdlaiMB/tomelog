@@ -30,20 +30,37 @@ function addBookByTitle(title) {
   }
 }
 
-let title = "the pragmatic programmer";
+async function getBook(bookID) {
+  try {
+    const book = await bookRepoInterface.getBookByBookID(
+      bookID,
+      bookRepoImplementation.getBookByBookID
+    );
+    console.log("Retrieved Book: ", book);
+  } catch (error) {
+    console.log("Error occurred while retrieving book: ", error.message);
+  }
+}
+
+const bookID = "t";
+
+console.log(`Retrieving a book with the ID '${bookID}' ...`);
+getBook(bookID);
+
+// let title = "the pragmatic programmer";
 
 // console.log(`Searching for a book with the title '${title}' ...`);
 // search(title);
 
-console.log(`Storing a book with the title '${title}' ...`);
-addBookByTitle(title);
+// console.log(`Storing a book with the title '${title}' ...`);
+// addBookByTitle(title);
 
-title = "clean architecture";
+// title = "clean architecture";
 
-console.log(`Storing a book with the title '${title}' ...`);
-addBookByTitle(title);
+// console.log(`Storing a book with the title '${title}' ...`);
+// addBookByTitle(title);
 
-title = "cracking the coding interview";
+// title = "cracking the coding interview";
 
-console.log(`Storing a book with the title '${title}' ...`);
-addBookByTitle(title);
+// console.log(`Storing a book with the title '${title}' ...`);
+// addBookByTitle(title);

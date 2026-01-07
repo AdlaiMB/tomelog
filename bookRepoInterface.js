@@ -12,4 +12,10 @@ function storeBook(bookID, implementation) {
   return implementation(bookID);
 }
 
-module.exports = { queryByTitle, storeBook };
+function getBookByBookID(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
+
+module.exports = { queryByTitle, storeBook, getBookByBookID };
