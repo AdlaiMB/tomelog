@@ -5,15 +5,11 @@ const assert = require("node:assert/strict");
 const bookRepoInterface = require("./bookRepoInterface.js");
 const bookRepoImplementation = require("./bookRepoImplementation.js");
 
-async function searchByTitle(title) {
-  const books = await bookRepoInterface.queryByTitle(
+function searchByTitle(title) {
+  return bookRepoInterface.queryByTitle(
     title,
     bookRepoImplementation.queryByTitle
   );
-
-  assert.strictEqual(books instanceof Array, true, "Books is not an array");
-
-  return books;
 }
 
 async function discoverySearch(search) {
