@@ -1,9 +1,17 @@
 const CLASS = "Interface - bookRepo";
 
-function queryByTitle(title, implementation) {
+const assert = require("node:assert/strict");
+
+async function queryByTitle(title, implementation) {
   // console.log(CLASS);
+
   // call any implementation
-  return implementation(title);
+  const books = await implementation(title);
+
+  // postcondition(s)
+  assert.strictEqual(books instanceof Array, true, "Books is not an array");
+
+  return books;
 }
 
 function storeBook(bookID, implementation) {
@@ -12,10 +20,15 @@ function storeBook(bookID, implementation) {
   return implementation(bookID);
 }
 
-function getBookByBookID(bookID, implementation) {
+async function getBookByBookID(bookID, implementation) {
   // console.log(CLASS);
   // call any implementation
-  return implementation(bookID);
+  const book = await implementation(bookID);
+
+  // postcondition(s)
+  assert.strictEqual(book instanceof Object, true, "Book is not an object");
+
+  return book;
 }
 
 function updateBookChapterBookmark(bookID, chapter, implementation) {

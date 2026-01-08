@@ -95,34 +95,34 @@ function updatePages(bookID, pages) {
   }
 }
 
-// const bookID = "t";
+const bookID = "OL7353617M";
 
-// console.log(`Retrieving a book with the ID '${bookID}' ...`);
-// getBook(bookID);
+console.log(`Retrieving a book with the ID '${bookID}' ...`);
+getBook(bookID);
 
-let title = "the pragmatic programmer";
+// let title = "the pragmatic programmer";
 
 // console.log(`Searching for a book with the title '${title}' ...`);
 // search(title);
 
-console.log(`Storing a book with the title '${title}' ...`);
-addBookByTitle(title);
+// console.log(`Storing a book with the title '${title}' ...`);
+// addBookByTitle(title);
 
-console.log(`Updating chapters for the book with the title '${title}' ...`);
-updateChapters(title, 10);
+// console.log(`Updating chapters for the book with the title '${title}' ...`);
+// updateChapters(title, 10);
 
-console.log(`Updating pages for the book with the title '${title}' ...`);
-updatePages(title, [10, 300]);
+// console.log(`Updating pages for the book with the title '${title}' ...`);
+// updatePages(title, [10, 300]);
 
-console.log(
-  `Updating chapter bookmark for the book with the title '${title}' ...`
-);
-updateBookmark(title, 20);
+// console.log(
+//   `Updating chapter bookmark for the book with the title '${title}' ...`
+// );
+// updateBookmark(title, 20);
 
-console.log(
-  `Updating page bookmark for the book with the title '${title}' ...`
-);
-updatePageBookmark(title, 2);
+// console.log(
+//   `Updating page bookmark for the book with the title '${title}' ...`
+// );
+// updatePageBookmark(title, 2);
 
 // title = "clean architecture";
 
