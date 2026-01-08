@@ -42,18 +42,87 @@ async function getBook(bookID) {
   }
 }
 
-const bookID = "t";
+function updateBookmark(bookID, chapter) {
+  try {
+    const updatedBook = bookRepoInterface.updateBookChapterBookmark(
+      bookID,
+      chapter,
+      bookRepoImplementation.updateBookChapterBookmark
+    );
+    console.log("Updated Book Chapter Bookmark: ", updatedBook);
+  } catch (error) {
+    console.log("Error occurred while updating bookmark: ", error.message);
+  }
+}
 
-console.log(`Retrieving a book with the ID '${bookID}' ...`);
-getBook(bookID);
+function updatePageBookmark(bookID, page) {
+  try {
+    const updatedBook = bookRepoInterface.updateBookPageBookmark(
+      bookID,
+      page,
+      bookRepoImplementation.updateBookPageBookmark
+    );
+    console.log("Updated Book Page Bookmark: ", updatedBook);
+  } catch (error) {
+    console.log("Error occurred while updating page bookmark: ", error.message);
+  }
+}
 
-// let title = "the pragmatic programmer";
+function updateChapters(bookID, chapters) {
+  try {
+    const updatedBook = bookRepoInterface.updateBookChapters(
+      bookID,
+      chapters,
+      bookRepoImplementation.updateBookChapters
+    );
+    console.log("Updated Book Chapters: ", updatedBook);
+  } catch (error) {
+    console.log("Error occurred while updating chapters: ", error.message);
+  }
+}
+
+function updatePages(bookID, pages) {
+  try {
+    const updatedBook = bookRepoInterface.updateBookPages(
+      bookID,
+      pages[0],
+      pages[1],
+      bookRepoImplementation.updateBookPages
+    );
+    console.log("Updated Book Pages: ", updatedBook);
+  } catch (error) {
+    console.log("Error occurred while updating pages: ", error.message);
+  }
+}
+
+// const bookID = "t";
+
+// console.log(`Retrieving a book with the ID '${bookID}' ...`);
+// getBook(bookID);
+
+let title = "the pragmatic programmer";
 
 // console.log(`Searching for a book with the title '${title}' ...`);
 // search(title);
 
-// console.log(`Storing a book with the title '${title}' ...`);
-// addBookByTitle(title);
+console.log(`Storing a book with the title '${title}' ...`);
+addBookByTitle(title);
+
+console.log(`Updating chapters for the book with the title '${title}' ...`);
+updateChapters(title, 10);
+
+console.log(`Updating pages for the book with the title '${title}' ...`);
+updatePages(title, [10, 300]);
+
+console.log(
+  `Updating chapter bookmark for the book with the title '${title}' ...`
+);
+updateBookmark(title, 20);
+
+console.log(
+  `Updating page bookmark for the book with the title '${title}' ...`
+);
+updatePageBookmark(title, 2);
 
 // title = "clean architecture";
 

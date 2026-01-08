@@ -49,4 +49,53 @@ async function getBookByBookID(bookID) {
   return openlibraryData;
 }
 
-module.exports = { queryByTitle, storeBook, getBookByBookID };
+function updateBookChapterBookmark(bookID, chapter) {
+  // console.log(CLASS);
+
+  return storageInterface.writeBookChapterBookmark(
+    bookID,
+    chapter,
+    storageImplementation.writeBookChapterBookmark
+  );
+}
+
+function updateBookPageBookmark(bookID, page) {
+  // console.log(CLASS);
+
+  return storageInterface.writeBookPageBookmark(
+    bookID,
+    page,
+    storageImplementation.writeBookPageBookmark
+  );
+}
+
+function updateBookChapters(bookID, chapters) {
+  // console.log(CLASS);
+
+  return storageInterface.writeBookChapters(
+    bookID,
+    chapters,
+    storageImplementation.writeBookChapters
+  );
+}
+
+function updateBookPages(bookID, startPage, endPage) {
+  // console.log(CLASS);
+
+  return storageInterface.writeBookPages(
+    bookID,
+    startPage,
+    endPage,
+    storageImplementation.writeBookPages
+  );
+}
+
+module.exports = {
+  queryByTitle,
+  storeBook,
+  getBookByBookID,
+  updateBookChapterBookmark,
+  updateBookPageBookmark,
+  updateBookChapters,
+  updateBookPages,
+};
