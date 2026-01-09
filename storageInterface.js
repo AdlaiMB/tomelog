@@ -25,9 +25,9 @@ function writeBookChapterBookmark(bookID, chapter, implementation) {
 
   // preconditon(s)
   assert.strictEqual(
-    chapter >= 0,
+    chapter > 0,
     true,
-    `Chapter ${chapter} must be non-negative`
+    `Chapter ${chapter} must be greater than zero`
   );
 
   // call any implementation
@@ -47,7 +47,7 @@ function writeBookPageBookmark(bookID, page, implementation) {
   // console.log(CLASS);
 
   // preconditon(s)
-  assert.strictEqual(page >= 0, true, `Page ${page} must be non-negative`);
+  assert.strictEqual(page > 0, true, `Page ${page} must be greater than zero`);
 
   // call any implementation
   const book = implementation(bookID, page);
@@ -67,9 +67,9 @@ function writeBookChapters(bookID, chapters, implementation) {
 
   // preconditon(s)
   assert.strictEqual(
-    chapters >= 0,
+    chapters > 0,
     true,
-    `Chapters ${chapters} must be non-negative`
+    `Chapters ${chapters} must be greater than zero`
   );
 
   // call any implementation
@@ -90,9 +90,9 @@ function writeBookPages(bookID, startPage, endPage, implementation) {
 
   // preconditon(s)
   assert.strictEqual(
-    startPage >= 0 && endPage >= 0,
+    startPage > 0 && endPage > 0,
     true,
-    `Start page and End Page ${startPage} must be non-negative`
+    `Start page and End Page ${startPage} must be greater than zero`
   );
 
   assert.strictEqual(
@@ -120,10 +120,22 @@ function writeBookPages(bookID, startPage, endPage, implementation) {
   return book;
 }
 
+function fetchMyBooks(implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  const books = implementation();
+
+  // postcondition(s)
+  assert.strictEqual(books instanceof Array, true, "Books is not an array");
+
+  return books;
+}
+
 module.exports = {
   writeBookByBookID,
   writeBookChapterBookmark,
   writeBookPageBookmark,
   writeBookChapters,
   writeBookPages,
+  fetchMyBooks,
 };

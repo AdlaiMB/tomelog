@@ -90,6 +90,11 @@ function updateBookPages(bookID, startPage, endPage) {
   );
 }
 
+function getMyBooks() {
+  // console.log(CLASS);
+  return storageInterface.fetchMyBooks(storageImplementation.fetchMyBooks);
+}
+
 module.exports = {
   queryByTitle,
   storeBook,
@@ -98,4 +103,5 @@ module.exports = {
   updateBookPageBookmark,
   updateBookChapters,
   updateBookPages,
+  getMyBooks,
 };

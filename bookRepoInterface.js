@@ -55,6 +55,12 @@ function updateBookPages(bookID, startPage, endPage, implementation) {
   return implementation(bookID, startPage, endPage);
 }
 
+function getMyBooks(implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation();
+}
+
 module.exports = {
   queryByTitle,
   storeBook,
@@ -63,4 +69,5 @@ module.exports = {
   updateBookPageBookmark,
   updateBookChapters,
   updateBookPages,
+  getMyBooks,
 };

@@ -136,10 +136,15 @@ function writeBookPages(bookID, startPage, endPage) {
   return book;
 }
 
+function fetchMyBooks() {
+  return [...books.keys()];
+}
+
 module.exports = {
   writeBookByBookID,
   writeBookChapterBookmark,
   writeBookPageBookmark,
   writeBookChapters,
   writeBookPages,
+  fetchMyBooks,
 };
