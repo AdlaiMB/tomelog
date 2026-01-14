@@ -36,7 +36,7 @@ async function getBookByBookID(bookID) {
   // console.log(CLASS);
 
   const openLibraryResponse = await fetch(
-    API_BASE_URL + `/books/${bookID}.json`
+    API_BASE_URL + `/work/${bookID}.json`
   );
   const openlibraryData = await openLibraryResponse.json();
 

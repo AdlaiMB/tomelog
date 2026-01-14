@@ -2,7 +2,7 @@ const CLASS = "Implementation - terminalView";
 
 function resultsBookList(booklist) {
   // console.log(CLASS);
-  for (const book of bookList) {
+  for (const book of booklist) {
     console.log("--------- Book ----------");
     console.log(`ID: ${book.id}`);
     console.log(`Title: ${book.title}`);
