@@ -1,6 +1,6 @@
 const CLASS = "Implementation - terminalView";
 
-function resultsBookList(bookList) {
+function resultsBookList(booklist) {
   // console.log(CLASS);
   for (const book of bookList) {
     console.log("--------- Book ----------");
@@ -26,4 +26,18 @@ function filedBook(bookID) {
   console.log("--------------------------");
 }
 
-module.exports = { resultsBookList, error, filedBook };
+function bookShelf(booklist) {
+  console.log("------- Book Shelf -------");
+  for (const book of booklist) {
+    console.log("");
+    console.log("--------- Book ----------");
+    console.log(`ID: ${book.id}`);
+    console.log(`Title: ${book.title}`);
+    console.log(`Cover URL: ${book.coverURL}`);
+    console.log("-------------------------");
+    console.log("");
+  }
+  console.log("--------------------------");
+}
+
+module.exports = { resultsBookList, error, filedBook, bookShelf };

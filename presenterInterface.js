@@ -18,4 +18,15 @@ function recordedBook(recordedBook, implementation) {
   return implementation(recordedBook);
 }
 
-module.exports = { searchResultBooklist, errorMessage, recordedBook };
+function storedBooksBooklist(bookList, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookList);
+}
+
+module.exports = {
+  searchResultBooklist,
+  errorMessage,
+  recordedBook,
+  storedBooksBooklist,
+};

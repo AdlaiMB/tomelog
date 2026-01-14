@@ -18,4 +18,10 @@ function filedBook(bookID, implementation) {
   return implementation(bookID);
 }
 
-module.exports = { resultsBookList, error, filedBook };
+function bookShelf(bookList, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookList);
+}
+
+module.exports = { resultsBookList, error, filedBook, bookShelf };

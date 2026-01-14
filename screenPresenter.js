@@ -36,4 +36,29 @@ function recordedBook(recordedBook) {
   screenViewInterface.filedBook(recordedBook, terminalView.filedBook);
 }
 
-module.exports = { searchResultBooklist, errorMessage, recordedBook };
+function storedBooksBooklist(booklist) {
+  const result = [];
+
+  for (const book of booklist) {
+    const processedBook = {
+      id: book.key,
+      title: book.title,
+      coverURL:
+        Object.hasOwn(book, "covers") &&
+        book.covers.length > 0 &&
+        book.covers[0] > 0
+          ? generateCoverURL(book.covers[0])
+          : null,
+    };
+    result.push(processedBook);
+  }
+
+  screenViewInterface.bookShelf(result, terminalView.bookShelf);
+}
+
+module.exports = {
+  searchResultBooklist,
+  errorMessage,
+  recordedBook,
+  storedBooksBooklist,
+};

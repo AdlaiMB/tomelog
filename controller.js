@@ -59,7 +59,41 @@ function record(bookID) {
   }
 }
 
+async function getMyBooks() {
+  let response;
+
+  try {
+    const books = [];
+    const myBooks = bookRepoInterface.getMyBooks(
+      bookRepoImplementation.getMyBooks
+    );
+    for (const bookID of myBooks) {
+      const book = await bookRepoInterface.getBookByBookID(
+        bookID,
+        bookRepoImplementation.getBookByBookID
+      );
+      books.push(book);
+    }
+    response = { error: false, books };
+  } catch (error) {
+    response = { error: true, message: error.message };
+  }
+
+  if (!response.error) {
+    presenterInterface.storedBooksBooklist(
+      response.books,
+      screenPrensenter.storedBooksBooklist
+    );
+  } else {
+    presenterInterface.errorMessage(
+      response.message,
+      screenPrensenter.errorMessage
+    );
+  }
+}
+
 module.exports = {
   find,
   record,
+  getMyBooks,
 };

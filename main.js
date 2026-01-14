@@ -1,10 +1,12 @@
-const bookTrackerController = require("./controller.js");
+const controller = require("./controller.js");
 
-function main() {
+async function main() {
   const bookID = "OL26331930M";
 
   console.log(`recording a book with ID ${bookID}...`);
-  bookTrackerController.record(bookID);
+  controller.record(bookID);
+
+  await controller.getMyBooks();
 }
 
 main();
