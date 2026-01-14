@@ -12,4 +12,10 @@ function errorMessage(errorMessage, implementation) {
   return implementation(errorMessage);
 }
 
-module.exports = { searchResultBooklist, errorMessage };
+function recordedBook(recordedBook, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(recordedBook);
+}
+
+module.exports = { searchResultBooklist, errorMessage, recordedBook };

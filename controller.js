@@ -4,6 +4,9 @@ const searchImplementation = require("./searchImplementation.js");
 const presenterInterface = require("./presenterInterface.js");
 const screenPrensenter = require("./screenPresenter.js");
 
+const bookRepoInterface = require("./bookRepoInterface.js");
+const bookRepoImplementation = require("./bookRepoImplementation.js");
+
 async function find(book) {
   let response;
 
@@ -30,6 +33,33 @@ async function find(book) {
   }
 }
 
+function record(bookID) {
+  let response;
+
+  try {
+    const recordedBooks = bookRepoInterface.storeBook(
+      bookID,
+      bookRepoImplementation.storeBook
+    );
+    response = { error: false, recordedBook: recordedBooks.at(-1) };
+  } catch (error) {
+    response = { error: true, message: error.message };
+  }
+
+  if (!response.error) {
+    presenterInterface.recordedBook(
+      response.recordedBook,
+      screenPrensenter.recordedBook
+    );
+  } else {
+    presenterInterface.errorMessage(
+      response.message,
+      screenPrensenter.errorMessage
+    );
+  }
+}
+
 module.exports = {
   find,
+  record,
 };

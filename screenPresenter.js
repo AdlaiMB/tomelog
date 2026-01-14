@@ -31,4 +31,9 @@ function errorMessage(errorMessage) {
   screenViewInterface.error(errorMessage, terminalView.error);
 }
 
-module.exports = { searchResultBooklist, errorMessage };
+function recordedBook(recordedBook) {
+  // console.log(CLASS);
+  screenViewInterface.filedBook(recordedBook, terminalView.filedBook);
+}
+
+module.exports = { searchResultBooklist, errorMessage, recordedBook };

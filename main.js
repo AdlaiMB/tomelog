@@ -1,7 +1,10 @@
 const bookTrackerController = require("./controller.js");
 
-async function main() {
-  await bookTrackerController.find("Pragmatic Programmer");
+function main() {
+  const bookID = "OL26331930M";
+
+  console.log(`recording a book with ID ${bookID}...`);
+  bookTrackerController.record(bookID);
 }
 
 main();

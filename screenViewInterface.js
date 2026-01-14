@@ -12,4 +12,10 @@ function error(errorMessage, implementation) {
   return implementation(errorMessage);
 }
 
-module.exports = { resultsBookList, error };
+function filedBook(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
+
+module.exports = { resultsBookList, error, filedBook };

@@ -19,4 +19,11 @@ function error(errorMessage) {
   console.log("-----------------------------");
 }
 
-module.exports = { resultsBookList, error };
+function filedBook(bookID) {
+  // console.log(CLASS);
+  console.log("------- Filed Book -------");
+  console.log(`ID: ${bookID}`);
+  console.log("--------------------------");
+}
+
+module.exports = { resultsBookList, error, filedBook };
