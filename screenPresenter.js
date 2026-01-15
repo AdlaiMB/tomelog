@@ -9,7 +9,6 @@ function generateCoverURL(coverId) {
 
 function searchResultBooklist(bookList) {
   // console.log(CLASS);
-  // process bookList for presentation
   const result = [];
 
   for (const book of bookList) {
@@ -37,6 +36,7 @@ function recordedBook(recordedBook) {
 }
 
 function storedBooksBooklist(booklist) {
+  // console.log(CLASS);
   const result = [];
 
   for (const book of booklist) {

@@ -27,6 +27,7 @@ function filedBook(bookID) {
 }
 
 function bookShelf(booklist) {
+  // console.log(CLASS);
   console.log("------- Book Shelf -------");
   for (const book of booklist) {
     console.log("");

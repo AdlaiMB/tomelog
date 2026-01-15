@@ -4,6 +4,7 @@ const bookRepoInterface = require("./bookRepoInterface.js");
 const bookRepoImplementation = require("./bookRepoImplementation.js");
 
 function searchByTitle(title) {
+  // console.log(CLASS)
   return bookRepoInterface.queryByTitle(
     title,
     bookRepoImplementation.queryByTitle

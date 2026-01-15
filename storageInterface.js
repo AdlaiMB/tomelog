@@ -4,7 +4,6 @@ const CLASS = "Interface - storage";
 
 function writeBookByBookID(bookID, implementation) {
   // console.log(CLASS);
-
   // preconditon(s)
 
   // call any implementation
@@ -22,7 +21,6 @@ function writeBookByBookID(bookID, implementation) {
 
 function writeBookChapterBookmark(bookID, chapter, implementation) {
   // console.log(CLASS);
-
   // preconditon(s)
   assert.strictEqual(
     Number.isInteger(chapter),
@@ -51,7 +49,6 @@ function writeBookChapterBookmark(bookID, chapter, implementation) {
 
 function writeBookPageBookmark(bookID, page, implementation) {
   // console.log(CLASS);
-
   // preconditon(s)
   assert.strictEqual(
     Number.isInteger(page),
@@ -76,7 +73,6 @@ function writeBookPageBookmark(bookID, page, implementation) {
 
 function writeBookChapters(bookID, chapters, implementation) {
   // console.log(CLASS);
-
   // preconditon(s)
   assert.strictEqual(
     Number.isInteger(chapters),
@@ -105,7 +101,6 @@ function writeBookChapters(bookID, chapters, implementation) {
 
 function writeBookPages(bookID, startPage, endPage, implementation) {
   // console.log(CLASS);
-
   // preconditon(s)
   assert.strictEqual(
     Number.isInteger(startPage) && Number.isInteger(endPage),
@@ -146,6 +141,7 @@ function writeBookPages(bookID, startPage, endPage, implementation) {
 
 function fetchMyBooks(implementation) {
   // console.log(CLASS);
+  // precondition(s)
   // call any implementation
   const books = implementation();
 
@@ -157,6 +153,7 @@ function fetchMyBooks(implementation) {
 
 function fetchBookPageTotal(bookID, implementation) {
   // console.log(CLASS);
+  // precondition(s)
   // call any implementation
   const pages = implementation(bookID);
 
@@ -172,6 +169,7 @@ function fetchBookPageTotal(bookID, implementation) {
 
 function fetchBookPageBookmark(bookID, implementation) {
   // console.log(CLASS);
+  // precondition(s)
   // call any implementation
   const pageBookmark = implementation(bookID);
 
@@ -187,6 +185,7 @@ function fetchBookPageBookmark(bookID, implementation) {
 
 function fetchBookChapterBookmark(bookID, implementation) {
   // console.log(CLASS);
+  // precondition(s)
   // call any implementation
   const chapterBookmark = implementation(bookID);
 
@@ -202,6 +201,7 @@ function fetchBookChapterBookmark(bookID, implementation) {
 
 function fetchBookChapterTotal(bookID, implementation) {
   // console.log(CLASS);
+  // precondition(s)
   // call any implementation
   const chapters = implementation(bookID);
 

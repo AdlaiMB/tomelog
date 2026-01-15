@@ -5,7 +5,6 @@ const assert = require("node:assert/strict");
 
 function writeBookByBookID(bookID) {
   // console.log(CLASS);
-
   const originalBookLength = books.size;
   books.set(bookID, {
     chapters: 0,
@@ -33,7 +32,6 @@ function writeBookByBookID(bookID) {
 
 function writeBookChapterBookmark(bookID, chapter) {
   // console.log(CLASS);
-
   const book = books.get(bookID);
 
   assert.strictEqual(
@@ -62,7 +60,6 @@ function writeBookChapterBookmark(bookID, chapter) {
 
 function writeBookPageBookmark(bookID, page) {
   // console.log(CLASS);
-
   const book = books.get(bookID);
 
   assert.strictEqual(
@@ -91,7 +88,6 @@ function writeBookPageBookmark(bookID, page) {
 
 function writeBookChapters(bookID, chapters) {
   // console.log(CLASS);
-
   const book = books.get(bookID);
 
   assert.strictEqual(
@@ -120,7 +116,6 @@ function writeBookChapters(bookID, chapters) {
 
 function writeBookPages(bookID, startPage, endPage) {
   // console.log(CLASS);
-
   const book = books.get(bookID);
 
   assert.strictEqual(
@@ -152,10 +147,12 @@ function writeBookPages(bookID, startPage, endPage) {
 }
 
 function fetchMyBooks() {
+  // console.log(CLASS);
   return [...books.keys()];
 }
 
 function fetchBookPageTotal(bookID) {
+  // console.log(CLASS);
   const book = books.get(bookID);
 
   assert.strictEqual(
@@ -172,6 +169,7 @@ function fetchBookPageTotal(bookID) {
 }
 
 function fetchBookPageBookmark(bookID) {
+  // console.log(CLASS);
   const book = books.get(bookID);
 
   assert.strictEqual(
@@ -184,6 +182,7 @@ function fetchBookPageBookmark(bookID) {
 }
 
 function fetchBookChapterBookmark(bookID) {
+  // console.log(CLASS);
   const book = books.get(bookID);
 
   assert.strictEqual(
@@ -196,6 +195,7 @@ function fetchBookChapterBookmark(bookID) {
 }
 
 function fetchBookChapterTotal(bookID) {
+  // console.log(CLASS);
   const book = books.get(bookID);
 
   assert.strictEqual(

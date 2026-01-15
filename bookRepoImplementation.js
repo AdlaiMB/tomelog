@@ -8,7 +8,6 @@ const storageImplementation = require("./storageImplementation.js");
 
 async function queryByTitle(title) {
   // console.log(CLASS);
-
   const openLibraryResponse = await fetch(
     API_BASE_URL + "/search.json" + `?q=${title}&limit=5`
   );
@@ -25,7 +24,6 @@ async function queryByTitle(title) {
 
 function storeBook(bookID) {
   // console.log(CLASS);
-
   return storageInterface.writeBookByBookID(
     bookID,
     storageImplementation.writeBookByBookID
@@ -34,7 +32,6 @@ function storeBook(bookID) {
 
 async function getBookByBookID(bookID) {
   // console.log(CLASS);
-
   const openLibraryResponse = await fetch(
     API_BASE_URL + `/work/${bookID}.json`
   );
@@ -51,7 +48,6 @@ async function getBookByBookID(bookID) {
 
 function updateBookChapterBookmark(bookID, chapter) {
   // console.log(CLASS);
-
   return storageInterface.writeBookChapterBookmark(
     bookID,
     chapter,
@@ -61,7 +57,6 @@ function updateBookChapterBookmark(bookID, chapter) {
 
 function updateBookPageBookmark(bookID, page) {
   // console.log(CLASS);
-
   return storageInterface.writeBookPageBookmark(
     bookID,
     page,
@@ -71,7 +66,6 @@ function updateBookPageBookmark(bookID, page) {
 
 function updateBookChapters(bookID, chapters) {
   // console.log(CLASS);
-
   return storageInterface.writeBookChapters(
     bookID,
     chapters,
@@ -81,7 +75,6 @@ function updateBookChapters(bookID, chapters) {
 
 function updateBookPages(bookID, startPage, endPage) {
   // console.log(CLASS);
-
   return storageInterface.writeBookPages(
     bookID,
     startPage,
