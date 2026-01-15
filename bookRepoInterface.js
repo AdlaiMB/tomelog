@@ -61,6 +61,30 @@ function getMyBooks(implementation) {
   return implementation();
 }
 
+function getBookPageTotal(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
+
+function getBookPageBookmark(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
+
+function getBookChapterBookmark(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
+
+function getBookChapterTotal(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
+
 module.exports = {
   queryByTitle,
   storeBook,
@@ -70,4 +94,8 @@ module.exports = {
   updateBookChapters,
   updateBookPages,
   getMyBooks,
+  getBookPageTotal,
+  getBookPageBookmark,
+  getBookChapterBookmark,
+  getBookChapterTotal,
 };

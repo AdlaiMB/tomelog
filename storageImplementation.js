@@ -100,6 +100,12 @@ function writeBookChapters(bookID, chapters) {
     `Book with ID ${bookID} does not exist in storage`
   );
 
+  if (book.bookmark.chapter !== 0 && chapters < book.bookmark.chapter) {
+    throw new Error(
+      `${chapters} chapters will leave the chapter bookmark at ${book.bookmark.chapter} out of range`
+    );
+  }
+
   book.chapters = chapters;
   books.set(bookID, book);
 
@@ -123,6 +129,15 @@ function writeBookPages(bookID, startPage, endPage) {
     `Book with ID ${bookID} does not exist in storage`
   );
 
+  if (
+    book.bookmark.page !== 0 &&
+    (startPage > book.bookmark.page || book.bookmark.page > endPage)
+  ) {
+    throw new Error(
+      `Page range ${startPage} - ${endPage} will leave the page bookmark at ${book.bookmark.page} out of range`
+    );
+  }
+
   book.page.start = startPage;
   book.page.end = endPage;
   books.set(bookID, book);
@@ -140,6 +155,58 @@ function fetchMyBooks() {
   return [...books.keys()];
 }
 
+function fetchBookPageTotal(bookID) {
+  const book = books.get(bookID);
+
+  assert.strictEqual(
+    book !== undefined,
+    true,
+    `Book with ID ${bookID} does not exist in storage`
+  );
+
+  if (book.page.start === 0) {
+    return 0;
+  }
+
+  return book.page.end - book.page.start + 1;
+}
+
+function fetchBookPageBookmark(bookID) {
+  const book = books.get(bookID);
+
+  assert.strictEqual(
+    book !== undefined,
+    true,
+    `Book with ID ${bookID} does not exist in storage`
+  );
+
+  return book.bookmark.page;
+}
+
+function fetchBookChapterBookmark(bookID) {
+  const book = books.get(bookID);
+
+  assert.strictEqual(
+    book !== undefined,
+    true,
+    `Book with ID ${bookID} does not exist in storage`
+  );
+
+  return book.bookmark.chapter;
+}
+
+function fetchBookChapterTotal(bookID) {
+  const book = books.get(bookID);
+
+  assert.strictEqual(
+    book !== undefined,
+    true,
+    `Book with ID ${bookID} does not exist in storage`
+  );
+
+  return book.chapters;
+}
+
 module.exports = {
   writeBookByBookID,
   writeBookChapterBookmark,
@@ -147,4 +214,8 @@ module.exports = {
   writeBookChapters,
   writeBookPages,
   fetchMyBooks,
+  fetchBookPageTotal,
+  fetchBookPageBookmark,
+  fetchBookChapterBookmark,
+  fetchBookChapterTotal,
 };

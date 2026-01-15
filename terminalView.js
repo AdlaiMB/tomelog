@@ -40,4 +40,47 @@ function bookShelf(booklist) {
   console.log("--------------------------");
 }
 
-module.exports = { resultsBookList, error, filedBook, bookShelf };
+function pageProgress(completed, total) {
+  // console.log(CLASS);
+  console.log("------- Page Progress -------");
+  console.log(
+    `Percent Completed: ${
+      total > 0 ? Math.ceil((completed / total) * 100) : 0
+    }%`
+  );
+  console.log(`Completed Pages/Total Pages: ${completed} / ${total}`);
+  console.log("-----------------------------");
+}
+
+function chapterProgress(completed, total) {
+  // console.log(CLASS);
+  console.log("----- Chapter Progress -----");
+  console.log(
+    `Percent Completed: ${
+      total > 0 ? Math.ceil((completed / total) * 100) : 0
+    }%`
+  );
+  console.log(`Completed Chapters/Total Chapters: ${completed} / ${total}`);
+  console.log("----------------------------");
+}
+
+function updatedBook(updatedBook) {
+  // console.log(CLASS);
+  console.log("------- Updated Book -------");
+  console.log(`pages: ${updatedBook.page.start} - ${updatedBook.page.end}`);
+  console.log(`chapters: ${updatedBook.chapters}`);
+  console.log(
+    `bookmarks: page - ${updatedBook.bookmark.page}, chapter - ${updatedBook.bookmark.chapter}`
+  );
+  console.log("----------------------------");
+}
+
+module.exports = {
+  resultsBookList,
+  error,
+  filedBook,
+  bookShelf,
+  pageProgress,
+  chapterProgress,
+  updatedBook,
+};

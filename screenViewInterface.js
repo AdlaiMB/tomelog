@@ -24,4 +24,30 @@ function bookShelf(bookList, implementation) {
   return implementation(bookList);
 }
 
-module.exports = { resultsBookList, error, filedBook, bookShelf };
+function pageProgress(completed, total, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(completed, total);
+}
+
+function chapterProgress(completed, total, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(completed, total);
+}
+
+function updatedBook(updatedBook, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(updatedBook);
+}
+
+module.exports = {
+  resultsBookList,
+  error,
+  filedBook,
+  bookShelf,
+  pageProgress,
+  chapterProgress,
+  updatedBook,
+};

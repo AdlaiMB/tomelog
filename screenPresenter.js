@@ -56,9 +56,31 @@ function storedBooksBooklist(booklist) {
   screenViewInterface.bookShelf(result, terminalView.bookShelf);
 }
 
+function pageRatio(completed, total) {
+  // console.log(CLASS);
+  screenViewInterface.pageProgress(completed, total, terminalView.pageProgress);
+}
+
+function chapterRatio(completed, total) {
+  // console.log(CLASS);
+  screenViewInterface.chapterProgress(
+    completed,
+    total,
+    terminalView.chapterProgress
+  );
+}
+
+function updatedBook(updatedBook) {
+  // console.log(CLASS);
+  screenViewInterface.updatedBook(updatedBook, terminalView.updatedBook);
+}
+
 module.exports = {
   searchResultBooklist,
   errorMessage,
   recordedBook,
   storedBooksBooklist,
+  pageRatio,
+  chapterRatio,
+  updatedBook,
 };

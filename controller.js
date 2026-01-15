@@ -92,8 +92,188 @@ async function getMyBooks() {
   }
 }
 
+function updateChapterBookmark(bookID, chapter) {
+  let response;
+
+  try {
+    const updatedBook = bookRepoInterface.updateBookChapterBookmark(
+      bookID,
+      chapter,
+      bookRepoImplementation.updateBookChapterBookmark
+    );
+    response = { error: false, updatedBook };
+  } catch (error) {
+    response = { error: true, message: error.message };
+  }
+
+  if (!response.error) {
+    presenterInterface.updatedBook(
+      response.updatedBook,
+      screenPrensenter.updatedBook
+    );
+  } else {
+    presenterInterface.errorMessage(
+      response.message,
+      screenPrensenter.errorMessage
+    );
+  }
+}
+
+function updatePageBookmark(bookID, page) {
+  let response;
+
+  try {
+    const updatedBook = bookRepoInterface.updateBookPageBookmark(
+      bookID,
+      page,
+      bookRepoImplementation.updateBookPageBookmark
+    );
+    response = { error: false, updatedBook };
+  } catch (error) {
+    response = { error: true, message: error.message };
+  }
+
+  if (!response.error) {
+    presenterInterface.updatedBook(
+      response.updatedBook,
+      screenPrensenter.updatedBook
+    );
+  } else {
+    presenterInterface.errorMessage(
+      response.message,
+      screenPrensenter.errorMessage
+    );
+  }
+}
+
+function updateBookPages(bookID, startPage, EndPage) {
+  let response;
+
+  try {
+    const updatedBook = bookRepoInterface.updateBookPages(
+      bookID,
+      startPage,
+      EndPage,
+      bookRepoImplementation.updateBookPages
+    );
+    response = { error: false, updatedBook };
+  } catch (error) {
+    response = { error: true, message: error.message };
+  }
+
+  if (!response.error) {
+    presenterInterface.updatedBook(
+      response.updatedBook,
+      screenPrensenter.updatedBook
+    );
+  } else {
+    presenterInterface.errorMessage(
+      response.message,
+      screenPrensenter.errorMessage
+    );
+  }
+}
+function updateBookChapters(bookID, chapters) {
+  let response;
+
+  try {
+    const updatedBook = bookRepoInterface.updateBookChapters(
+      bookID,
+      chapters,
+      bookRepoImplementation.updateBookChapters
+    );
+    response = { error: false, updatedBook };
+  } catch (error) {
+    response = { error: true, message: error.message };
+  }
+
+  if (!response.error) {
+    presenterInterface.updatedBook(
+      response.updatedBook,
+      screenPrensenter.updatedBook
+    );
+  } else {
+    presenterInterface.errorMessage(
+      response.message,
+      screenPrensenter.errorMessage
+    );
+  }
+}
+
+function getPageRatioDetails(bookID) {
+  let response;
+
+  try {
+    const pageBookmark = bookRepoInterface.getBookPageBookmark(
+      bookID,
+      bookRepoImplementation.getBookPageBookmark
+    );
+
+    const pageTotal = bookRepoInterface.getBookPageTotal(
+      bookID,
+      bookRepoImplementation.getBookPageTotal
+    );
+
+    response = { error: false, bookmark: pageBookmark, total: pageTotal };
+  } catch (error) {
+    response = { error: true, message: error.message };
+  }
+
+  if (!response.error) {
+    presenterInterface.pageRatio(
+      response.bookmark,
+      response.total,
+      screenPrensenter.pageRatio
+    );
+  } else {
+    presenterInterface.errorMessage(
+      response.message,
+      screenPrensenter.errorMessage
+    );
+  }
+}
+
+function getChapterRatioDetails(bookID) {
+  let response;
+
+  try {
+    const chapterBookmark = bookRepoInterface.getBookChapterBookmark(
+      bookID,
+      bookRepoImplementation.getBookChapterBookmark
+    );
+
+    const chapterTotal = bookRepoInterface.getBookChapterTotal(
+      bookID,
+      bookRepoImplementation.getBookChapterTotal
+    );
+
+    response = { error: false, bookmark: chapterBookmark, total: chapterTotal };
+  } catch (error) {
+    response = { error: true, message: error.message };
+  }
+
+  if (!response.error) {
+    presenterInterface.chapterRatio(
+      response.bookmark,
+      response.total,
+      screenPrensenter.chapterRatio
+    );
+  } else {
+    presenterInterface.errorMessage(
+      response.message,
+      screenPrensenter.errorMessage
+    );
+  }
+}
+
 module.exports = {
   find,
   record,
   getMyBooks,
+  getPageRatioDetails,
+  getChapterRatioDetails,
+  updateChapterBookmark,
+  updatePageBookmark,
+  updateBookPages,
+  updateBookChapters,
 };

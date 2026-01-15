@@ -95,6 +95,38 @@ function getMyBooks() {
   return storageInterface.fetchMyBooks(storageImplementation.fetchMyBooks);
 }
 
+function getBookPageTotal(bookID) {
+  // console.log(CLASS);
+  return storageInterface.fetchBookPageTotal(
+    bookID,
+    storageImplementation.fetchBookPageTotal
+  );
+}
+
+function getBookPageBookmark(bookID) {
+  // console.log(CLASS);
+  return storageInterface.fetchBookPageBookmark(
+    bookID,
+    storageImplementation.fetchBookPageBookmark
+  );
+}
+
+function getBookChapterBookmark(bookID) {
+  // console.log(CLASS);
+  return storageInterface.fetchBookChapterBookmark(
+    bookID,
+    storageImplementation.fetchBookChapterBookmark
+  );
+}
+
+function getBookChapterTotal(bookID) {
+  // console.log(CLASS);
+  return storageInterface.fetchBookChapterTotal(
+    bookID,
+    storageImplementation.fetchBookChapterTotal
+  );
+}
+
 module.exports = {
   queryByTitle,
   storeBook,
@@ -104,4 +136,8 @@ module.exports = {
   updateBookChapters,
   updateBookPages,
   getMyBooks,
+  getBookPageTotal,
+  getBookPageBookmark,
+  getBookChapterBookmark,
+  getBookChapterTotal,
 };
