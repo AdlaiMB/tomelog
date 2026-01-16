@@ -12,42 +12,44 @@ function errorMessage(errorMessage, implementation) {
   return implementation(errorMessage);
 }
 
-function recordedBook(recordedBook, implementation) {
-  // console.log(CLASS);
-  // call any implementation
-  return implementation(recordedBook);
-}
+// function recordedBook(recordedBook, implementation) {
+//   // console.log(CLASS);
+//   // call any implementation
+//   return implementation(recordedBook);
+// }
 
-function storedBooksBooklist(bookList, implementation) {
-  // console.log(CLASS);
-  // call any implementation
-  return implementation(bookList);
-}
+// function storedBooksBooklist(bookList, implementation) {
+//   // console.log(CLASS);
+//   // call any implementation
+//   return implementation(bookList);
+// }
 
-function pageRatio(bookmark, total, implementation) {
-  // console.log(CLASS);
-  // call any implementation
-  return implementation(bookmark, total);
-}
+// function pageRatio(bookmark, total, implementation) {
+//   // console.log(CLASS);
+//   // call any implementation
+//   return implementation(bookmark, total);
+// }
 
-function chapterRatio(bookmark, total, implementation) {
-  // console.log(CLASS);
-  // call any implementation
-  return implementation(bookmark, total);
-}
+// function chapterRatio(bookmark, total, implementation) {
+//   // console.log(CLASS);
+//   // call any implementation
+//   return implementation(bookmark, total);
+// }
 
-function updatedBook(updatedBook, implementation) {
-  // console.log(CLASS);
-  // call any implementation
-  return implementation(updatedBook);
-}
+// function updatedBook(updatedBook, implementation) {
+//   // console.log(CLASS);
+//   // call any implementation
+//   return implementation(updatedBook);
+// }
 
-module.exports = {
-  searchResultBooklist,
-  errorMessage,
-  recordedBook,
-  storedBooksBooklist,
-  pageRatio,
-  chapterRatio,
-  updatedBook,
-};
+// module.exports = {
+//   searchResultBooklist,
+//   errorMessage,
+//   recordedBook,
+//   storedBooksBooklist,
+//   pageRatio,
+//   chapterRatio,
+//   updatedBook,
+// };
+
+export { searchResultBooklist, errorMessage };

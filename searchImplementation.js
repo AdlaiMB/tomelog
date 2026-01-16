@@ -1,14 +1,14 @@
 const CLASS = "Implementation - search";
 
-const bookRepoInterface = require("./bookRepoInterface.js");
-const bookRepoImplementation = require("./bookRepoImplementation.js");
+// const bookRepoInterface = require("./bookRepoInterface.js");
+// const bookRepoImplementation = require("./bookRepoImplementation.js");
+
+import { queryByTitle as interfaceQueryByTitle } from "./bookRepoInterface";
+import { queryByTitle as implementationQueryByTitle } from "./bookRepoImplementation";
 
 function searchByTitle(title) {
   // console.log(CLASS)
-  return bookRepoInterface.queryByTitle(
-    title,
-    bookRepoImplementation.queryByTitle
-  );
+  return interfaceQueryByTitle(title, implementationQueryByTitle);
 }
 
 async function discoverySearch(search) {
@@ -20,4 +20,6 @@ async function discoverySearch(search) {
   return { books };
 }
 
-module.exports = { discoverySearch };
+// module.exports = { discoverySearch };
+
+export { discoverySearch };
