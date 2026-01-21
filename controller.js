@@ -13,11 +13,16 @@ import { discoverySearch as implementationDiscoverySearch } from "./searchImplem
 import {
   searchResultBooklist as interfaceSearchResultBooklist,
   errorMessage as interfaceErrorMeassage,
+  recordedBook as interfaceRecordedBook,
 } from "./presenterInterface";
 import {
   searchResultBooklist as implementationSearchResultBooklist,
   errorMessage as implementationErrorMessage,
+  recordedBook as implementationRecordedBook,
 } from "./screenPresenter";
+
+import { storeBook as interfaceStoreBook } from "./bookRepoInterface";
+import { storeBook as implementationStoreBook } from "./bookRepoImplementation";
 
 async function find(book) {
   let resultBooksData = null;
@@ -49,31 +54,30 @@ async function find(book) {
   return response;
 }
 
-// function record(bookID) {
-//   let response;
+function record(bookID) {
+  let recordedBooks = null;
+  let errorMessage;
 
-//   try {
-//     const recordedBooks = bookRepoInterface.storeBook(
-//       bookID,
-//       bookRepoImplementation.storeBook
-//     );
-//     response = { error: false, recordedBook: recordedBooks.at(-1) };
-//   } catch (error) {
-//     response = { error: true, message: error.message };
-//   }
+  try {
+    recordedBooks = interfaceStoreBook(bookID, implementationStoreBook);
+    console.log(recordedBooks);
+  } catch (error) {
+    errorMessage = error.message;
+  }
 
-//   if (!response.error) {
-//     presenterInterface.recordedBook(
-//       response.recordedBook,
-//       screenPrensenter.recordedBook
-//     );
-//   } else {
-//     presenterInterface.errorMessage(
-//       response.message,
-//       screenPrensenter.errorMessage
-//     );
-//   }
-// }
+  let response;
+  let view;
+
+  if (recordedBooks !== null) {
+    view = interfaceRecordedBook(recordedBooks, implementationRecordedBook);
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
+
+  return response;
+}
 
 // async function getMyBooks() {
 //   let response;
@@ -294,4 +298,4 @@ async function find(book) {
 //   updateBookChapters,
 // };
 
-export { find };
+export { find, record };

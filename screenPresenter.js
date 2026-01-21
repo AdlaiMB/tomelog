@@ -7,10 +7,12 @@ const CLASS = "Implementation - screenPrensenter";
 import {
   resultsBookList as interfaceResultsBooklist,
   error as interfaceError,
+  filedBook as interfaceFiledBook,
 } from "./screenViewInterface";
 import {
   resultsBookList as implementationResultsBookList,
   error as implementationError,
+  filedBook as implementationFiledBook,
 } from "./webView";
 
 function generateCoverURL(coverId) {
@@ -23,11 +25,10 @@ function searchResultBooklist(bookList) {
 
   for (const book of bookList) {
     const processedBook = {
-      id: book.key,
+      id: book.id,
       title: book.title,
-      coverURL: Object.hasOwn(book, "cover_i")
-        ? generateCoverURL(book.cover_i)
-        : null,
+      subtitle: book.subtitle,
+      coverURL: book.coverID !== null ? generateCoverURL(book.coverID) : null,
     };
     result.push(processedBook);
   }
@@ -40,10 +41,10 @@ function errorMessage(errorMessage) {
   return interfaceError(errorMessage, implementationError);
 }
 
-// function recordedBook(recordedBook) {
-//   // console.log(CLASS);
-//   screenViewInterface.filedBook(recordedBook, terminalView.filedBook);
-// }
+function recordedBook(recordedBook) {
+  // console.log(CLASS);
+  return interfaceFiledBook(recordedBook, implementationFiledBook);
+}
 
 // function storedBooksBooklist(booklist) {
 //   // console.log(CLASS);
@@ -95,4 +96,4 @@ function errorMessage(errorMessage) {
 //   updatedBook,
 // };
 
-export { searchResultBooklist, errorMessage };
+export { searchResultBooklist, errorMessage, recordedBook };

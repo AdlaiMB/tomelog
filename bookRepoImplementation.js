@@ -6,10 +6,19 @@ const API_BASE_URL = "https://openlibrary.org";
 // const storageInterface = require("./storageInterface.js");
 // const storageImplementation = require("./storageImplementation.js");
 
+import { writeBookByBookID as interfaceWriteBookByBookID } from "./storageInterface";
+import { writeBookByBookID as implementationWriteBookByBookID } from "./storageImplementation";
+
+function getIDFromOpenLibraryKey(key) {
+  return key.split("/").at(-1);
+}
+
 async function queryByTitle(title) {
   // console.log(CLASS);
   const openLibraryResponse = await fetch(
-    API_BASE_URL + "/search.json" + `?q=${title}&limit=5`
+    API_BASE_URL +
+      "/search.json" +
+      `?q=${title}&limit=5&fields=key,title,subtitle,cover_i`
   );
   const openlibraryData = await openLibraryResponse.json();
 
@@ -18,16 +27,26 @@ async function queryByTitle(title) {
     throw new Error("Missing 'docs' property in response");
   }
 
-  return openlibraryData["docs"];
+  const results = [];
+
+  for (const book of openlibraryData["docs"]) {
+    const bookRepoBookDS = {
+      id: getIDFromOpenLibraryKey(book.key),
+      title: book.title,
+      subtitle: Object.hasOwn(book, "subtitle") ? book.subtitle : null,
+      coverID: Object.hasOwn(book, "cover_i") ? book.cover_i : null,
+    };
+
+    results.push(bookRepoBookDS);
+  }
+
+  return results;
 }
 
-// function storeBook(bookID) {
-//   // console.log(CLASS);
-//   return storageInterface.writeBookByBookID(
-//     bookID,
-//     storageImplementation.writeBookByBookID
-//   );
-// }
+function storeBook(bookID) {
+  // console.log(CLASS);
+  return interfaceWriteBookByBookID(bookID, implementationWriteBookByBookID);
+}
 
 // async function getBookByBookID(bookID) {
 //   // console.log(CLASS);
@@ -134,4 +153,4 @@ async function queryByTitle(title) {
 //   getBookChapterTotal,
 // };
 
-export { queryByTitle };
+export { queryByTitle, storeBook };

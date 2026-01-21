@@ -12,11 +12,11 @@ function errorMessage(errorMessage, implementation) {
   return implementation(errorMessage);
 }
 
-// function recordedBook(recordedBook, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(recordedBook);
-// }
+function recordedBook(recordedBook, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(recordedBook);
+}
 
 // function storedBooksBooklist(bookList, implementation) {
 //   // console.log(CLASS);
@@ -52,4 +52,4 @@ function errorMessage(errorMessage, implementation) {
 //   updatedBook,
 // };
 
-export { searchResultBooklist, errorMessage };
+export { searchResultBooklist, errorMessage, recordedBook };

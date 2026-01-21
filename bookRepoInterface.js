@@ -2,7 +2,6 @@ const CLASS = "Interface - bookRepo";
 
 async function queryByTitle(title, implementation) {
   // console.log(CLASS);
-
   // call any implementation
   const books = await implementation(title);
 
@@ -14,11 +13,11 @@ async function queryByTitle(title, implementation) {
   return books;
 }
 
-// function storeBook(bookID, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookID);
-// }
+function storeBook(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
 
 // async function getBookByBookID(bookID, implementation) {
 //   // console.log(CLASS);
@@ -100,4 +99,4 @@ async function queryByTitle(title, implementation) {
 //   getBookChapterTotal,
 // };
 
-export { queryByTitle };
+export { queryByTitle, storeBook };
