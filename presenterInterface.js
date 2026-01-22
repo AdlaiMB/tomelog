@@ -24,17 +24,17 @@ function storedBooksBooklist(bookList, implementation) {
   return implementation(bookList);
 }
 
-// function pageRatio(bookmark, total, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookmark, total);
-// }
+function pageRatio(bookmark, total, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookmark, total);
+}
 
-// function chapterRatio(bookmark, total, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookmark, total);
-// }
+function chapterRatio(bookmark, total, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookmark, total);
+}
 
 // function updatedBook(updatedBook, implementation) {
 //   // console.log(CLASS);
@@ -57,4 +57,6 @@ export {
   errorMessage,
   recordedBook,
   storedBooksBooklist,
+  chapterRatio,
+  pageRatio,
 };

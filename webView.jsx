@@ -1,7 +1,11 @@
 const CLASS = "Implementation - webView";
 
 import { useEffect, useState } from "react";
-import { record } from "./controller";
+import {
+  record,
+  getChapterRatioDetails,
+  getPageRatioDetails,
+} from "./controller";
 
 function NotFiledButton({ id, setFiled }) {
   // console.log(CLASS);
@@ -48,8 +52,37 @@ function Book({ id, title, subtitle, coverURL }) {
 }
 
 function StoredBook({ id, title, subtitle, coverURL }) {
+  const [progressModal, setProgressModal] = useState(null);
+
+  const toggleProgressModal = () => {
+    if (progressModal !== null) {
+      setProgressModal(null);
+      return;
+    }
+
+    const { error: chapterRatioError, view: chapterRatioView } =
+      getChapterRatioDetails(id);
+    const { error: pageRatioError, view: pageRatioView } =
+      getPageRatioDetails(id);
+
+    if (!chapterRatioError && !pageRatioError) {
+      setProgressModal(
+        <div>
+          {chapterRatioView}
+          {pageRatioView}
+        </div>,
+      );
+    } else {
+      console.log(chapterRatioError);
+      console.log(pageRatioError, pageRatioView);
+      alert("error");
+    }
+  };
+
   return (
     <div>
+      <button onClick={toggleProgressModal}>view progress</button>
+      {progressModal}
       <img src={coverURL}></img>
       <span>
         {title}-{subtitle}
@@ -97,4 +130,39 @@ function bookShelf(booklist) {
   ));
 }
 
-export { resultsBookList, error, filedBook, bookShelf };
+function chapterProgress(completed, total) {
+  return (
+    <div>
+      <span>chapter progress</span>
+      <div>
+        percentage: {total > 0 ? Math.ceil((completed / total) * 100) : 0}%
+      </div>
+      <div>
+        ratio: {completed} / {total}
+      </div>
+    </div>
+  );
+}
+
+function pageProgress(completed, total) {
+  return (
+    <div>
+      <span>page progress</span>
+      <div>
+        percentage: {total > 0 ? Math.ceil((completed / total) * 100) : 0}%
+      </div>
+      <div>
+        ratio: {completed} / {total}
+      </div>
+    </div>
+  );
+}
+
+export {
+  resultsBookList,
+  error,
+  filedBook,
+  bookShelf,
+  chapterProgress,
+  pageProgress,
+};

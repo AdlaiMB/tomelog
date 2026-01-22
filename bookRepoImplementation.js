@@ -9,10 +9,18 @@ const API_BASE_URL = "https://openlibrary.org";
 import {
   writeBookByBookID as interfaceWriteBookByBookID,
   fetchMyBooks as interfaceFetchMyBooks,
+  fetchBookChapterBookmark as interfaceFetchBookChapterBookmark,
+  fetchBookChapterTotal as interfaceFetchBookChapterTotal,
+  fetchBookPageBookmark as interfaceFetchBookPageBookmark,
+  fetchBookPageTotal as interfaceFetchBookPageTotal,
 } from "./storageInterface";
 import {
   writeBookByBookID as implementationWriteBookByBookID,
   fetchMyBooks as implementationFetchMyBooks,
+  fetchBookChapterBookmark as implementationFetchBookChapterBookmark,
+  fetchBookChapterTotal as implementationFetchBookChapterTotal,
+  fetchBookPageBookmark as implementationFetchBookPageBookmark,
+  fetchBookPageTotal as implementationFetchBookPageTotal,
 } from "./storageImplementation";
 
 function getIDFromOpenLibraryKey(key) {
@@ -122,37 +130,34 @@ function getMyBooks() {
   return interfaceFetchMyBooks(implementationFetchMyBooks);
 }
 
-// function getBookPageTotal(bookID) {
-//   // console.log(CLASS);
-//   return storageInterface.fetchBookPageTotal(
-//     bookID,
-//     storageImplementation.fetchBookPageTotal
-//   );
-// }
+function getBookPageTotal(bookID) {
+  // console.log(CLASS);
+  return interfaceFetchBookPageTotal(bookID, implementationFetchBookPageTotal);
+}
 
-// function getBookPageBookmark(bookID) {
-//   // console.log(CLASS);
-//   return storageInterface.fetchBookPageBookmark(
-//     bookID,
-//     storageImplementation.fetchBookPageBookmark
-//   );
-// }
+function getBookPageBookmark(bookID) {
+  // console.log(CLASS);
+  return interfaceFetchBookPageBookmark(
+    bookID,
+    implementationFetchBookPageBookmark,
+  );
+}
 
-// function getBookChapterBookmark(bookID) {
-//   // console.log(CLASS);
-//   return storageInterface.fetchBookChapterBookmark(
-//     bookID,
-//     storageImplementation.fetchBookChapterBookmark
-//   );
-// }
+function getBookChapterBookmark(bookID) {
+  // console.log(CLASS);
+  return interfaceFetchBookChapterBookmark(
+    bookID,
+    implementationFetchBookChapterBookmark,
+  );
+}
 
-// function getBookChapterTotal(bookID) {
-//   // console.log(CLASS);
-//   return storageInterface.fetchBookChapterTotal(
-//     bookID,
-//     storageImplementation.fetchBookChapterTotal
-//   );
-// }
+function getBookChapterTotal(bookID) {
+  // console.log(CLASS);
+  return interfaceFetchBookChapterTotal(
+    bookID,
+    implementationFetchBookChapterTotal,
+  );
+}
 
 // module.exports = {
 //   queryByTitle,
@@ -169,4 +174,13 @@ function getMyBooks() {
 //   getBookChapterTotal,
 // };
 
-export { queryByTitle, storeBook, getMyBooks, getBookByBookID };
+export {
+  queryByTitle,
+  storeBook,
+  getMyBooks,
+  getBookByBookID,
+  getBookChapterBookmark,
+  getBookChapterTotal,
+  getBookPageBookmark,
+  getBookPageTotal,
+};

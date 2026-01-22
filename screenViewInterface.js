@@ -24,17 +24,17 @@ function bookShelf(bookList, implementation) {
   return implementation(bookList);
 }
 
-// function pageProgress(completed, total, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(completed, total);
-// }
+function pageProgress(completed, total, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(completed, total);
+}
 
-// function chapterProgress(completed, total, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(completed, total);
-// }
+function chapterProgress(completed, total, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(completed, total);
+}
 
 // function updatedBook(updatedBook, implementation) {
 //   // console.log(CLASS);
@@ -52,4 +52,11 @@ function bookShelf(bookList, implementation) {
 //   updatedBook,
 // };
 
-export { resultsBookList, error, filedBook, bookShelf };
+export {
+  resultsBookList,
+  error,
+  filedBook,
+  bookShelf,
+  chapterProgress,
+  pageProgress,
+};

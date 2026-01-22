@@ -180,61 +180,61 @@ function fetchMyBooks() {
   return [...books.keys()];
 }
 
-// function fetchBookPageTotal(bookID) {
-//   // console.log(CLASS);
-//   const book = books.get(bookID);
+function fetchBookPageTotal(bookID) {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
 
-//   assert.strictEqual(
-//     book !== undefined,
-//     true,
-//     `Book with ID ${bookID} does not exist in storage`
-//   );
+  if (!books.has(bookID)) {
+    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+  }
 
-//   if (book.page.start === 0) {
-//     return 0;
-//   }
+  const book = books.get(bookID);
 
-//   return book.page.end - book.page.start + 1;
-// }
+  if (book.page.start === 0) {
+    return 0;
+  }
 
-// function fetchBookPageBookmark(bookID) {
-//   // console.log(CLASS);
-//   const book = books.get(bookID);
+  return book.page.end - book.page.start + 1;
+}
 
-//   assert.strictEqual(
-//     book !== undefined,
-//     true,
-//     `Book with ID ${bookID} does not exist in storage`
-//   );
+function fetchBookPageBookmark(bookID) {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
 
-//   return book.bookmark.page;
-// }
+  if (!books.has(bookID)) {
+    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+  }
 
-// function fetchBookChapterBookmark(bookID) {
-//   // console.log(CLASS);
-//   const book = books.get(bookID);
+  const book = books.get(bookID);
 
-//   assert.strictEqual(
-//     book !== undefined,
-//     true,
-//     `Book with ID ${bookID} does not exist in storage`
-//   );
+  return book.bookmark.page;
+}
 
-//   return book.bookmark.chapter;
-// }
+function fetchBookChapterBookmark(bookID) {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
 
-// function fetchBookChapterTotal(bookID) {
-//   // console.log(CLASS);
-//   const book = books.get(bookID);
+  if (!books.has(bookID)) {
+    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+  }
 
-//   assert.strictEqual(
-//     book !== undefined,
-//     true,
-//     `Book with ID ${bookID} does not exist in storage`
-//   );
+  const book = books.get(bookID);
 
-//   return book.chapters;
-// }
+  return book.bookmark.chapter;
+}
+
+function fetchBookChapterTotal(bookID) {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
+
+  if (!books.has(bookID)) {
+    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+  }
+
+  const book = books.get(bookID);
+
+  return book.chapters;
+}
 
 // module.exports = {
 //   writeBookByBookID,
@@ -249,4 +249,11 @@ function fetchMyBooks() {
 //   fetchBookChapterTotal,
 // };
 
-export { writeBookByBookID, fetchMyBooks };
+export {
+  writeBookByBookID,
+  fetchMyBooks,
+  fetchBookChapterBookmark,
+  fetchBookChapterTotal,
+  fetchBookPageBookmark,
+  fetchBookPageTotal,
+};

@@ -9,12 +9,16 @@ import {
   error as interfaceError,
   filedBook as interfaceFiledBook,
   bookShelf as interfaceBookShelf,
+  chapterProgress as interfaceChapterProgress,
+  pageProgress as interfacePageProgress,
 } from "./screenViewInterface";
 import {
   resultsBookList as implementationResultsBookList,
   error as implementationError,
   filedBook as implementationFiledBook,
   bookShelf as implementationBookShelf,
+  chapterProgress as implementationChapterProgress,
+  pageProgress as implementationPageProgress,
 } from "./webView";
 
 function generateCoverURL(coverId) {
@@ -65,19 +69,19 @@ function storedBooksBooklist(booklist) {
   return interfaceBookShelf(result, implementationBookShelf);
 }
 
-// function pageRatio(completed, total) {
-//   // console.log(CLASS);
-//   screenViewInterface.pageProgress(completed, total, terminalView.pageProgress);
-// }
+function pageRatio(completed, total) {
+  // console.log(CLASS);
+  return interfacePageProgress(completed, total, implementationPageProgress);
+}
 
-// function chapterRatio(completed, total) {
-//   // console.log(CLASS);
-//   screenViewInterface.chapterProgress(
-//     completed,
-//     total,
-//     terminalView.chapterProgress
-//   );
-// }
+function chapterRatio(completed, total) {
+  // console.log(CLASS);
+  return interfaceChapterProgress(
+    completed,
+    total,
+    implementationChapterProgress,
+  );
+}
 
 // function updatedBook(updatedBook) {
 //   // console.log(CLASS);
@@ -99,4 +103,6 @@ export {
   errorMessage,
   recordedBook,
   storedBooksBooklist,
+  chapterRatio,
+  pageRatio,
 };

@@ -62,29 +62,29 @@ function getMyBooks(implementation) {
   return implementation();
 }
 
-// function getBookPageTotal(bookID, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookID);
-// }
+function getBookPageTotal(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
 
-// function getBookPageBookmark(bookID, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookID);
-// }
+function getBookPageBookmark(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
 
-// function getBookChapterBookmark(bookID, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookID);
-// }
+function getBookChapterBookmark(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
 
-// function getBookChapterTotal(bookID, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookID);
-// }
+function getBookChapterTotal(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
 
 // module.exports = {
 //   queryByTitle,
@@ -101,4 +101,13 @@ function getMyBooks(implementation) {
 //   getBookChapterTotal,
 // };
 
-export { queryByTitle, storeBook, getMyBooks, getBookByBookID };
+export {
+  queryByTitle,
+  storeBook,
+  getMyBooks,
+  getBookByBookID,
+  getBookChapterBookmark,
+  getBookChapterTotal,
+  getBookPageBookmark,
+  getBookPageTotal,
+};

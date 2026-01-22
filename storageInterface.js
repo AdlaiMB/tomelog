@@ -149,69 +149,67 @@ function fetchMyBooks(implementation) {
   return books;
 }
 
-// function fetchBookPageTotal(bookID, implementation) {
-//   // console.log(CLASS);
-//   // precondition(s)
-//   // call any implementation
-//   const pages = implementation(bookID);
+function fetchBookPageTotal(bookID, implementation) {
+  // console.log(CLASS);
+  // precondition(s)
+  // call any implementation
+  const pages = implementation(bookID);
 
-//   // postcondition(s)
-//   assert.strictEqual(
-//     Number.isInteger(pages),
-//     true,
-//     `Page total for book with ID ${bookID} is not an integer`
-//   );
+  // postcondition(s)
+  if (!Number.isInteger(pages)) {
+    throw new Error(`Page total for book with ID ${bookID} is not an integer`);
+  }
 
-//   return pages;
-// }
+  return pages;
+}
 
-// function fetchBookPageBookmark(bookID, implementation) {
-//   // console.log(CLASS);
-//   // precondition(s)
-//   // call any implementation
-//   const pageBookmark = implementation(bookID);
+function fetchBookPageBookmark(bookID, implementation) {
+  // console.log(CLASS);
+  // precondition(s)
+  // call any implementation
+  const pageBookmark = implementation(bookID);
 
-//   // postcondition(s)
-//   assert.strictEqual(
-//     Number.isInteger(pageBookmark),
-//     true,
-//     `Page bookmark for book with ID ${bookID} is not an integer`
-//   );
+  // postcondition(s)
+  if (!Number.isInteger(pageBookmark)) {
+    throw new Error(
+      `Page bookmark for book with ID ${bookID} is not an integer`,
+    );
+  }
 
-//   return pageBookmark;
-// }
+  return pageBookmark;
+}
 
-// function fetchBookChapterBookmark(bookID, implementation) {
-//   // console.log(CLASS);
-//   // precondition(s)
-//   // call any implementation
-//   const chapterBookmark = implementation(bookID);
+function fetchBookChapterBookmark(bookID, implementation) {
+  // console.log(CLASS);
+  // precondition(s)
+  // call any implementation
+  const chapterBookmark = implementation(bookID);
 
-//   // postcondition(s)
-//   assert.strictEqual(
-//     Number.isInteger(chapterBookmark),
-//     true,
-//     `Chapter bookmark for book with ID ${bookID} is not an integer`
-//   );
+  // postcondition(s)
+  if (!Number.isInteger(chapterBookmark)) {
+    throw new Error(
+      `Chapter bookmark for book with ID ${bookID} is not an integer`,
+    );
+  }
 
-//   return chapterBookmark;
-// }
+  return chapterBookmark;
+}
 
-// function fetchBookChapterTotal(bookID, implementation) {
-//   // console.log(CLASS);
-//   // precondition(s)
-//   // call any implementation
-//   const chapters = implementation(bookID);
+function fetchBookChapterTotal(bookID, implementation) {
+  // console.log(CLASS);
+  // precondition(s)
+  // call any implementation
+  const chapters = implementation(bookID);
 
-//   // postcondition(s)
-//   assert.strictEqual(
-//     Number.isInteger(chapters),
-//     true,
-//     `Chapter total for book with ID ${bookID} is not an integer`
-//   );
+  // postcondition(s)
+  if (!Number.isInteger(chapters)) {
+    throw new Error(
+      `Chapter total for book with ID ${bookID} is not an integer`,
+    );
+  }
 
-//   return chapters;
-// }
+  return chapters;
+}
 
 // module.exports = {
 //   writeBookByBookID,
@@ -226,4 +224,11 @@ function fetchMyBooks(implementation) {
 //   fetchBookChapterTotal,
 // };
 
-export { writeBookByBookID, fetchMyBooks };
+export {
+  writeBookByBookID,
+  fetchMyBooks,
+  fetchBookChapterBookmark,
+  fetchBookChapterTotal,
+  fetchBookPageBookmark,
+  fetchBookPageTotal,
+};

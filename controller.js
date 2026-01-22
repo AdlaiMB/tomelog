@@ -15,23 +15,35 @@ import {
   errorMessage as interfaceErrorMeassage,
   recordedBook as interfaceRecordedBook,
   storedBooksBooklist as interfaceStoredBooksBooklist,
+  chapterRatio as interfaceChapterRatio,
+  pageRatio as interfacePageRatio,
 } from "./presenterInterface";
 import {
   searchResultBooklist as implementationSearchResultBooklist,
   errorMessage as implementationErrorMessage,
   recordedBook as implementationRecordedBook,
   storedBooksBooklist as implementationStoredBooksBooklist,
+  chapterRatio as implementationChapterRatio,
+  pageRatio as implementationPageRatio,
 } from "./screenPresenter";
 
 import {
   storeBook as interfaceStoreBook,
   getMyBooks as interfaceGetMyBooks,
   getBookByBookID as interfaceGetBookByBookID,
+  getBookChapterBookmark as interfaceGetBookChapterBookmark,
+  getBookChapterTotal as interfaceGetBookChapterTotal,
+  getBookPageBookmark as interfaceGetBookPageBookmark,
+  getBookPageTotal as interfaceGetBookPageTotal,
 } from "./bookRepoInterface";
 import {
   storeBook as implementationStoreBook,
   getMyBooks as implementationGetMyBooks,
   getBookByBookID as implementationGetBookByBookID,
+  getBookChapterBookmark as implementationGetBookChapterBookmark,
+  getBookChapterTotal as implementationGetBookChapterTotal,
+  getBookPageBookmark as implementationGetBookPageBookmark,
+  getBookPageTotal as implementationGetBookPageTotal,
 } from "./bookRepoImplementation";
 
 async function find(book) {
@@ -234,71 +246,81 @@ async function getMyBooks() {
 //   }
 // }
 
-// function getPageRatioDetails(bookID) {
-//   let response;
+function getPageRatioDetails(bookID) {
+  let pageRatio = null;
+  let errorMessage;
 
-//   try {
-//     const pageBookmark = bookRepoInterface.getBookPageBookmark(
-//       bookID,
-//       bookRepoImplementation.getBookPageBookmark
-//     );
+  try {
+    const pageBookmark = interfaceGetBookPageBookmark(
+      bookID,
+      implementationGetBookPageBookmark,
+    );
 
-//     const pageTotal = bookRepoInterface.getBookPageTotal(
-//       bookID,
-//       bookRepoImplementation.getBookPageTotal
-//     );
+    const pageTotal = interfaceGetBookPageTotal(
+      bookID,
+      implementationGetBookPageTotal,
+    );
 
-//     response = { error: false, bookmark: pageBookmark, total: pageTotal };
-//   } catch (error) {
-//     response = { error: true, message: error.message };
-//   }
+    pageRatio = { bookmark: pageBookmark, total: pageTotal };
+  } catch (error) {
+    errorMessage = error.message;
+  }
 
-//   if (!response.error) {
-//     presenterInterface.pageRatio(
-//       response.bookmark,
-//       response.total,
-//       screenPrensenter.pageRatio
-//     );
-//   } else {
-//     presenterInterface.errorMessage(
-//       response.message,
-//       screenPrensenter.errorMessage
-//     );
-//   }
-// }
+  let response;
+  let view;
 
-// function getChapterRatioDetails(bookID) {
-//   let response;
+  if (pageRatio !== null) {
+    view = interfacePageRatio(
+      pageRatio.bookmark,
+      pageRatio.total,
+      implementationPageRatio,
+    );
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
 
-//   try {
-//     const chapterBookmark = bookRepoInterface.getBookChapterBookmark(
-//       bookID,
-//       bookRepoImplementation.getBookChapterBookmark
-//     );
+  return response;
+}
 
-//     const chapterTotal = bookRepoInterface.getBookChapterTotal(
-//       bookID,
-//       bookRepoImplementation.getBookChapterTotal
-//     );
+function getChapterRatioDetails(bookID) {
+  let chapterRatio = null;
+  let errorMessage;
 
-//     response = { error: false, bookmark: chapterBookmark, total: chapterTotal };
-//   } catch (error) {
-//     response = { error: true, message: error.message };
-//   }
+  try {
+    const chapterBookmark = interfaceGetBookChapterBookmark(
+      bookID,
+      implementationGetBookChapterBookmark,
+    );
 
-//   if (!response.error) {
-//     presenterInterface.chapterRatio(
-//       response.bookmark,
-//       response.total,
-//       screenPrensenter.chapterRatio
-//     );
-//   } else {
-//     presenterInterface.errorMessage(
-//       response.message,
-//       screenPrensenter.errorMessage
-//     );
-//   }
-// }
+    const chapterTotal = interfaceGetBookChapterTotal(
+      bookID,
+      implementationGetBookChapterTotal,
+    );
+
+    chapterRatio = { bookmark: chapterBookmark, total: chapterTotal };
+  } catch (error) {
+    errorMessage = error.messsage;
+  }
+
+  let response;
+  let view;
+
+  if (chapterRatio !== null) {
+    view = interfaceChapterRatio(
+      chapterRatio.bookmark,
+      chapterRatio.total,
+      implementationChapterRatio,
+    );
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
+
+  return response;
+}
 
 // module.exports = {
 //   find,
@@ -312,4 +334,10 @@ async function getMyBooks() {
 //   updateBookChapters,
 // };
 
-export { find, record, getMyBooks };
+export {
+  find,
+  record,
+  getMyBooks,
+  getChapterRatioDetails,
+  getPageRatioDetails,
+};
