@@ -6,8 +6,14 @@ const API_BASE_URL = "https://openlibrary.org";
 // const storageInterface = require("./storageInterface.js");
 // const storageImplementation = require("./storageImplementation.js");
 
-import { writeBookByBookID as interfaceWriteBookByBookID } from "./storageInterface";
-import { writeBookByBookID as implementationWriteBookByBookID } from "./storageImplementation";
+import {
+  writeBookByBookID as interfaceWriteBookByBookID,
+  fetchMyBooks as interfaceFetchMyBooks,
+} from "./storageInterface";
+import {
+  writeBookByBookID as implementationWriteBookByBookID,
+  fetchMyBooks as implementationFetchMyBooks,
+} from "./storageImplementation";
 
 function getIDFromOpenLibraryKey(key) {
   return key.split("/").at(-1);
@@ -18,7 +24,7 @@ async function queryByTitle(title) {
   const openLibraryResponse = await fetch(
     API_BASE_URL +
       "/search.json" +
-      `?q=${title}&limit=5&fields=key,title,subtitle,cover_i`
+      `?q=${title}&limit=5&fields=key,title,subtitle,cover_i`,
   );
   const openlibraryData = await openLibraryResponse.json();
 
@@ -48,21 +54,31 @@ function storeBook(bookID) {
   return interfaceWriteBookByBookID(bookID, implementationWriteBookByBookID);
 }
 
-// async function getBookByBookID(bookID) {
-//   // console.log(CLASS);
-//   const openLibraryResponse = await fetch(
-//     API_BASE_URL + `/work/${bookID}.json`
-//   );
-//   const openlibraryData = await openLibraryResponse.json();
+async function getBookByBookID(bookID) {
+  // console.log(CLASS);
+  const openLibraryResponse = await fetch(
+    API_BASE_URL + `/works/${bookID}.json`,
+  );
+  const openlibraryData = await openLibraryResponse.json();
 
-//   assert.strictEqual(
-//     Object.hasOwn(openlibraryData, "error"),
-//     false,
-//     "Invalid BookID provided"
-//   );
+  // postcondition(s)
+  if (Object.hasOwn(openLibraryResponse, "error")) {
+    throw new Error("Invalid BookID provided");
+  }
 
-//   return openlibraryData;
-// }
+  const book = {
+    id: getIDFromOpenLibraryKey(openlibraryData.key),
+    title: openlibraryData.title,
+    subtitle: Object.hasOwn(openlibraryData, "subtitle")
+      ? openlibraryData.subtitle
+      : null,
+    coverID: Object.hasOwn(openlibraryData, "covers")
+      ? openlibraryData.covers[0]
+      : null,
+  };
+
+  return book;
+}
 
 // function updateBookChapterBookmark(bookID, chapter) {
 //   // console.log(CLASS);
@@ -101,10 +117,10 @@ function storeBook(bookID) {
 //   );
 // }
 
-// function getMyBooks() {
-//   // console.log(CLASS);
-//   return storageInterface.fetchMyBooks(storageImplementation.fetchMyBooks);
-// }
+function getMyBooks() {
+  // console.log(CLASS);
+  return interfaceFetchMyBooks(implementationFetchMyBooks);
+}
 
 // function getBookPageTotal(bookID) {
 //   // console.log(CLASS);
@@ -153,4 +169,4 @@ function storeBook(bookID) {
 //   getBookChapterTotal,
 // };
 
-export { queryByTitle, storeBook };
+export { queryByTitle, storeBook, getMyBooks, getBookByBookID };

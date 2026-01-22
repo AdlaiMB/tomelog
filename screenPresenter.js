@@ -8,11 +8,13 @@ import {
   resultsBookList as interfaceResultsBooklist,
   error as interfaceError,
   filedBook as interfaceFiledBook,
+  bookShelf as interfaceBookShelf,
 } from "./screenViewInterface";
 import {
   resultsBookList as implementationResultsBookList,
   error as implementationError,
   filedBook as implementationFiledBook,
+  bookShelf as implementationBookShelf,
 } from "./webView";
 
 function generateCoverURL(coverId) {
@@ -46,26 +48,22 @@ function recordedBook(recordedBook) {
   return interfaceFiledBook(recordedBook, implementationFiledBook);
 }
 
-// function storedBooksBooklist(booklist) {
-//   // console.log(CLASS);
-//   const result = [];
+function storedBooksBooklist(booklist) {
+  // console.log(CLASS);
+  const result = [];
 
-//   for (const book of booklist) {
-//     const processedBook = {
-//       id: book.key,
-//       title: book.title,
-//       coverURL:
-//         Object.hasOwn(book, "covers") &&
-//         book.covers.length > 0 &&
-//         book.covers[0] > 0
-//           ? generateCoverURL(book.covers[0])
-//           : null,
-//     };
-//     result.push(processedBook);
-//   }
+  for (const book of booklist) {
+    const processedBook = {
+      id: book.id,
+      title: book.title,
+      subtitle: book.subtitle,
+      coverURL: book.coverID !== null ? generateCoverURL(book.coverID) : null,
+    };
+    result.push(processedBook);
+  }
 
-//   screenViewInterface.bookShelf(result, terminalView.bookShelf);
-// }
+  return interfaceBookShelf(result, implementationBookShelf);
+}
 
 // function pageRatio(completed, total) {
 //   // console.log(CLASS);
@@ -96,4 +94,9 @@ function recordedBook(recordedBook) {
 //   updatedBook,
 // };
 
-export { searchResultBooklist, errorMessage, recordedBook };
+export {
+  searchResultBooklist,
+  errorMessage,
+  recordedBook,
+  storedBooksBooklist,
+};

@@ -18,11 +18,11 @@ function recordedBook(recordedBook, implementation) {
   return implementation(recordedBook);
 }
 
-// function storedBooksBooklist(bookList, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookList);
-// }
+function storedBooksBooklist(bookList, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookList);
+}
 
 // function pageRatio(bookmark, total, implementation) {
 //   // console.log(CLASS);
@@ -52,4 +52,9 @@ function recordedBook(recordedBook, implementation) {
 //   updatedBook,
 // };
 
-export { searchResultBooklist, errorMessage, recordedBook };
+export {
+  searchResultBooklist,
+  errorMessage,
+  recordedBook,
+  storedBooksBooklist,
+};

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { find } from "../controller";
+import { find } from "../../controller";
 
 function App() {
   const [books, setBooks] = useState([]);

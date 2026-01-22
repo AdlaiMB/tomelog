@@ -18,11 +18,11 @@ function filedBook(bookID, implementation) {
   return implementation(bookID);
 }
 
-// function bookShelf(bookList, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookList);
-// }
+function bookShelf(bookList, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookList);
+}
 
 // function pageProgress(completed, total, implementation) {
 //   // console.log(CLASS);
@@ -52,4 +52,4 @@ function filedBook(bookID, implementation) {
 //   updatedBook,
 // };
 
-export { resultsBookList, error, filedBook };
+export { resultsBookList, error, filedBook, bookShelf };

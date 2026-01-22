@@ -14,15 +14,25 @@ import {
   searchResultBooklist as interfaceSearchResultBooklist,
   errorMessage as interfaceErrorMeassage,
   recordedBook as interfaceRecordedBook,
+  storedBooksBooklist as interfaceStoredBooksBooklist,
 } from "./presenterInterface";
 import {
   searchResultBooklist as implementationSearchResultBooklist,
   errorMessage as implementationErrorMessage,
   recordedBook as implementationRecordedBook,
+  storedBooksBooklist as implementationStoredBooksBooklist,
 } from "./screenPresenter";
 
-import { storeBook as interfaceStoreBook } from "./bookRepoInterface";
-import { storeBook as implementationStoreBook } from "./bookRepoImplementation";
+import {
+  storeBook as interfaceStoreBook,
+  getMyBooks as interfaceGetMyBooks,
+  getBookByBookID as interfaceGetBookByBookID,
+} from "./bookRepoInterface";
+import {
+  storeBook as implementationStoreBook,
+  getMyBooks as implementationGetMyBooks,
+  getBookByBookID as implementationGetBookByBookID,
+} from "./bookRepoImplementation";
 
 async function find(book) {
   let resultBooksData = null;
@@ -31,7 +41,7 @@ async function find(book) {
   try {
     resultBooksData = await interfaceDiscoverySearch(
       { query: book },
-      implementationDiscoverySearch
+      implementationDiscoverySearch,
     );
   } catch (error) {
     errorMessage = error.message;
@@ -43,7 +53,7 @@ async function find(book) {
   if (resultBooksData !== null) {
     view = interfaceSearchResultBooklist(
       resultBooksData.books,
-      implementationSearchResultBooklist
+      implementationSearchResultBooklist,
     );
     response = { error: false, view };
   } else {
@@ -79,38 +89,42 @@ function record(bookID) {
   return response;
 }
 
-// async function getMyBooks() {
-//   let response;
+async function getMyBooks() {
+  let recordedBooks = null;
+  let errorMessage;
 
-//   try {
-//     const books = [];
-//     const myBooks = bookRepoInterface.getMyBooks(
-//       bookRepoImplementation.getMyBooks
-//     );
-//     for (const bookID of myBooks) {
-//       const book = await bookRepoInterface.getBookByBookID(
-//         bookID,
-//         bookRepoImplementation.getBookByBookID
-//       );
-//       books.push(book);
-//     }
-//     response = { error: false, books };
-//   } catch (error) {
-//     response = { error: true, message: error.message };
-//   }
+  try {
+    const books = [];
+    const myBooksIDs = interfaceGetMyBooks(implementationGetMyBooks);
 
-//   if (!response.error) {
-//     presenterInterface.storedBooksBooklist(
-//       response.books,
-//       screenPrensenter.storedBooksBooklist
-//     );
-//   } else {
-//     presenterInterface.errorMessage(
-//       response.message,
-//       screenPrensenter.errorMessage
-//     );
-//   }
-// }
+    for (const bookID of myBooksIDs) {
+      const book = await interfaceGetBookByBookID(
+        bookID,
+        implementationGetBookByBookID,
+      );
+      books.push(book);
+    }
+    recordedBooks = books;
+  } catch (error) {
+    errorMessage = error.message;
+  }
+
+  let response;
+  let view;
+
+  if (recordedBooks !== null) {
+    view = interfaceStoredBooksBooklist(
+      recordedBooks,
+      implementationStoredBooksBooklist,
+    );
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
+
+  return response;
+}
 
 // function updateChapterBookmark(bookID, chapter) {
 //   let response;
@@ -298,4 +312,4 @@ function record(bookID) {
 //   updateBookChapters,
 // };
 
-export { find, record };
+export { find, record, getMyBooks };

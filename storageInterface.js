@@ -135,17 +135,19 @@ function writeBookByBookID(bookID, implementation) {
 //   return book;
 // }
 
-// function fetchMyBooks(implementation) {
-//   // console.log(CLASS);
-//   // precondition(s)
-//   // call any implementation
-//   const books = implementation();
+function fetchMyBooks(implementation) {
+  // console.log(CLASS);
+  // precondition(s)
+  // call any implementation
+  const books = implementation();
 
-//   // postcondition(s)
-//   assert.strictEqual(books instanceof Array, true, "Books is not an array");
+  // postcondition(s)
+  if (!(books instanceof Array)) {
+    throw new Error("Books is not array");
+  }
 
-//   return books;
-// }
+  return books;
+}
 
 // function fetchBookPageTotal(bookID, implementation) {
 //   // console.log(CLASS);
@@ -224,4 +226,4 @@ function writeBookByBookID(bookID, implementation) {
 //   fetchBookChapterTotal,
 // };
 
-export { writeBookByBookID };
+export { writeBookByBookID, fetchMyBooks };

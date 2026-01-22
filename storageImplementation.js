@@ -173,10 +173,12 @@ function writeBookByBookID(bookID) {
 //   return book;
 // }
 
-// function fetchMyBooks() {
-//   // console.log(CLASS);
-//   return [...books.keys()];
-// }
+function fetchMyBooks() {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
+
+  return [...books.keys()];
+}
 
 // function fetchBookPageTotal(bookID) {
 //   // console.log(CLASS);
@@ -247,4 +249,4 @@ function writeBookByBookID(bookID) {
 //   fetchBookChapterTotal,
 // };
 
-export { writeBookByBookID };
+export { writeBookByBookID, fetchMyBooks };

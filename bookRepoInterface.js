@@ -6,7 +6,7 @@ async function queryByTitle(title, implementation) {
   const books = await implementation(title);
 
   // postcondition(s)
-  if (!books instanceof Array) {
+  if (!(books instanceof Array)) {
     throw new Error("Books is not an array");
   }
 
@@ -19,16 +19,18 @@ function storeBook(bookID, implementation) {
   return implementation(bookID);
 }
 
-// async function getBookByBookID(bookID, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   const book = await implementation(bookID);
+async function getBookByBookID(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  const book = await implementation(bookID);
 
-//   // postcondition(s)
-//   assert.strictEqual(book instanceof Object, true, "Book is not an object");
+  // postcondition(s)
+  if (!(book instanceof Object)) {
+    throw new Error("Book is not an object");
+  }
 
-//   return book;
-// }
+  return book;
+}
 
 // function updateBookChapterBookmark(bookID, chapter, implementation) {
 //   // console.log(CLASS);
@@ -54,11 +56,11 @@ function storeBook(bookID, implementation) {
 //   return implementation(bookID, startPage, endPage);
 // }
 
-// function getMyBooks(implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation();
-// }
+function getMyBooks(implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation();
+}
 
 // function getBookPageTotal(bookID, implementation) {
 //   // console.log(CLASS);
@@ -99,4 +101,4 @@ function storeBook(bookID, implementation) {
 //   getBookChapterTotal,
 // };
 
-export { queryByTitle, storeBook };
+export { queryByTitle, storeBook, getMyBooks, getBookByBookID };

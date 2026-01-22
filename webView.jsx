@@ -1,10 +1,9 @@
 const CLASS = "Implementation - webView";
 
 import { useEffect, useState } from "react";
-
 import { record } from "./controller";
 
-function NotFiledBook({ id, setFiled }) {
+function NotFiledButton({ id, setFiled }) {
   // console.log(CLASS);
   const file = (id) => {
     const { error, view: FiledBook } = record(id);
@@ -19,7 +18,7 @@ function NotFiledBook({ id, setFiled }) {
   return <button onClick={() => file(id)}>file</button>;
 }
 
-function FiledBook({ id, setFiled }) {
+function FiledButton({ id, setFiled }) {
   // console.log(CLASS);
   const unfile = (id) => {
     // TODO: add remove book from storage capability
@@ -34,12 +33,23 @@ function Book({ id, title, subtitle, coverURL }) {
 
   useEffect(() => {
     // TODO: set the correct initial state
-    setFiled(<NotFiledBook id={id} setFiled={setFiled} />);
+    setFiled(<NotFiledButton id={id} setFiled={setFiled} />);
   }, []);
 
   return (
     <div>
       {filed}
+      <img src={coverURL}></img>
+      <span>
+        {title}-{subtitle}
+      </span>
+    </div>
+  );
+}
+
+function StoredBook({ id, title, subtitle, coverURL }) {
+  return (
+    <div>
       <img src={coverURL}></img>
       <span>
         {title}-{subtitle}
@@ -72,7 +82,19 @@ function error(errorMessage) {
 
 function filedBook(filedBooks) {
   // console.log(CLASS)
-  return FiledBook;
+  return FiledButton;
 }
 
-export { resultsBookList, error, filedBook };
+function bookShelf(booklist) {
+  return booklist.map((book) => (
+    <StoredBook
+      key={book.id}
+      id={book.id}
+      title={book.title}
+      subtitle={book.subtitle}
+      coverURL={book.coverURL}
+    />
+  ));
+}
+
+export { resultsBookList, error, filedBook, bookShelf };
