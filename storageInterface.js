@@ -15,57 +15,53 @@ function writeBookByBookID(bookID, implementation) {
   return books;
 }
 
-// function writeBookChapterBookmark(bookID, chapter, implementation) {
-//   // console.log(CLASS);
-//   // preconditon(s)
-//   assert.strictEqual(
-//     Number.isInteger(chapter),
-//     true,
-//     `Chapter ${chapter} is not an integer`
-//   );
+function writeBookChapterBookmark(bookID, chapter, implementation) {
+  // console.log(CLASS);
+  // preconditon(s)
+  if (!Number.isInteger(chapter)) {
+    throw new Error(`Chapter ${chapter} is not an integer`);
+  }
 
-//   assert.strictEqual(
-//     chapter > 0,
-//     true,
-//     `Chapter ${chapter} must be greater than zero`
-//   );
+  if (chapter <= 0) {
+    throw new Error(`Chapter ${chapter} must be greater than zero`);
+  }
 
-//   // call any implementation
-//   const book = implementation(bookID, chapter);
+  // call any implementation
+  const book = implementation(bookID, chapter);
 
-//   // postcondition(s)
-//   assert.strictEqual(
-//     book.bookmark.chapter,
-//     chapter,
-//     `Book with ID ${bookID} has incorrect chapter bookmark after writing`
-//   );
+  // postcondition(s)
+  if (chapter !== book.bookmark.chapter) {
+    throw new Error(
+      `Book with ID ${bookID} has incorrect chapter bookmark after writing`,
+    );
+  }
 
-//   return book;
-// }
+  return book;
+}
 
-// function writeBookPageBookmark(bookID, page, implementation) {
-//   // console.log(CLASS);
-//   // preconditon(s)
-//   assert.strictEqual(
-//     Number.isInteger(page),
-//     true,
-//     `Page ${page} is not an integer`
-//   );
+function writeBookPageBookmark(bookID, page, implementation) {
+  // console.log(CLASS);
+  // preconditon(s)
+  if (!Number.isInteger(page)) {
+    throw new Error(`Page ${page} is not an integer`);
+  }
 
-//   assert.strictEqual(page > 0, true, `Page ${page} must be greater than zero`);
+  if (page <= 0) {
+    throw new Error(`Page ${page} must be greater than zero`);
+  }
 
-//   // call any implementation
-//   const book = implementation(bookID, page);
+  // call any implementation
+  const book = implementation(bookID, page);
 
-//   // postcondition(s)
-//   assert.strictEqual(
-//     book.bookmark.page,
-//     page,
-//     `Book with ID ${bookID} has incorrect page bookmark after writing`
-//   );
+  // postcondition(s)
+  if (page !== book.bookmark.page) {
+    throw new Error(
+      `Book with ID ${bookID} has incorrect page bookmark after writing`,
+    );
+  }
 
-//   return book;
-// }
+  return book;
+}
 
 function writeBookChapters(bookID, chapters, implementation) {
   // console.log(CLASS);
@@ -225,4 +221,6 @@ export {
   fetchBookPageTotal,
   writeBookChapters,
   writeBookPages,
+  writeBookChapterBookmark,
+  writeBookPageBookmark,
 };

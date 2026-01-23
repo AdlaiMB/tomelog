@@ -15,6 +15,8 @@ import {
   fetchBookPageTotal as interfaceFetchBookPageTotal,
   writeBookChapters as interfaceWriteBookChapters,
   writeBookPages as interfaceWriteBookPages,
+  writeBookChapterBookmark as interfaceWriteBookChapterBookmark,
+  writeBookPageBookmark as interfaceWriteBookPageBookmark,
 } from "./storageInterface";
 import {
   writeBookByBookID as implementationWriteBookByBookID,
@@ -25,6 +27,8 @@ import {
   fetchBookPageTotal as implementationFetchBookPageTotal,
   writeBookChapters as implementationWriteBookChapters,
   writeBookPages as implementationWriteBookPages,
+  writeBookChapterBookmark as implementationWriteBookChapterBookmark,
+  writeBookPageBookmark as implementationWriteBookPageBookmark,
 } from "./storageImplementation";
 
 function getIDFromOpenLibraryKey(key) {
@@ -92,23 +96,23 @@ async function getBookByBookID(bookID) {
   return book;
 }
 
-// function updateBookChapterBookmark(bookID, chapter) {
-//   // console.log(CLASS);
-//   return storageInterface.writeBookChapterBookmark(
-//     bookID,
-//     chapter,
-//     storageImplementation.writeBookChapterBookmark
-//   );
-// }
+function updateBookChapterBookmark(bookID, chapter) {
+  // console.log(CLASS);
+  return interfaceWriteBookChapterBookmark(
+    bookID,
+    chapter,
+    implementationWriteBookChapterBookmark,
+  );
+}
 
-// function updateBookPageBookmark(bookID, page) {
-//   // console.log(CLASS);
-//   return storageInterface.writeBookPageBookmark(
-//     bookID,
-//     page,
-//     storageImplementation.writeBookPageBookmark
-//   );
-// }
+function updateBookPageBookmark(bookID, page) {
+  // console.log(CLASS);
+  return interfaceWriteBookPageBookmark(
+    bookID,
+    page,
+    implementationWriteBookPageBookmark,
+  );
+}
 
 function updateBookChapters(bookID, chapters) {
   // console.log(CLASS);
@@ -189,4 +193,6 @@ export {
   getBookPageTotal,
   updateBookChapters,
   updateBookPages,
+  updateBookChapterBookmark,
+  updateBookPageBookmark,
 };

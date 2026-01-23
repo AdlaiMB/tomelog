@@ -32,17 +32,17 @@ async function getBookByBookID(bookID, implementation) {
   return book;
 }
 
-// function updateBookChapterBookmark(bookID, chapter, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookID, chapter);
-// }
+function updateBookChapterBookmark(bookID, chapter, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID, chapter);
+}
 
-// function updateBookPageBookmark(bookID, page, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(bookID, page);
-// }
+function updateBookPageBookmark(bookID, page, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID, page);
+}
 
 function updateBookChapters(bookID, chapters, implementation) {
   // console.log(CLASS);
@@ -112,4 +112,6 @@ export {
   getBookPageTotal,
   updateBookChapters,
   updateBookPages,
+  updateBookChapterBookmark,
+  updateBookPageBookmark,
 };

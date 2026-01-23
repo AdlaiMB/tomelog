@@ -7,6 +7,8 @@ import {
   getPageRatioDetails,
   updateBookChapters,
   updateBookPages,
+  updateChapterBookmark,
+  updatePageBookmark,
 } from "./controller";
 
 function NotFiledButton({ id, setFiled }) {
@@ -56,6 +58,7 @@ function Book({ id, title, subtitle, coverURL }) {
 function StoredBook({ id, title, subtitle, coverURL }) {
   const [progressModal, setProgressModal] = useState(null);
   const [bookDetailsModal, setBookDetailsModal] = useState(false);
+  const [bookmarksModal, setBookmarksModal] = useState(null);
 
   const toggleProgressModal = () => {
     if (progressModal !== null) {
@@ -115,9 +118,38 @@ function StoredBook({ id, title, subtitle, coverURL }) {
     }
   };
 
+  const toggleBookmarksModal = () => {
+    setBookmarksModal(!bookmarksModal);
+  };
+
+  const updatebookmarkchapter = (formData) => {
+    const chapterBookmark = formData.get("chapterBookmark");
+    const { error, view } = updateChapterBookmark(id, Number(chapterBookmark));
+
+    if (!error) {
+      // TODO: handle the view
+    } else {
+      alert("error");
+      console.log(view);
+    }
+  };
+
+  const updatepagebookmark = (formData) => {
+    const pageBookmark = formData.get("pageBookmark");
+    const { error, view } = updatePageBookmark(id, Number(pageBookmark));
+
+    if (!error) {
+      // TODO: handle the view
+    } else {
+      alert("error");
+      console.log(view);
+    }
+  };
+
   return (
     <div>
       <button onClick={toggleProgressModal}>view progress</button>
+      <button onClick={toggleBookmarksModal}>update bookmarks</button>
       <button onClick={toggleBookDetailsModal}>update book info</button>
       {progressModal}
       {bookDetailsModal && (
@@ -130,6 +162,18 @@ function StoredBook({ id, title, subtitle, coverURL }) {
           <form action={updateChapters}>
             <input name="chapters" type="number" />
             <button>update chapters</button>
+          </form>
+        </div>
+      )}
+      {bookmarksModal && (
+        <div>
+          <form action={updatebookmarkchapter}>
+            <input name="chapterBookmark" type="number" />
+            <button>update chapter bookmark</button>
+          </form>
+          <form action={updatepagebookmark}>
+            <input name="pageBookmark" type="number" />
+            <button>update page bookmark</button>
           </form>
         </div>
       )}

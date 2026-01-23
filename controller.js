@@ -39,6 +39,8 @@ import {
   getBookPageTotal as interfaceGetBookPageTotal,
   updateBookChapters as interfaceUpdateBookChapters,
   updateBookPages as interfaceUpdateBookPages,
+  updateBookChapterBookmark as interfaceUpdateBookChapterBookmark,
+  updateBookPageBookmark as interfaceUpdateBookPageBookmark,
 } from "./bookRepoInterface";
 import {
   storeBook as implementationStoreBook,
@@ -50,6 +52,8 @@ import {
   getBookPageTotal as implementationGetBookPageTotal,
   updateBookChapters as implementationUpdateBookChapters,
   updateBookPages as implementationUpdateBookPages,
+  updateBookChapterBookmark as implementationUpdateBookChapterBookmark,
+  updateBookPageBookmark as implementationUpdateBookPageBookmark,
 } from "./bookRepoImplementation";
 
 async function find(book) {
@@ -144,59 +148,61 @@ async function getMyBooks() {
   return response;
 }
 
-// function updateChapterBookmark(bookID, chapter) {
-//   let response;
+function updateChapterBookmark(bookID, chapter) {
+  let updatedBook = null;
+  let errorMessage;
 
-//   try {
-//     const updatedBook = bookRepoInterface.updateBookChapterBookmark(
-//       bookID,
-//       chapter,
-//       bookRepoImplementation.updateBookChapterBookmark
-//     );
-//     response = { error: false, updatedBook };
-//   } catch (error) {
-//     response = { error: true, message: error.message };
-//   }
+  try {
+    updatedBook = interfaceUpdateBookChapterBookmark(
+      bookID,
+      chapter,
+      implementationUpdateBookChapterBookmark,
+    );
+  } catch (error) {
+    errorMessage = error.message;
+  }
 
-//   if (!response.error) {
-//     presenterInterface.updatedBook(
-//       response.updatedBook,
-//       screenPrensenter.updatedBook
-//     );
-//   } else {
-//     presenterInterface.errorMessage(
-//       response.message,
-//       screenPrensenter.errorMessage
-//     );
-//   }
-// }
+  let response;
+  let view;
 
-// function updatePageBookmark(bookID, page) {
-//   let response;
+  if (updatedBook !== null) {
+    view = interfaceUpdatedBook(updatedBook, implementationUpdatedBook);
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
 
-//   try {
-//     const updatedBook = bookRepoInterface.updateBookPageBookmark(
-//       bookID,
-//       page,
-//       bookRepoImplementation.updateBookPageBookmark
-//     );
-//     response = { error: false, updatedBook };
-//   } catch (error) {
-//     response = { error: true, message: error.message };
-//   }
+  return response;
+}
 
-//   if (!response.error) {
-//     presenterInterface.updatedBook(
-//       response.updatedBook,
-//       screenPrensenter.updatedBook
-//     );
-//   } else {
-//     presenterInterface.errorMessage(
-//       response.message,
-//       screenPrensenter.errorMessage
-//     );
-//   }
-// }
+function updatePageBookmark(bookID, page) {
+  let updatedBook = null;
+  let errorMessage;
+
+  try {
+    updatedBook = interfaceUpdateBookPageBookmark(
+      bookID,
+      page,
+      implementationUpdateBookPageBookmark,
+    );
+  } catch (error) {
+    errorMessage = error.message;
+  }
+
+  let response;
+  let view;
+
+  if (updatedBook !== null) {
+    view = interfaceUpdatedBook(updatedBook, implementationUpdatedBook);
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
+
+  return response;
+}
 
 function updateBookPages(bookID, startPage, EndPage) {
   let updatedBook;
@@ -351,4 +357,6 @@ export {
   getPageRatioDetails,
   updateBookChapters,
   updateBookPages,
+  updateChapterBookmark,
+  updatePageBookmark,
 };

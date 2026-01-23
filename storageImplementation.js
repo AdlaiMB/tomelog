@@ -57,61 +57,65 @@ function writeBookByBookID(bookID) {
   return [...books.keys()];
 }
 
-// function writeBookChapterBookmark(bookID, chapter) {
-//   // console.log(CLASS);
-//   const book = books.get(bookID);
+function writeBookChapterBookmark(bookID, chapter) {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
 
-//   assert.strictEqual(
-//     book !== undefined,
-//     true,
-//     `Book with ID ${bookID} does not exist in storage`
-//   );
+  if (!books.has(bookID)) {
+    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+  }
 
-//   assert.strictEqual(
-//     chapter <= book.chapters,
-//     true,
-//     `Chapter ${chapter} exceeds total chapters ${book.chapters} for book ID ${bookID}`
-//   );
+  const book = books.get(bookID);
 
-//   book.bookmark.chapter = chapter;
-//   books.set(bookID, book);
+  if (chapter > book.chapter) {
+    throw new Error(
+      `Chapter ${chapter} exceeds total chapters ${book.chapters} for book ID ${bookID}`,
+    );
+  }
 
-//   assert.strictEqual(
-//     books.has(bookID),
-//     true,
-//     `Book with ID ${bookID} was not stored after updating chapter progress`
-//   );
+  book.bookmark.chapter = chapter;
+  books.set(bookID, book);
 
-//   return book;
-// }
+  if (!books.has(bookID)) {
+    throw new Error(
+      `Book with ID ${bookID} was not stored after updating chapter bookmark`,
+    );
+  }
 
-// function writeBookPageBookmark(bookID, page) {
-//   // console.log(CLASS);
-//   const book = books.get(bookID);
+  updateBooksObjectInStorage(books);
 
-//   assert.strictEqual(
-//     book !== undefined,
-//     true,
-//     `Book with ID ${bookID} does not exist in storage`
-//   );
+  return book;
+}
 
-//   assert.strictEqual(
-//     page <= book.page.end && page >= book.page.start,
-//     true,
-//     `Page ${page} falls out of page range of ${book.page.start} - ${book.page.end} for book ID ${bookID}`
-//   );
+function writeBookPageBookmark(bookID, page) {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
 
-//   book.bookmark.page = page;
-//   books.set(bookID, book);
+  if (!books.has(bookID)) {
+    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+  }
 
-//   assert.strictEqual(
-//     books.has(bookID),
-//     true,
-//     `Book with ID ${bookID} was not stored after writing to page bookmark`
-//   );
+  const book = books.get(bookID);
 
-//   return book;
-// }
+  if (page > book.page.end || page < book.page.start) {
+    throw new Error(
+      `Page ${page} falls out of page range of ${book.page.start} - ${book.page.end} for book ID ${bookID}`,
+    );
+  }
+
+  book.bookmark.page = page;
+  books.set(bookID, book);
+
+  if (!books.has(bookID)) {
+    throw new Error(
+      `Book with ID ${bookID} was not stored after writing to page bookmark`,
+    );
+  }
+
+  updateBooksObjectInStorage(books);
+
+  return book;
+}
 
 function writeBookChapters(bookID, chapters) {
   // console.log(CLASS);
@@ -262,4 +266,6 @@ export {
   fetchBookPageTotal,
   writeBookChapters,
   writeBookPages,
+  writeBookChapterBookmark,
+  writeBookPageBookmark,
 };
