@@ -5,6 +5,8 @@ import {
   record,
   getChapterRatioDetails,
   getPageRatioDetails,
+  updateBookChapters,
+  updateBookPages,
 } from "./controller";
 
 function NotFiledButton({ id, setFiled }) {
@@ -53,6 +55,7 @@ function Book({ id, title, subtitle, coverURL }) {
 
 function StoredBook({ id, title, subtitle, coverURL }) {
   const [progressModal, setProgressModal] = useState(null);
+  const [bookDetailsModal, setBookDetailsModal] = useState(false);
 
   const toggleProgressModal = () => {
     if (progressModal !== null) {
@@ -79,10 +82,57 @@ function StoredBook({ id, title, subtitle, coverURL }) {
     }
   };
 
+  const toggleBookDetailsModal = () => {
+    setBookDetailsModal(!bookDetailsModal);
+  };
+
+  const updateChapters = (formData) => {
+    const chapters = formData.get("chapters");
+    const { error, view } = updateBookChapters(id, Number(chapters));
+
+    if (!error) {
+      // TODO : handle the view
+    } else {
+      alert("error");
+      console.log(view);
+    }
+  };
+
+  const updatePages = (formData) => {
+    const startPage = formData.get("startPage");
+    const endPage = formData.get("endPage");
+    const { error, view } = updateBookPages(
+      id,
+      Number(startPage),
+      Number(endPage),
+    );
+
+    if (!error) {
+      // TODO: handle the view
+    } else {
+      alert("error");
+      console.log(view);
+    }
+  };
+
   return (
     <div>
       <button onClick={toggleProgressModal}>view progress</button>
+      <button onClick={toggleBookDetailsModal}>update book info</button>
       {progressModal}
+      {bookDetailsModal && (
+        <div>
+          <form action={updatePages}>
+            <input name="startPage" type="number" />
+            <input name="endPage" type="number" />
+            <button>update pages</button>
+          </form>
+          <form action={updateChapters}>
+            <input name="chapters" type="number" />
+            <button>update chapters</button>
+          </form>
+        </div>
+      )}
       <img src={coverURL}></img>
       <span>
         {title}-{subtitle}
@@ -158,6 +208,10 @@ function pageProgress(completed, total) {
   );
 }
 
+function updatedBook(updatedBook) {
+  return <div>Book has been updated</div>;
+}
+
 export {
   resultsBookList,
   error,
@@ -165,4 +219,5 @@ export {
   bookShelf,
   chapterProgress,
   pageProgress,
+  updatedBook,
 };

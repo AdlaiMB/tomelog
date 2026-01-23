@@ -36,11 +36,11 @@ function chapterProgress(completed, total, implementation) {
   return implementation(completed, total);
 }
 
-// function updatedBook(updatedBook, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(updatedBook);
-// }
+function updatedBook(updatedBook, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(updatedBook);
+}
 
 // module.exports = {
 //   resultsBookList,
@@ -59,4 +59,5 @@ export {
   bookShelf,
   chapterProgress,
   pageProgress,
+  updatedBook,
 };

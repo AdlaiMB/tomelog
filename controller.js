@@ -17,6 +17,7 @@ import {
   storedBooksBooklist as interfaceStoredBooksBooklist,
   chapterRatio as interfaceChapterRatio,
   pageRatio as interfacePageRatio,
+  updatedBook as interfaceUpdatedBook,
 } from "./presenterInterface";
 import {
   searchResultBooklist as implementationSearchResultBooklist,
@@ -25,6 +26,7 @@ import {
   storedBooksBooklist as implementationStoredBooksBooklist,
   chapterRatio as implementationChapterRatio,
   pageRatio as implementationPageRatio,
+  updatedBook as implementationUpdatedBook,
 } from "./screenPresenter";
 
 import {
@@ -35,6 +37,8 @@ import {
   getBookChapterTotal as interfaceGetBookChapterTotal,
   getBookPageBookmark as interfaceGetBookPageBookmark,
   getBookPageTotal as interfaceGetBookPageTotal,
+  updateBookChapters as interfaceUpdateBookChapters,
+  updateBookPages as interfaceUpdateBookPages,
 } from "./bookRepoInterface";
 import {
   storeBook as implementationStoreBook,
@@ -44,6 +48,8 @@ import {
   getBookChapterTotal as implementationGetBookChapterTotal,
   getBookPageBookmark as implementationGetBookPageBookmark,
   getBookPageTotal as implementationGetBookPageTotal,
+  updateBookChapters as implementationUpdateBookChapters,
+  updateBookPages as implementationUpdateBookPages,
 } from "./bookRepoImplementation";
 
 async function find(book) {
@@ -192,59 +198,62 @@ async function getMyBooks() {
 //   }
 // }
 
-// function updateBookPages(bookID, startPage, EndPage) {
-//   let response;
+function updateBookPages(bookID, startPage, EndPage) {
+  let updatedBook;
+  let errorMessage;
 
-//   try {
-//     const updatedBook = bookRepoInterface.updateBookPages(
-//       bookID,
-//       startPage,
-//       EndPage,
-//       bookRepoImplementation.updateBookPages
-//     );
-//     response = { error: false, updatedBook };
-//   } catch (error) {
-//     response = { error: true, message: error.message };
-//   }
+  try {
+    updatedBook = interfaceUpdateBookPages(
+      bookID,
+      startPage,
+      EndPage,
+      implementationUpdateBookPages,
+    );
+  } catch (error) {
+    errorMessage = error.message;
+  }
 
-//   if (!response.error) {
-//     presenterInterface.updatedBook(
-//       response.updatedBook,
-//       screenPrensenter.updatedBook
-//     );
-//   } else {
-//     presenterInterface.errorMessage(
-//       response.message,
-//       screenPrensenter.errorMessage
-//     );
-//   }
-// }
-// function updateBookChapters(bookID, chapters) {
-//   let response;
+  let response;
+  let view;
 
-//   try {
-//     const updatedBook = bookRepoInterface.updateBookChapters(
-//       bookID,
-//       chapters,
-//       bookRepoImplementation.updateBookChapters
-//     );
-//     response = { error: false, updatedBook };
-//   } catch (error) {
-//     response = { error: true, message: error.message };
-//   }
+  if (updatedBook !== null) {
+    view = interfaceUpdatedBook(updatedBook, implementationUpdatedBook);
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
 
-//   if (!response.error) {
-//     presenterInterface.updatedBook(
-//       response.updatedBook,
-//       screenPrensenter.updatedBook
-//     );
-//   } else {
-//     presenterInterface.errorMessage(
-//       response.message,
-//       screenPrensenter.errorMessage
-//     );
-//   }
-// }
+  return response;
+}
+
+function updateBookChapters(bookID, chapters) {
+  let updatedBook = null;
+  let errorMessage;
+
+  try {
+    updatedBook = interfaceUpdateBookChapters(
+      bookID,
+      chapters,
+      implementationUpdateBookChapters,
+    );
+  } catch (error) {
+    errorMessage = error.message;
+  }
+
+  let response;
+  let view;
+
+  if (updatedBook !== null) {
+    view = interfaceUpdatedBook(updatedBook, implementationUpdatedBook);
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
+
+  return response;
+}
 
 function getPageRatioDetails(bookID) {
   let pageRatio = null;
@@ -340,4 +349,6 @@ export {
   getMyBooks,
   getChapterRatioDetails,
   getPageRatioDetails,
+  updateBookChapters,
+  updateBookPages,
 };

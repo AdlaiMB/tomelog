@@ -11,6 +11,7 @@ import {
   bookShelf as interfaceBookShelf,
   chapterProgress as interfaceChapterProgress,
   pageProgress as interfacePageProgress,
+  updatedBook as interfaceUpdatedBook,
 } from "./screenViewInterface";
 import {
   resultsBookList as implementationResultsBookList,
@@ -19,6 +20,7 @@ import {
   bookShelf as implementationBookShelf,
   chapterProgress as implementationChapterProgress,
   pageProgress as implementationPageProgress,
+  updatedBook as implementationUpdatedBook,
 } from "./webView";
 
 function generateCoverURL(coverId) {
@@ -83,10 +85,10 @@ function chapterRatio(completed, total) {
   );
 }
 
-// function updatedBook(updatedBook) {
-//   // console.log(CLASS);
-//   screenViewInterface.updatedBook(updatedBook, terminalView.updatedBook);
-// }
+function updatedBook(updatedBook) {
+  // console.log(CLASS);
+  return interfaceUpdatedBook(updatedBook, implementationUpdatedBook);
+}
 
 // module.exports = {
 //   searchResultBooklist,
@@ -105,4 +107,5 @@ export {
   storedBooksBooklist,
   chapterRatio,
   pageRatio,
+  updatedBook,
 };

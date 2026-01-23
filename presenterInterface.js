@@ -36,11 +36,11 @@ function chapterRatio(bookmark, total, implementation) {
   return implementation(bookmark, total);
 }
 
-// function updatedBook(updatedBook, implementation) {
-//   // console.log(CLASS);
-//   // call any implementation
-//   return implementation(updatedBook);
-// }
+function updatedBook(updatedBook, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(updatedBook);
+}
 
 // module.exports = {
 //   searchResultBooklist,
@@ -59,4 +59,5 @@ export {
   storedBooksBooklist,
   chapterRatio,
   pageRatio,
+  updatedBook,
 };

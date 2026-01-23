@@ -67,73 +67,65 @@ function writeBookByBookID(bookID, implementation) {
 //   return book;
 // }
 
-// function writeBookChapters(bookID, chapters, implementation) {
-//   // console.log(CLASS);
-//   // preconditon(s)
-//   assert.strictEqual(
-//     Number.isInteger(chapters),
-//     true,
-//     `Chapters is not an integer`
-//   );
+function writeBookChapters(bookID, chapters, implementation) {
+  // console.log(CLASS);
+  // preconditon(s)
+  if (!Number.isInteger(chapters)) {
+    throw new Error("Chapters is not an integer");
+  }
 
-//   assert.strictEqual(
-//     chapters > 0,
-//     true,
-//     `Chapters ${chapters} must be greater than zero`
-//   );
+  if (chapters <= 0) {
+    throw new Error(`Chapters ${chapters} must be greater that zero`);
+  }
 
-//   // call any implementation
-//   const book = implementation(bookID, chapters);
+  // call any implementation
+  const book = implementation(bookID, chapters);
 
-//   // postcondition(s)
-//   assert.strictEqual(
-//     book.chapters,
-//     chapters,
-//     `Book with ID ${bookID} has incorrect chapters after writing`
-//   );
+  // postcondition(s)
+  if (chapters !== book.chapters) {
+    throw new Error(
+      `Book with ID ${bookID} has incorrect chapters after writing.`,
+    );
+  }
 
-//   return book;
-// }
+  return book;
+}
 
-// function writeBookPages(bookID, startPage, endPage, implementation) {
-//   // console.log(CLASS);
-//   // preconditon(s)
-//   assert.strictEqual(
-//     Number.isInteger(startPage) && Number.isInteger(endPage),
-//     true,
-//     `Start page or End page is not an integer`
-//   );
+function writeBookPages(bookID, startPage, endPage, implementation) {
+  // console.log(CLASS);
+  // preconditon(s)
+  if (!Number.isInteger(startPage) && !Number.isInteger(endPage)) {
+    throw new Error(`Start page or End page is not an integer`);
+  }
 
-//   assert.strictEqual(
-//     startPage > 0 && endPage > 0,
-//     true,
-//     `Start page and End Page ${startPage} must be greater than zero`
-//   );
+  if (startPage <= 0 || endPage <= 0) {
+    throw new Error(`Start page and End Page must be greater than zero`);
+  }
 
-//   assert.strictEqual(
-//     endPage >= startPage,
-//     true,
-//     `End page ${endPage} must be greater than or equal to start page ${startPage}`
-//   );
+  if (endPage < startPage) {
+    throw new Error(
+      `End page ${endPage} must be greater than or equal to start page ${startPage}`,
+    );
+  }
 
-//   // call any implementation
-//   const book = implementation(bookID, startPage, endPage);
+  // call any implementation
+  const book = implementation(bookID, startPage, endPage);
 
-//   // postcondition(s)
-//   assert.strictEqual(
-//     book.page.start,
-//     startPage,
-//     `Book with ID ${bookID} has incorrect start page after writing`
-//   );
+  // postcondition(s)
+  if (startPage !== book.page.start) {
+    throw new Error(
+      `Book with ID ${bookID} has incorrect start page after writing`,
+    );
+  }
 
-//   assert.strictEqual(
-//     book.page.end,
-//     endPage,
-//     `Book with ID ${bookID} has incorrect end page after writing`
-//   );
+  if (endPage !== book.page.end) {
+    throw new Error(
+      `Book with ID ${bookID} has incorrect end page after writing`,
+    );
+  }
 
-//   return book;
-// }
+  return book;
+}
 
 function fetchMyBooks(implementation) {
   // console.log(CLASS);
@@ -231,4 +223,6 @@ export {
   fetchBookChapterTotal,
   fetchBookPageBookmark,
   fetchBookPageTotal,
+  writeBookChapters,
+  writeBookPages,
 };
