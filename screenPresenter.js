@@ -1,9 +1,5 @@
 const CLASS = "Implementation - screenPrensenter";
 
-// const screenViewInterface = require("./screenViewInterface.js");
-// const terminalView = require("./terminalView.js");
-// const webView = require("./webView.jsx");
-
 import {
   resultsBookList as interfaceResultsBooklist,
   error as interfaceError,
@@ -89,16 +85,6 @@ function updatedBook(updatedBook) {
   // console.log(CLASS);
   return interfaceUpdatedBook(updatedBook, implementationUpdatedBook);
 }
-
-// module.exports = {
-//   searchResultBooklist,
-//   errorMessage,
-//   recordedBook,
-//   storedBooksBooklist,
-//   pageRatio,
-//   chapterRatio,
-//   updatedBook,
-// };
 
 export {
   searchResultBooklist,

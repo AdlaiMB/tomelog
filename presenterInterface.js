@@ -42,16 +42,6 @@ function updatedBook(updatedBook, implementation) {
   return implementation(updatedBook);
 }
 
-// module.exports = {
-//   searchResultBooklist,
-//   errorMessage,
-//   recordedBook,
-//   storedBooksBooklist,
-//   pageRatio,
-//   chapterRatio,
-//   updatedBook,
-// };
-
 export {
   searchResultBooklist,
   errorMessage,

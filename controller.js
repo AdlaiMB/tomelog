@@ -1,12 +1,3 @@
-// const searchInterface = require("./searchInterface.js");
-// const searchImplementation = require("./searchImplementation.js");
-
-// const presenterInterface = require("./presenterInterface.js");
-// const screenPrensenter = require("./screenPresenter.js");
-
-// const bookRepoInterface = require("./bookRepoInterface.js");
-// const bookRepoImplementation = require("./bookRepoImplementation.js");
-
 import { discoverySearch as interfaceDiscoverySearch } from "./searchInterface";
 import { discoverySearch as implementationDiscoverySearch } from "./searchImplementation";
 
@@ -336,18 +327,6 @@ function getChapterRatioDetails(bookID) {
 
   return response;
 }
-
-// module.exports = {
-//   find,
-//   record,
-//   getMyBooks,
-//   getPageRatioDetails,
-//   getChapterRatioDetails,
-//   updateChapterBookmark,
-//   updatePageBookmark,
-//   updateBookPages,
-//   updateBookChapters,
-// };
 
 export {
   find,

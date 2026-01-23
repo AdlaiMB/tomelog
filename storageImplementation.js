@@ -26,7 +26,7 @@ function writeBookByBookID(bookID) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
-  // precondtion(s)
+  // precondition(s)
   if (books.has(bookID)) {
     throw new Error(
       `Book with ID ${bookID} is already stored cannot store twice`,
@@ -61,6 +61,7 @@ function writeBookChapterBookmark(bookID, chapter) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
+  // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(`Book with ID ${bookID} does not exist in storage`);
   }
@@ -76,6 +77,7 @@ function writeBookChapterBookmark(bookID, chapter) {
   book.bookmark.chapter = chapter;
   books.set(bookID, book);
 
+  // postcondition(s)
   if (!books.has(bookID)) {
     throw new Error(
       `Book with ID ${bookID} was not stored after updating chapter bookmark`,
@@ -91,6 +93,7 @@ function writeBookPageBookmark(bookID, page) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
+  // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(`Book with ID ${bookID} does not exist in storage`);
   }
@@ -106,6 +109,7 @@ function writeBookPageBookmark(bookID, page) {
   book.bookmark.page = page;
   books.set(bookID, book);
 
+  // postcondition(s)
   if (!books.has(bookID)) {
     throw new Error(
       `Book with ID ${bookID} was not stored after writing to page bookmark`,
@@ -121,6 +125,7 @@ function writeBookChapters(bookID, chapters) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
+  // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(`Book with ID ${bookID} does not exist in storage`);
   }
@@ -136,6 +141,7 @@ function writeBookChapters(bookID, chapters) {
   book.chapters = chapters;
   books.set(bookID, book);
 
+  // postcondition(s)
   if (!books.has(bookID)) {
     throw new Error(
       `Book with ID ${bookID} was not stored after writing to book chapters`,
@@ -151,6 +157,7 @@ function writeBookPages(bookID, startPage, endPage) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
+  // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(`Book with ID ${bookID} does not exist in storage`);
   }
@@ -170,6 +177,7 @@ function writeBookPages(bookID, startPage, endPage) {
   book.page.end = endPage;
   books.set(bookID, book);
 
+  // postcondition(s)
   if (!books.has(bookID)) {
     throw new Error(
       `Book with ID ${bookID} was not stored after writing to book pages`,
@@ -192,12 +200,14 @@ function fetchBookPageTotal(bookID) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
+  // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(`Book with ID ${bookID} does not exist in storage`);
   }
 
   const book = books.get(bookID);
 
+  // postcondition(s)
   if (book.page.start === 0) {
     return 0;
   }
@@ -209,6 +219,7 @@ function fetchBookPageBookmark(bookID) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
+  // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(`Book with ID ${bookID} does not exist in storage`);
   }
@@ -222,6 +233,7 @@ function fetchBookChapterBookmark(bookID) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
+  // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(`Book with ID ${bookID} does not exist in storage`);
   }
@@ -235,6 +247,7 @@ function fetchBookChapterTotal(bookID) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
 
+  // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(`Book with ID ${bookID} does not exist in storage`);
   }
@@ -243,19 +256,6 @@ function fetchBookChapterTotal(bookID) {
 
   return book.chapters;
 }
-
-// module.exports = {
-//   writeBookByBookID,
-//   writeBookChapterBookmark,
-//   writeBookPageBookmark,
-//   writeBookChapters,
-//   writeBookPages,
-//   fetchMyBooks,
-//   fetchBookPageTotal,
-//   fetchBookPageBookmark,
-//   fetchBookChapterBookmark,
-//   fetchBookChapterTotal,
-// };
 
 export {
   writeBookByBookID,

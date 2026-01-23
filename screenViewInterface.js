@@ -42,16 +42,6 @@ function updatedBook(updatedBook, implementation) {
   return implementation(updatedBook);
 }
 
-// module.exports = {
-//   resultsBookList,
-//   error,
-//   filedBook,
-//   bookShelf,
-//   pageProgress,
-//   chapterProgress,
-//   updatedBook,
-// };
-
 export {
   resultsBookList,
   error,

@@ -6,6 +6,4 @@ function discoverySearch(search, implementation) {
   return implementation(search);
 }
 
-// module.exports = { discoverySearch };
-
 export { discoverySearch };

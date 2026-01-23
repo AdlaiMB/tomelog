@@ -1,11 +1,6 @@
 const CLASS = "Implementation - bookRepo";
 const API_BASE_URL = "https://openlibrary.org";
 
-// const assert = require("node:assert/strict");
-
-// const storageInterface = require("./storageInterface.js");
-// const storageImplementation = require("./storageImplementation.js");
-
 import {
   writeBookByBookID as interfaceWriteBookByBookID,
   fetchMyBooks as interfaceFetchMyBooks,
@@ -166,21 +161,6 @@ function getBookChapterTotal(bookID) {
     implementationFetchBookChapterTotal,
   );
 }
-
-// module.exports = {
-//   queryByTitle,
-//   storeBook,
-//   getBookByBookID,
-//   updateBookChapterBookmark,
-//   updateBookPageBookmark,
-//   updateBookChapters,
-//   updateBookPages,
-//   getMyBooks,
-//   getBookPageTotal,
-//   getBookPageBookmark,
-//   getBookChapterBookmark,
-//   getBookChapterTotal,
-// };
 
 export {
   queryByTitle,

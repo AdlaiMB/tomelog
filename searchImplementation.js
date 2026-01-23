@@ -1,8 +1,5 @@
 const CLASS = "Implementation - search";
 
-// const bookRepoInterface = require("./bookRepoInterface.js");
-// const bookRepoImplementation = require("./bookRepoImplementation.js");
-
 import { queryByTitle as interfaceQueryByTitle } from "./bookRepoInterface";
 import { queryByTitle as implementationQueryByTitle } from "./bookRepoImplementation";
 
@@ -19,7 +16,5 @@ async function discoverySearch(search) {
 
   return { books };
 }
-
-// module.exports = { discoverySearch };
 
 export { discoverySearch };

@@ -86,21 +86,6 @@ function getBookChapterTotal(bookID, implementation) {
   return implementation(bookID);
 }
 
-// module.exports = {
-//   queryByTitle,
-//   storeBook,
-//   getBookByBookID,
-//   updateBookChapterBookmark,
-//   updateBookPageBookmark,
-//   updateBookChapters,
-//   updateBookPages,
-//   getMyBooks,
-//   getBookPageTotal,
-//   getBookPageBookmark,
-//   getBookChapterBookmark,
-//   getBookChapterTotal,
-// };
-
 export {
   queryByTitle,
   storeBook,
