@@ -193,6 +193,19 @@ function fetchBookChapterTotal(bookID, implementation) {
   return chapters;
 }
 
+function isBookWritten(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  const bookWritten = implementation(bookID);
+
+  // postcondition(s)
+  if (!(typeof bookWritten === "boolean")) {
+    throw new Error("Bookwritten is not a boolean");
+  }
+
+  return bookWritten;
+}
+
 export {
   writeBookByBookID,
   fetchMyBooks,
@@ -204,4 +217,5 @@ export {
   writeBookPages,
   writeBookChapterBookmark,
   writeBookPageBookmark,
+  isBookWritten,
 };

@@ -13,7 +13,7 @@ import {
   updatePageBookmark,
 } from "./controller";
 
-function ResultBook({ id, title, subtitle, coverURL, filed = false }) {
+function ResultBook({ id, title, subtitle, coverURL, filed }) {
   const [file, setFile] = useState(filed);
   const [fileResponse, setFileResponse] = useState(null);
 
@@ -69,6 +69,7 @@ function resultsBookList(booklist) {
           title={book.title}
           subtitle={book.subtitle}
           coverURL={book.coverURL}
+          filed={book.recorded}
         />
       ))}
     </div>

@@ -257,6 +257,13 @@ function fetchBookChapterTotal(bookID) {
   return book.chapters;
 }
 
+function isBookWritten(bookID) {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
+
+  return books.has(bookID);
+}
+
 export {
   writeBookByBookID,
   fetchMyBooks,
@@ -268,4 +275,5 @@ export {
   writeBookPages,
   writeBookChapterBookmark,
   writeBookPageBookmark,
+  isBookWritten,
 };

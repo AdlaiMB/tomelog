@@ -12,6 +12,7 @@ import {
   writeBookPages as interfaceWriteBookPages,
   writeBookChapterBookmark as interfaceWriteBookChapterBookmark,
   writeBookPageBookmark as interfaceWriteBookPageBookmark,
+  isBookWritten as interfaceIsBookWritten,
 } from "./storageInterface";
 import {
   writeBookByBookID as implementationWriteBookByBookID,
@@ -24,6 +25,7 @@ import {
   writeBookPages as implementationWriteBookPages,
   writeBookChapterBookmark as implementationWriteBookChapterBookmark,
   writeBookPageBookmark as implementationWriteBookPageBookmark,
+  isBookWritten as implementationIsBookWritten,
 } from "./storageImplementation";
 
 function getIDFromOpenLibraryKey(key) {
@@ -47,11 +49,13 @@ async function queryByTitle(title) {
   const results = [];
 
   for (const book of openlibraryData["docs"]) {
+    const bookID = getIDFromOpenLibraryKey(book.key);
     const bookRepoBookDS = {
-      id: getIDFromOpenLibraryKey(book.key),
+      id: bookID,
       title: book.title,
       subtitle: Object.hasOwn(book, "subtitle") ? book.subtitle : null,
       coverID: Object.hasOwn(book, "cover_i") ? book.cover_i : null,
+      stored: interfaceIsBookWritten(bookID, implementationIsBookWritten),
     };
 
     results.push(bookRepoBookDS);

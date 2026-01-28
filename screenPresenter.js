@@ -33,6 +33,7 @@ function searchResultBooklist(bookList) {
       title: book.title,
       subtitle: book.subtitle,
       coverURL: book.coverID !== null ? generateCoverURL(book.coverID) : null,
+      recorded: book.stored,
     };
     result.push(processedBook);
   }
