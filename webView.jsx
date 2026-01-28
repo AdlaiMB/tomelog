@@ -169,11 +169,15 @@ function BookShelfBook({ id, title, subtitle, coverURL, displayModal }) {
   }
 
   return (
-    <div>
-      <img src={coverURL} alt="book cover" />
+    <div className="book">
+      {coverURL === null ? (
+        <div className="missing-book-cover"></div>
+      ) : (
+        <img src={coverURL} alt="book cover" />
+      )}
       <p>{title}</p>
-      <p>{subtitle}</p>
-      <div>
+      <p className="book-subtitle">{subtitle}</p>
+      <div className="book-buttons">
         <button onClick={displayProgressModal}>progress</button>
         <button onClick={displayUpdateBookmarkModal}>bookmarks</button>
         <button onClick={displayUpdateBookDetailModal}>details</button>
@@ -201,7 +205,7 @@ function BookShelf({ booklist }) {
   return (
     <>
       {modal}
-      <div>
+      <div className="bookshelf">
         {booklist.map((book) => (
           <BookShelfBook
             key={book.id}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMyBooks } from "../../controller";
+import "./App.css";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -21,8 +22,10 @@ function App() {
 
   return (
     <>
-      <h1>My Books</h1>
-      {books}
+      <div className="content">
+        <h1>My Books</h1>
+        {books}
+      </div>
     </>
   );
 }

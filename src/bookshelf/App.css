@@ -5,6 +5,36 @@ h4,
 h5,
 h6 {
   text-wrap: balance;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: 2.986rem;
+}
+
+h2 {
+  font-size: 2.488rem;
+}
+
+h3 {
+  font-size: 2.074rem;
+}
+
+h4 {
+  font-size: 1.728rem;
+}
+
+h5 {
+  font-size: 1.44rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 p,
@@ -12,6 +42,7 @@ li,
 figcaption {
   text-wrap: pretty;
   max-width: 65ch;
+  margin: 0;
 }
 
 header,
@@ -51,9 +82,28 @@ video {
   max-width: 100%;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-inline: 16px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :has(:target) {
     scroll-behavior: smooth;
     scroll-padding-top: 3rem;
+  }
+}
+
+@media screen and (min-width: 744px) {
+  .content {
+    margin-inline: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .content {
+    margin-inline: 160px;
   }
 }

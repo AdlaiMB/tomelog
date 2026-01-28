@@ -25,3 +25,34 @@
   top: 0.5rem;
   right: 0.5rem;
 }
+
+.bookshelf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.book {
+  position: relative;
+  width: 180px;
+}
+
+.book-subtitle {
+  font-size: 0.833rem;
+}
+
+.book-buttons {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.missing-book-cover {
+  width: 180px;
+  height: 235px;
+  background-color: gray;
+}
