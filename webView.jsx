@@ -1,8 +1,9 @@
 const CLASS = "Implementation - webView";
 
-import { useEffect, useState } from "react";
+import "./view.css";
+
+import { useActionState, useState } from "react";
 import {
-  record,
   getChapterRatioDetails,
   getPageRatioDetails,
   updateBookChapters,
@@ -13,189 +14,14 @@ import {
 
 function NotFiledButton({ id, setFiled }) {
   // console.log(CLASS);
-  const file = (id) => {
-    const { error, view: FiledBook } = record(id);
-
-    if (!error) {
-      setFiled(<FiledBook id={id} setFiled={setFiled} />);
-    } else {
-      alert("error");
-    }
-  };
-
-  return <button onClick={() => file(id)}>file</button>;
 }
 
 function FiledButton({ id, setFiled }) {
   // console.log(CLASS);
-  const unfile = (id) => {
-    // TODO: add remove book from storage capability
-  };
-
-  return <button onClick={() => unfile(id)}>unfile</button>;
-}
-
-function Book({ id, title, subtitle, coverURL }) {
-  // console.log(CLASS);
-  const [filed, setFiled] = useState();
-
-  useEffect(() => {
-    // TODO: set the correct initial state
-    setFiled(<NotFiledButton id={id} setFiled={setFiled} />);
-  }, []);
-
-  return (
-    <div>
-      {filed}
-      <img src={coverURL}></img>
-      <span>
-        {title}-{subtitle}
-      </span>
-    </div>
-  );
-}
-
-function StoredBook({ id, title, subtitle, coverURL }) {
-  const [progressModal, setProgressModal] = useState(null);
-  const [bookDetailsModal, setBookDetailsModal] = useState(false);
-  const [bookmarksModal, setBookmarksModal] = useState(null);
-
-  const toggleProgressModal = () => {
-    if (progressModal !== null) {
-      setProgressModal(null);
-      return;
-    }
-
-    const { error: chapterRatioError, view: chapterRatioView } =
-      getChapterRatioDetails(id);
-    const { error: pageRatioError, view: pageRatioView } =
-      getPageRatioDetails(id);
-
-    if (!chapterRatioError && !pageRatioError) {
-      setProgressModal(
-        <div>
-          {chapterRatioView}
-          {pageRatioView}
-        </div>,
-      );
-    } else {
-      console.log(chapterRatioError);
-      console.log(pageRatioError, pageRatioView);
-      alert("error");
-    }
-  };
-
-  const toggleBookDetailsModal = () => {
-    setBookDetailsModal(!bookDetailsModal);
-  };
-
-  const updateChapters = (formData) => {
-    const chapters = formData.get("chapters");
-    const { error, view } = updateBookChapters(id, Number(chapters));
-
-    if (!error) {
-      // TODO : handle the view
-    } else {
-      alert("error");
-      console.log(view);
-    }
-  };
-
-  const updatePages = (formData) => {
-    const startPage = formData.get("startPage");
-    const endPage = formData.get("endPage");
-    const { error, view } = updateBookPages(
-      id,
-      Number(startPage),
-      Number(endPage),
-    );
-
-    if (!error) {
-      // TODO: handle the view
-    } else {
-      alert("error");
-      console.log(view);
-    }
-  };
-
-  const toggleBookmarksModal = () => {
-    setBookmarksModal(!bookmarksModal);
-  };
-
-  const updatebookmarkchapter = (formData) => {
-    const chapterBookmark = formData.get("chapterBookmark");
-    const { error, view } = updateChapterBookmark(id, Number(chapterBookmark));
-
-    if (!error) {
-      // TODO: handle the view
-    } else {
-      alert("error");
-      console.log(view);
-    }
-  };
-
-  const updatepagebookmark = (formData) => {
-    const pageBookmark = formData.get("pageBookmark");
-    const { error, view } = updatePageBookmark(id, Number(pageBookmark));
-
-    if (!error) {
-      // TODO: handle the view
-    } else {
-      alert("error");
-      console.log(view);
-    }
-  };
-
-  return (
-    <div>
-      <button onClick={toggleProgressModal}>view progress</button>
-      <button onClick={toggleBookmarksModal}>update bookmarks</button>
-      <button onClick={toggleBookDetailsModal}>update book info</button>
-      {progressModal}
-      {bookDetailsModal && (
-        <div>
-          <form action={updatePages}>
-            <input name="startPage" type="number" />
-            <input name="endPage" type="number" />
-            <button>update pages</button>
-          </form>
-          <form action={updateChapters}>
-            <input name="chapters" type="number" />
-            <button>update chapters</button>
-          </form>
-        </div>
-      )}
-      {bookmarksModal && (
-        <div>
-          <form action={updatebookmarkchapter}>
-            <input name="chapterBookmark" type="number" />
-            <button>update chapter bookmark</button>
-          </form>
-          <form action={updatepagebookmark}>
-            <input name="pageBookmark" type="number" />
-            <button>update page bookmark</button>
-          </form>
-        </div>
-      )}
-      <img src={coverURL}></img>
-      <span>
-        {title}-{subtitle}
-      </span>
-    </div>
-  );
 }
 
 function resultsBookList(booklist) {
   // console.log(CLASS);
-  return booklist.map((book) => (
-    <Book
-      key={book.id}
-      id={book.id}
-      title={book.title}
-      subtitle={book.subtitle}
-      coverURL={book.coverURL}
-    />
-  ));
 }
 
 function error(errorMessage) {
@@ -212,16 +38,187 @@ function filedBook(filedBooks) {
   return FiledButton;
 }
 
+function updateChapters(prevState, formData) {
+  const chapters = formData.get("chapters");
+  const bookID = formData.get("bookID");
+
+  const { error, view } = updateBookChapters(bookID, Number(chapters));
+
+  return view;
+}
+
+function updatePages(prevState, formData) {
+  const startPage = formData.get("startPage");
+  const endPage = formData.get("endPage");
+  const bookID = formData.get("bookID");
+
+  const { error, view } = updateBookPages(
+    bookID,
+    Number(startPage),
+    Number(endPage),
+  );
+
+  return view;
+}
+
+function updateBookmarkPage(prevState, formData) {
+  const page = formData.get("page");
+  const bookID = formData.get("bookID");
+
+  const { error, view } = updatePageBookmark(bookID, Number(page));
+
+  return view;
+}
+
+function updateBookmarkChapter(prevState, formData) {
+  const chapter = formData.get("chapter");
+  const bookID = formData.get("bookID");
+
+  console.log("chapter", chapter);
+  console.log("bookID", bookID);
+
+  const { error, view } = updateChapterBookmark(bookID, Number(chapter));
+
+  return view;
+}
+
+function UpdateBookDetailModal({ bookID }) {
+  const [chaptersActionResult, updateChaptersAction] = useActionState(
+    updateChapters,
+    null,
+  );
+  const [pagesActionResult, updatePagesAction] = useActionState(
+    updatePages,
+    null,
+  );
+
+  return (
+    <div className="modal">
+      {chaptersActionResult}
+      {pagesActionResult}
+      <form action={updateChaptersAction}>
+        <label htmlFor="chapters">chapters</label>
+        <input id="chapters" name="chapters" type="number" />
+        <input name="bookID" value={bookID} type="hidden" />
+        <button>update</button>
+      </form>
+      <form action={updatePagesAction}>
+        <label htmlFor="pages">pages</label>
+        <input id="pages" name="startPage" type="number" />
+        <input name="endPage" type="number" />
+        <input name="bookID" value={bookID} type="hidden" />
+        <button>update</button>
+      </form>
+    </div>
+  );
+}
+
+function UpdateBookBookmarkModal({ bookID }) {
+  const [chapterBookmarkActionResult, updateChapterBookmarkAction] =
+    useActionState(updateBookmarkChapter, null);
+  const [pageBookmarkActionResult, updatePageBookmarkAction] = useActionState(
+    updateBookmarkPage,
+    null,
+  );
+
+  return (
+    <div className="modal">
+      {chapterBookmarkActionResult}
+      {pageBookmarkActionResult}
+      <form action={updateChapterBookmarkAction}>
+        <label htmlFor="chapterBookmark">chapter bookmark</label>
+        <input id="chapterBookmark" name="chapter" type="number" />
+        <input name="bookID" value={bookID} type="hidden" />
+        <button>update</button>
+      </form>
+      <form action={updatePageBookmarkAction}>
+        <label htmlFor="pageBookmark">page bookmark</label>
+        <input id="pageBookmark" name="page" type="number" />
+        <input name="bookID" value={bookID} type="hidden" />
+        <button>update</button>
+      </form>
+    </div>
+  );
+}
+
+function BookShelfBook({ id, title, subtitle, coverURL, displayModal }) {
+  function displayProgressModal() {
+    const { error: chapterDetailError, view: chapterRatioView } =
+      getChapterRatioDetails(id);
+    const { error: pageDetailError, view: pageRatioView } =
+      getPageRatioDetails(id);
+
+    if (!chapterDetailError && !pageDetailError) {
+      displayModal(
+        <div className="modal">
+          {chapterRatioView}
+          {pageRatioView}
+        </div>,
+      );
+    } else {
+      alert("error");
+    }
+  }
+
+  function displayUpdateBookmarkModal() {
+    displayModal(<UpdateBookBookmarkModal bookID={id} />);
+  }
+
+  function displayUpdateBookDetailModal() {
+    displayModal(<UpdateBookDetailModal bookID={id} />);
+  }
+
+  return (
+    <div>
+      <img src={coverURL} alt="book cover" />
+      <p>{title}</p>
+      <p>{subtitle}</p>
+      <div>
+        <button onClick={displayProgressModal}>progress</button>
+        <button onClick={displayUpdateBookmarkModal}>bookmarks</button>
+        <button onClick={displayUpdateBookDetailModal}>details</button>
+      </div>
+    </div>
+  );
+}
+
+function BookShelf({ booklist }) {
+  const [modal, setModal] = useState(null);
+
+  function displayModal(modal) {
+    setModal(
+      <div className="modal-container">
+        <div className="modal-space">
+          <button className="modal-close-button" onClick={() => setModal(null)}>
+            close modal
+          </button>
+          {modal}
+        </div>
+      </div>,
+    );
+  }
+
+  return (
+    <>
+      {modal}
+      <div>
+        {booklist.map((book) => (
+          <BookShelfBook
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            subtitle={book.subtitle}
+            coverURL={book.coverURL}
+            displayModal={displayModal}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
+
 function bookShelf(booklist) {
-  return booklist.map((book) => (
-    <StoredBook
-      key={book.id}
-      id={book.id}
-      title={book.title}
-      subtitle={book.subtitle}
-      coverURL={book.coverURL}
-    />
-  ));
+  return <BookShelf booklist={booklist} />;
 }
 
 function chapterProgress(completed, total) {

@@ -196,7 +196,7 @@ function updatePageBookmark(bookID, page) {
 }
 
 function updateBookPages(bookID, startPage, EndPage) {
-  let updatedBook;
+  let updatedBook = null;
   let errorMessage;
 
   try {

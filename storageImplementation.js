@@ -68,7 +68,7 @@ function writeBookChapterBookmark(bookID, chapter) {
 
   const book = books.get(bookID);
 
-  if (chapter > book.chapter) {
+  if (chapter > book.chapters) {
     throw new Error(
       `Chapter ${chapter} exceeds total chapters ${book.chapters} for book ID ${bookID}`,
     );
