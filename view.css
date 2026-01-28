@@ -56,3 +56,27 @@
   height: 235px;
   background-color: gray;
 }
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.book-notification {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+}
+
+.success {
+  background-color: white;
+  border: 1px solid green;
+}
+
+.error {
+  background-color: white;
+  border: 1px solid red;
+}

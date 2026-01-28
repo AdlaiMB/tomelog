@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { find } from "../../controller";
+import "../bookshelf/App.css";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -17,14 +18,16 @@ function App() {
 
   return (
     <>
-      <form action={search}>
-        <input
-          name="query"
-          placeholder="Enter the title of your book e.g. the pragmatic programmer"
-        />
-        <button>search</button>
-      </form>
-      <div>{books}</div>
+      <div className="content">
+        <form className="search-bar" action={search}>
+          <input
+            name="query"
+            placeholder="Enter the title of your book e.g. the pragmatic programmer"
+          />
+          <button>search</button>
+        </form>
+        {books}
+      </div>
     </>
   );
 }

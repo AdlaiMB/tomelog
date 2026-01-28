@@ -89,6 +89,10 @@ video {
   margin-inline: 16px;
 }
 
+.search-bar {
+  margin-inline: auto;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :has(:target) {
     scroll-behavior: smooth;
