@@ -32,12 +32,12 @@ function getIDFromOpenLibraryKey(key) {
   return key.split("/").at(-1);
 }
 
-async function queryByTitle(title) {
+async function queryByTitle(title, limit, page) {
   // console.log(CLASS);
   const openLibraryResponse = await fetch(
     API_BASE_URL +
       "/search.json" +
-      `?q=${title}&limit=5&fields=key,title,subtitle,cover_i`,
+      `?q=${title}&limit=${limit}&page=${page}&fields=key,title,subtitle,cover_i`,
   );
   const openlibraryData = await openLibraryResponse.json();
 

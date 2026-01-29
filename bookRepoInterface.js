@@ -1,9 +1,26 @@
 const CLASS = "Interface - bookRepo";
 
-async function queryByTitle(title, implementation) {
+async function queryByTitle(title, limit, page, implementation) {
   // console.log(CLASS);
+  // precondition(s)
+  if (!Number.isInteger(limit)) {
+    throw new Error(`limit ${limit} is not an integer`);
+  }
+
+  if (!Number.isInteger(page)) {
+    throw new Error(`page ${page} is not an integer`);
+  }
+
+  if (limit <= 0) {
+    throw new Error(`limit ${limit} must be greater than zero`);
+  }
+
+  if (page <= 0) {
+    throw new Error(`page ${page} must be greater than zero`);
+  }
+
   // call any implementation
-  const books = await implementation(title);
+  const books = await implementation(title, limit, page);
 
   // postcondition(s)
   if (!(books instanceof Array)) {

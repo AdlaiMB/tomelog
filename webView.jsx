@@ -2,78 +2,19 @@ const CLASS = "Implementation - webView";
 
 import "./view.css";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState } from "react";
 import {
   getChapterRatioDetails,
   getPageRatioDetails,
-  record,
   updateBookChapters,
   updateBookPages,
   updateChapterBookmark,
   updatePageBookmark,
 } from "./controller";
 
-function ResultBook({ id, title, subtitle, coverURL, filed }) {
-  const [file, setFile] = useState(filed);
-  const [fileResponse, setFileResponse] = useState(null);
-
-  useEffect(() => {
-    if (fileResponse !== null) {
-      setTimeout(() => {
-        setFileResponse(null);
-      }, 4000);
-    }
-  }, [fileResponse]);
-
-  function fileBook() {
-    const { error, view } = record(id);
-
-    if (!error) {
-      setFile(true);
-    }
-    setFileResponse(view);
-  }
-
-  function unfileBook() {
-    alert("to do");
-  }
-
-  return (
-    <div className="book">
-      {coverURL === null ? (
-        <div className="missing-book-cover"></div>
-      ) : (
-        <img src={coverURL} alt="book cover" />
-      )}
-      <p>{title}</p>
-      <p className="book-subtitle">{subtitle}</p>
-      <div className="book-buttons">
-        {file ? (
-          <button onClick={unfileBook}>unfile</button>
-        ) : (
-          <button onClick={fileBook}>file</button>
-        )}
-      </div>
-      <div className="book-notification">{fileResponse}</div>
-    </div>
-  );
-}
-
 function resultsBookList(booklist) {
   // console.log(CLASS);
-  return (
-    <div className="search-results">
-      {booklist.map((book) => (
-        <ResultBook
-          id={book.id}
-          title={book.title}
-          subtitle={book.subtitle}
-          coverURL={book.coverURL}
-          filed={book.recorded}
-        />
-      ))}
-    </div>
-  );
+  return booklist;
 }
 
 function error(errorMessage) {

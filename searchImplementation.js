@@ -3,16 +3,16 @@ const CLASS = "Implementation - search";
 import { queryByTitle as interfaceQueryByTitle } from "./bookRepoInterface";
 import { queryByTitle as implementationQueryByTitle } from "./bookRepoImplementation";
 
-function searchByTitle(title) {
+function searchByTitle(title, limit, page) {
   // console.log(CLASS)
-  return interfaceQueryByTitle(title, implementationQueryByTitle);
+  return interfaceQueryByTitle(title, limit, page, implementationQueryByTitle);
 }
 
 async function discoverySearch(search) {
   // console.log(CLASS);
-  const { query } = search;
+  const { query, limit, page } = search;
 
-  const books = await searchByTitle(query);
+  const books = await searchByTitle(query, limit, page);
 
   return { books };
 }

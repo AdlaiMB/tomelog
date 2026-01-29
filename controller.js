@@ -47,13 +47,13 @@ import {
   updateBookPageBookmark as implementationUpdateBookPageBookmark,
 } from "./bookRepoImplementation";
 
-async function find(book) {
+async function find(book, limit, page) {
   let resultBooksData = null;
   let errorMessage;
 
   try {
     resultBooksData = await interfaceDiscoverySearch(
-      { query: book },
+      { query: book, limit, page },
       implementationDiscoverySearch,
     );
   } catch (error) {
