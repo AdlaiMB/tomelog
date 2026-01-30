@@ -36,6 +36,12 @@ function storeBook(bookID, implementation) {
   return implementation(bookID);
 }
 
+function removeBook(bookID, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(bookID);
+}
+
 async function getBookByBookID(bookID, implementation) {
   // console.log(CLASS);
   // call any implementation
@@ -116,4 +122,5 @@ export {
   updateBookPages,
   updateBookChapterBookmark,
   updateBookPageBookmark,
+  removeBook,
 };

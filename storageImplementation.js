@@ -57,6 +57,34 @@ function writeBookByBookID(bookID) {
   return [...books.keys()];
 }
 
+function unwriteBookByBookID(bookID) {
+  // console.log(CLASS);
+  const books = getBooksObjectFromStorage();
+
+  // precondition(s)
+  if (!books.has(bookID)) {
+    throw new Error(
+      `Book with ID ${bookID} is not stored cannot remove book that does not exist`,
+    );
+  }
+
+  const originalBookLength = books.size;
+  books.delete(bookID);
+
+  // postcondition(s)
+  if (books.has(bookID)) {
+    throw new Error(`Book with ID ${bookID} was not removed`);
+  }
+
+  if (originalBookLength - 1 !== books.size) {
+    throw new Error("Book storage was not unwritten to correctly");
+  }
+
+  updateBooksObjectInStorage(books);
+
+  return [...books.keys()];
+}
+
 function writeBookChapterBookmark(bookID, chapter) {
   // console.log(CLASS);
   const books = getBooksObjectFromStorage();
@@ -276,4 +304,5 @@ export {
   writeBookChapterBookmark,
   writeBookPageBookmark,
   isBookWritten,
+  unwriteBookByBookID,
 };

@@ -13,6 +13,7 @@ import {
   writeBookChapterBookmark as interfaceWriteBookChapterBookmark,
   writeBookPageBookmark as interfaceWriteBookPageBookmark,
   isBookWritten as interfaceIsBookWritten,
+  unwriteBookByBookID as interfaceUnwriteBookByBookID,
 } from "./storageInterface";
 import {
   writeBookByBookID as implementationWriteBookByBookID,
@@ -26,6 +27,7 @@ import {
   writeBookChapterBookmark as implementationWriteBookChapterBookmark,
   writeBookPageBookmark as implementationWriteBookPageBookmark,
   isBookWritten as implementationIsBookWritten,
+  unwriteBookByBookID as implementationUnwriteBookByBookID,
 } from "./storageImplementation";
 
 function getIDFromOpenLibraryKey(key) {
@@ -67,6 +69,13 @@ async function queryByTitle(title, limit, page) {
 function storeBook(bookID) {
   // console.log(CLASS);
   return interfaceWriteBookByBookID(bookID, implementationWriteBookByBookID);
+}
+
+function removeBook(bookID) {
+  return interfaceUnwriteBookByBookID(
+    bookID,
+    implementationUnwriteBookByBookID,
+  );
 }
 
 async function getBookByBookID(bookID) {
@@ -179,4 +188,5 @@ export {
   updateBookPages,
   updateBookChapterBookmark,
   updateBookPageBookmark,
+  removeBook,
 };

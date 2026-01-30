@@ -42,6 +42,10 @@ function updatedBook(updatedBook, implementation) {
   return implementation(updatedBook);
 }
 
+function unfiledBook(bookID, implementation) {
+  return implementation(bookID);
+}
+
 export {
   resultsBookList,
   error,
@@ -50,4 +54,5 @@ export {
   chapterProgress,
   pageProgress,
   updatedBook,
+  unfiledBook,
 };

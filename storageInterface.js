@@ -14,6 +14,20 @@ function writeBookByBookID(bookID, implementation) {
   return books;
 }
 
+function unwriteBookByBookID(bookID, implementation) {
+  // console.log(CLASS);
+
+  // call any implementation
+  const books = implementation(bookID);
+
+  // postcondition(s)
+  if (books.includes(bookID)) {
+    throw new Error(`Book with ID ${bookID} was not unwritten in storage`);
+  }
+
+  return books;
+}
+
 function writeBookChapterBookmark(bookID, chapter, implementation) {
   // console.log(CLASS);
   // precondition(s)
@@ -218,4 +232,5 @@ export {
   writeBookChapterBookmark,
   writeBookPageBookmark,
   isBookWritten,
+  unwriteBookByBookID,
 };

@@ -8,6 +8,7 @@ import {
   chapterProgress as interfaceChapterProgress,
   pageProgress as interfacePageProgress,
   updatedBook as interfaceUpdatedBook,
+  unfiledBook as interfaceUnfiledBook,
 } from "./screenViewInterface";
 import {
   resultsBookList as implementationResultsBookList,
@@ -17,6 +18,7 @@ import {
   chapterProgress as implementationChapterProgress,
   pageProgress as implementationPageProgress,
   updatedBook as implementationUpdatedBook,
+  unfiledBook as implementationUnfiledBook,
 } from "./webView";
 
 function generateCoverURL(coverId) {
@@ -49,6 +51,11 @@ function errorMessage(errorMessage) {
 function recordedBook(recordedBook) {
   // console.log(CLASS);
   return interfaceFiledBook(recordedBook, implementationFiledBook);
+}
+
+function removedBook(removedBook) {
+  // console.log(CLASS);
+  return interfaceUnfiledBook(removedBook, implementationUnfiledBook);
 }
 
 function storedBooksBooklist(booklist) {
@@ -95,4 +102,5 @@ export {
   chapterRatio,
   pageRatio,
   updatedBook,
+  removedBook,
 };

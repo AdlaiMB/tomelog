@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useActionState } from "react";
-import { find, record } from "../../controller";
+import { find, record, remove } from "../../controller";
 import "../bookshelf/App.css";
 
 function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
@@ -24,7 +24,13 @@ function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
   }
 
   function unfileBook() {
-    alert("to do");
+    const { error, view } = remove(id);
+
+    if (!error) {
+      setFile(false);
+    }
+
+    setFileResponse(view);
   }
 
   return (
@@ -124,8 +130,6 @@ async function search(prevState, formData) {
   if (error) {
     return view;
   }
-
-  console.log(query, view);
 
   return <Booklist key={query} query={query} booklist={view} />;
 }

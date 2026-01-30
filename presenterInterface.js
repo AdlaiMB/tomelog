@@ -42,6 +42,12 @@ function updatedBook(updatedBook, implementation) {
   return implementation(updatedBook);
 }
 
+function removedBook(removedBook, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(removedBook);
+}
+
 export {
   searchResultBooklist,
   errorMessage,
@@ -50,4 +56,5 @@ export {
   chapterRatio,
   pageRatio,
   updatedBook,
+  removedBook,
 };

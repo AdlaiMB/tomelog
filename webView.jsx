@@ -31,6 +31,11 @@ function filedBook(filedBooks) {
   return <div className="success">The book has been filed.</div>;
 }
 
+function unfiledBook(unfiledBook) {
+  // console.log(CLASS);
+  return <div className="success">The book has been unfiled.</div>;
+}
+
 function updateChapters(prevState, formData) {
   const chapters = formData.get("chapters");
   const bookID = formData.get("bookID");
@@ -258,4 +263,5 @@ export {
   chapterProgress,
   pageProgress,
   updatedBook,
+  unfiledBook,
 };

@@ -9,6 +9,7 @@ import {
   chapterRatio as interfaceChapterRatio,
   pageRatio as interfacePageRatio,
   updatedBook as interfaceUpdatedBook,
+  removedBook as interfaceRemovedBook,
 } from "./presenterInterface";
 import {
   searchResultBooklist as implementationSearchResultBooklist,
@@ -18,6 +19,7 @@ import {
   chapterRatio as implementationChapterRatio,
   pageRatio as implementationPageRatio,
   updatedBook as implementationUpdatedBook,
+  removedBook as implementationRemovedBook,
 } from "./screenPresenter";
 
 import {
@@ -32,6 +34,7 @@ import {
   updateBookPages as interfaceUpdateBookPages,
   updateBookChapterBookmark as interfaceUpdateBookChapterBookmark,
   updateBookPageBookmark as interfaceUpdateBookPageBookmark,
+  removeBook as interfaceRemoveBook,
 } from "./bookRepoInterface";
 import {
   storeBook as implementationStoreBook,
@@ -45,6 +48,7 @@ import {
   updateBookPages as implementationUpdateBookPages,
   updateBookChapterBookmark as implementationUpdateBookChapterBookmark,
   updateBookPageBookmark as implementationUpdateBookPageBookmark,
+  removeBook as implementationRemoveBook,
 } from "./bookRepoImplementation";
 
 async function find(book, limit, page) {
@@ -93,6 +97,30 @@ function record(bookID) {
 
   if (recordedBooks !== null) {
     view = interfaceRecordedBook(recordedBooks, implementationRecordedBook);
+    response = { error: false, view };
+  } else {
+    view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
+    response = { error: true, view };
+  }
+
+  return response;
+}
+
+function remove(bookID) {
+  let books = null;
+  let errorMessage;
+
+  try {
+    books = interfaceRemoveBook(bookID, implementationRemoveBook);
+  } catch (error) {
+    errorMessage = error.message;
+  }
+
+  let response;
+  let view;
+
+  if (books !== null) {
+    view = interfaceRemovedBook(books, implementationRemovedBook);
     response = { error: false, view };
   } else {
     view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
@@ -338,4 +366,5 @@ export {
   updateBookPages,
   updateChapterBookmark,
   updatePageBookmark,
+  remove,
 };
