@@ -216,24 +216,20 @@ function BookShelfBook({
     const { error: pageDetailError, view: pageRatioView } =
       getPageRatioDetails(id);
 
-    if (!chapterDetailError && !pageDetailError) {
-      displayModal(
-        <div className="modal column gap-l">
-          <div className="row space-between">
-            <h6 className="capitalize line-seed-jp-regular">progress</h6>
-            <button className="modal-close-button" onClick={removeModal}>
-              <img src={exitIcon} alt="exit icon" />
-            </button>
-          </div>
-          <div className="column gap-m">
-            {chapterRatioView}
-            {pageRatioView}
-          </div>
-        </div>,
-      );
-    } else {
-      alert("error");
-    }
+    displayModal(
+      <div className="modal column gap-l">
+        <div className="row space-between">
+          <h6 className="capitalize line-seed-jp-regular">progress</h6>
+          <button className="modal-close-button" onClick={removeModal}>
+            <img src={exitIcon} alt="exit icon" />
+          </button>
+        </div>
+        <div className="column gap-m">
+          {chapterRatioView}
+          {pageRatioView}
+        </div>
+      </div>,
+    );
   }
 
   function displayUpdateBookmarkModal() {

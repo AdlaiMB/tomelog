@@ -89,6 +89,7 @@ function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
 
 function Booklist({ query, booklist }) {
   const [books, setBooks] = useState(booklist);
+  const [error, setError] = useState(null);
   const bookRef = useRef(null);
 
   useEffect(() => {
@@ -114,7 +115,8 @@ function Booklist({ query, booklist }) {
           if (!error) {
             setBooks((books) => [...books, ...view]);
           } else {
-            alert("error");
+            setError(view);
+            observer.disconnect();
           }
         }
       });
@@ -128,31 +130,34 @@ function Booklist({ query, booklist }) {
   }, [books]);
 
   return (
-    <div className="row space-between gap-m wrap">
-      {books.map((book, index) =>
-        index === books.length - 1 ? (
-          <ResultBook
-            ref={bookRef}
-            key={book.id}
-            id={book.id}
-            title={book.title}
-            subtitle={book.subtitle}
-            coverURL={book.coverURL}
-            filed={book.recorded}
-          />
-        ) : (
-          <ResultBook
-            ref={null}
-            key={book.id}
-            id={book.id}
-            title={book.title}
-            subtitle={book.subtitle}
-            coverURL={book.coverURL}
-            filed={book.recorded}
-          />
-        ),
-      )}
-    </div>
+    <>
+      <div className="row space-between gap-m wrap">
+        {books.map((book, index) =>
+          index === books.length - 1 ? (
+            <ResultBook
+              ref={bookRef}
+              key={book.id}
+              id={book.id}
+              title={book.title}
+              subtitle={book.subtitle}
+              coverURL={book.coverURL}
+              filed={book.recorded}
+            />
+          ) : (
+            <ResultBook
+              ref={null}
+              key={book.id}
+              id={book.id}
+              title={book.title}
+              subtitle={book.subtitle}
+              coverURL={book.coverURL}
+              filed={book.recorded}
+            />
+          ),
+        )}
+      </div>
+      {error}
+    </>
   );
 }
 
