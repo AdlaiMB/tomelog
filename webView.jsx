@@ -1,7 +1,5 @@
 const CLASS = "Implementation - webView";
 
-import "./view.css";
-
 import { useActionState, useState } from "react";
 import {
   getChapterRatioDetails,
@@ -12,6 +10,8 @@ import {
   updatePageBookmark,
 } from "./controller";
 
+import exitIcon from "/exit.svg";
+
 function resultsBookList(booklist) {
   // console.log(CLASS);
   return booklist;
@@ -20,20 +20,31 @@ function resultsBookList(booklist) {
 function error(errorMessage) {
   // console.log(CLASS);
   return (
-    <div className="error">
-      <span>{errorMessage}</span>
+    <div className="error column gap-sm">
+      <p className="line-seed-jp-bold">Error</p>
+      <p className="line-seed-jp-regular font-sm">{errorMessage}</p>
     </div>
   );
 }
 
 function filedBook(filedBooks) {
   // console.log(CLASS)
-  return <div className="success">The book has been filed.</div>;
+  return (
+    <div className="success column gap-sm">
+      <p className="line-seed-jp-bold">Success</p>
+      <p className="line-seed-jp-regular font-sm">The book has been filed!</p>
+    </div>
+  );
 }
 
 function unfiledBook(unfiledBook) {
   // console.log(CLASS);
-  return <div className="success">The book has been unfiled.</div>;
+  return (
+    <div className="success column gap-sm">
+      <p className="line-seed-jp-bold">Success</p>
+      <p className="line-seed-jp-regular font-sm">The book has been unfiled!</p>
+    </div>
+  );
 }
 
 function updateChapters(prevState, formData) {
@@ -80,7 +91,7 @@ function updateBookmarkChapter(prevState, formData) {
   return view;
 }
 
-function UpdateBookDetailModal({ bookID }) {
+function UpdateBookDetailModal({ bookID, removeModal }) {
   const [chaptersActionResult, updateChaptersAction] = useActionState(
     updateChapters,
     null,
@@ -91,27 +102,62 @@ function UpdateBookDetailModal({ bookID }) {
   );
 
   return (
-    <div className="modal">
+    <div className="modal column gap-l">
+      <div className="row space-between">
+        <h6 className="capitalize line-seed-jp-regular">Details Update</h6>
+        <button className="modal-close-button" onClick={removeModal}>
+          <img src={exitIcon} alt="exit icon" />
+        </button>
+      </div>
       {chaptersActionResult}
       {pagesActionResult}
-      <form action={updateChaptersAction}>
-        <label htmlFor="chapters">chapters</label>
-        <input id="chapters" name="chapters" type="number" />
-        <input name="bookID" value={bookID} type="hidden" />
-        <button>update</button>
-      </form>
-      <form action={updatePagesAction}>
-        <label htmlFor="pages">pages</label>
-        <input id="pages" name="startPage" type="number" />
-        <input name="endPage" type="number" />
-        <input name="bookID" value={bookID} type="hidden" />
-        <button>update</button>
-      </form>
+      <div className="column gap-m">
+        <form className="column gap-sm" action={updateChaptersAction}>
+          <label htmlFor="chapters" className="line-seed-jp-thin">
+            chapters
+          </label>
+          <input name="bookID" value={bookID} type="hidden" />
+          <div className="row gap-m">
+            <input
+              id="chapters"
+              name="chapters"
+              type="number"
+              className="line-seed-jp-regular"
+              required
+            />
+            <button className="button line-seed-jp-bold">update</button>
+          </div>
+        </form>
+        <form className="column gap-sm" action={updatePagesAction}>
+          <label htmlFor="pages" className="line-seed-jp-thin">
+            pages
+          </label>
+          <input name="bookID" value={bookID} type="hidden" />
+          <div className="row gap-m">
+            <div className="row space-between">
+              <input
+                id="pages"
+                name="startPage"
+                type="number"
+                className="line-seed-jp-regula w-45"
+                required
+              />
+              <input
+                name="endPage"
+                type="number"
+                className="line-seed-jp-regular w-45"
+                required
+              />
+            </div>
+            <button className="button line-seed-jp-bold">update</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
 
-function UpdateBookBookmarkModal({ bookID }) {
+function UpdateBookBookmarkModal({ bookID, removeModal }) {
   const [chapterBookmarkActionResult, updateChapterBookmarkAction] =
     useActionState(updateBookmarkChapter, null);
   const [pageBookmarkActionResult, updatePageBookmarkAction] = useActionState(
@@ -120,26 +166,50 @@ function UpdateBookBookmarkModal({ bookID }) {
   );
 
   return (
-    <div className="modal">
+    <div className="modal column gap-l">
+      <div className="row space-between">
+        <h6 className="capitalize line-seed-jp-regular">Bookmark Update</h6>
+        <button className="modal-close-button" onClick={removeModal}>
+          <img src={exitIcon} alt="exit icon" />
+        </button>
+      </div>
       {chapterBookmarkActionResult}
       {pageBookmarkActionResult}
-      <form action={updateChapterBookmarkAction}>
-        <label htmlFor="chapterBookmark">chapter bookmark</label>
-        <input id="chapterBookmark" name="chapter" type="number" />
-        <input name="bookID" value={bookID} type="hidden" />
-        <button>update</button>
-      </form>
-      <form action={updatePageBookmarkAction}>
-        <label htmlFor="pageBookmark">page bookmark</label>
-        <input id="pageBookmark" name="page" type="number" />
-        <input name="bookID" value={bookID} type="hidden" />
-        <button>update</button>
-      </form>
+      <div className="column gap-m">
+        <form className="column gap-sm" action={updateChapterBookmarkAction}>
+          <label htmlFor="chapterBookmark" className="line-seed-jp-thin">
+            chapter
+          </label>
+          <input name="bookID" value={bookID} type="hidden" />
+          <div className="row gap-m">
+            <input id="chapterBookmark" name="chapter" type="number" required />
+            <button className="button line-seed-jp-bold">update</button>
+          </div>
+        </form>
+        <form className="column gap-sm" action={updatePageBookmarkAction}>
+          <label htmlFor="pageBookmark" className="line-seed-jp-thin">
+            page
+          </label>
+          <input name="bookID" value={bookID} type="hidden" />
+          <div className="row gap-m">
+            <input id="pageBookmark" name="page" type="number" required />
+            <button className="button line-seed-jp-bold">update</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
 
-function BookShelfBook({ id, title, subtitle, coverURL, displayModal }) {
+function BookShelfBook({
+  id,
+  title,
+  subtitle,
+  coverURL,
+  displayModal,
+  removeModal,
+}) {
+  const [options, setOptions] = useState(false);
   function displayProgressModal() {
     const { error: chapterDetailError, view: chapterRatioView } =
       getChapterRatioDetails(id);
@@ -148,9 +218,17 @@ function BookShelfBook({ id, title, subtitle, coverURL, displayModal }) {
 
     if (!chapterDetailError && !pageDetailError) {
       displayModal(
-        <div className="modal">
-          {chapterRatioView}
-          {pageRatioView}
+        <div className="modal column gap-l">
+          <div className="row space-between">
+            <h6 className="capitalize line-seed-jp-regular">progress</h6>
+            <button className="modal-close-button" onClick={removeModal}>
+              <img src={exitIcon} alt="exit icon" />
+            </button>
+          </div>
+          <div className="column gap-m">
+            {chapterRatioView}
+            {pageRatioView}
+          </div>
         </div>,
       );
     } else {
@@ -159,27 +237,68 @@ function BookShelfBook({ id, title, subtitle, coverURL, displayModal }) {
   }
 
   function displayUpdateBookmarkModal() {
-    displayModal(<UpdateBookBookmarkModal bookID={id} />);
+    displayModal(
+      <UpdateBookBookmarkModal bookID={id} removeModal={removeModal} />,
+    );
   }
 
   function displayUpdateBookDetailModal() {
-    displayModal(<UpdateBookDetailModal bookID={id} />);
+    displayModal(
+      <UpdateBookDetailModal bookID={id} removeModal={removeModal} />,
+    );
   }
 
   return (
-    <div className="book">
+    <div className="book column gap-m">
       {coverURL === null ? (
         <div className="missing-book-cover"></div>
       ) : (
-        <img src={coverURL} alt="book cover" />
+        <img src={coverURL} alt="book cover" className="book-cover" />
       )}
-      <p>{title}</p>
-      <p className="book-subtitle">{subtitle}</p>
-      <div className="book-buttons">
-        <button onClick={displayProgressModal}>progress</button>
-        <button onClick={displayUpdateBookmarkModal}>bookmarks</button>
-        <button onClick={displayUpdateBookDetailModal}>details</button>
+      <div className="column gap-sm">
+        <p className="line-seed-jp-bold">{title}</p>
+        <p className="line-seed-jp-regular font-sm gray-text">{subtitle}</p>
       </div>
+      <div className="book-buttons">
+        <button
+          className="book-button options-book-button"
+          onClick={() => setOptions(!options)}
+        >
+          <svg
+            width="3"
+            height="15"
+            viewBox="0 0 3 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="1.5" cy="1.5" r="1.5" fill="#626161" />
+            <circle cx="1.5" cy="7.5" r="1.5" fill="#626161" />
+            <circle cx="1.5" cy="13.5" r="1.5" fill="#626161" />
+          </svg>
+        </button>
+      </div>
+      {options && (
+        <div className="options">
+          <div
+            className="option line-seed-jp-bold"
+            onClick={displayProgressModal}
+          >
+            progress
+          </div>
+          <div
+            className="option line-seed-jp-bold"
+            onClick={displayUpdateBookmarkModal}
+          >
+            bookmark
+          </div>
+          <div
+            className="option line-seed-jp-bold"
+            onClick={displayUpdateBookDetailModal}
+          >
+            details
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -187,23 +306,18 @@ function BookShelfBook({ id, title, subtitle, coverURL, displayModal }) {
 function BookShelf({ booklist }) {
   const [modal, setModal] = useState(null);
 
+  function removeModal() {
+    setModal(null);
+  }
+
   function displayModal(modal) {
-    setModal(
-      <div className="modal-container">
-        <div className="modal-space">
-          <button className="modal-close-button" onClick={() => setModal(null)}>
-            close modal
-          </button>
-          {modal}
-        </div>
-      </div>,
-    );
+    setModal(<div className="modal-container">{modal}</div>);
   }
 
   return (
     <>
       {modal}
-      <div className="bookshelf">
+      <div className="row space-between gap-m wrap">
         {booklist.map((book) => (
           <BookShelfBook
             key={book.id}
@@ -212,6 +326,7 @@ function BookShelf({ booklist }) {
             subtitle={book.subtitle}
             coverURL={book.coverURL}
             displayModal={displayModal}
+            removeModal={removeModal}
           />
         ))}
       </div>
@@ -224,35 +339,54 @@ function bookShelf(booklist) {
 }
 
 function chapterProgress(completed, total) {
+  const percentage = total > 0 ? Math.ceil((completed / total) * 100) : 0;
   return (
-    <div>
-      <span>chapter progress</span>
-      <div>
-        percentage: {total > 0 ? Math.ceil((completed / total) * 100) : 0}%
+    <div className="column gap-sm">
+      <div className="row space-between">
+        <p className="capitalize line-seed-jp-thin">chapters</p>
+        <span className="line-seed-jp-thin">{percentage}%</span>
       </div>
-      <div>
-        ratio: {completed} / {total}
+      <div className="progress-bar">
+        <span
+          className="progress-bar-bar"
+          style={{ width: `${percentage}%` }}
+        ></span>
       </div>
+      <p className="gray-text line-seed-jp-thin">
+        {completed}chs of {total}chs
+      </p>
     </div>
   );
 }
 
 function pageProgress(completed, total) {
+  const percentage = total > 0 ? Math.ceil((completed / total) * 100) : 0;
   return (
-    <div>
-      <span>page progress</span>
-      <div>
-        percentage: {total > 0 ? Math.ceil((completed / total) * 100) : 0}%
+    <div className="column gap-sm">
+      <div className="row space-between">
+        <p className="capitalize line-seed-jp-thin">pages</p>
+        <span className="line-seed-jp-thin">{percentage}%</span>
       </div>
-      <div>
-        ratio: {completed} / {total}
+      <div className="progress-bar">
+        <span
+          className="progress-bar-bar"
+          style={{ width: `${percentage}%` }}
+        ></span>
       </div>
+      <p className="gray-text line-seed-jp-thin">
+        {completed}pgs of {total}pgs
+      </p>
     </div>
   );
 }
 
 function updatedBook(updatedBook) {
-  return <div>Book has been updated</div>;
+  return (
+    <div className="success column gap-sm stretch">
+      <p className="line-seed-jp-bold">Success</p>
+      <p className="line-seed-jp-regular font-sm">Book has been updated!</p>
+    </div>
+  );
 }
 
 export {

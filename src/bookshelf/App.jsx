@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getMyBooks } from "../../controller";
-import "./App.css";
+import "../index.css";
+
+import NavBar from "../NavBar";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -22,8 +24,9 @@ function App() {
 
   return (
     <>
-      <div className="content">
-        <h1>My Books</h1>
+      <NavBar />
+      <div className="guard-rail column gap-l">
+        <h1 className="line-seed-jp-bold">My Books</h1>
         {books}
       </div>
     </>

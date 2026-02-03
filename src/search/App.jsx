@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useActionState } from "react";
 import { find, record, remove } from "../../controller";
-import "../bookshelf/App.css";
+import "../index.css";
+
+import NavBar from "../NavBar";
 
 function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
   const [file, setFile] = useState(filed);
@@ -10,7 +12,7 @@ function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
     if (fileResponse !== null) {
       setTimeout(() => {
         setFileResponse(null);
-      }, 4000);
+      }, 2500);
     }
   }, [fileResponse]);
 
@@ -34,19 +36,50 @@ function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
   }
 
   return (
-    <div ref={ref} className="book">
+    <div ref={ref} className="book column gap-m">
       {coverURL === null ? (
         <div className="missing-book-cover"></div>
       ) : (
-        <img src={coverURL} alt="book cover" />
+        <img src={coverURL} alt="book cover" className="book-cover" />
       )}
-      <p>{title}</p>
-      <p className="book-subtitle">{subtitle}</p>
+      <div className="column gap-sm">
+        <p className="line-seed-jp-bold">{title}</p>
+        <p className="line-seed-jp-regular font-sm gray-text">{subtitle}</p>
+      </div>
       <div className="book-buttons">
         {file ? (
-          <button onClick={unfileBook}>unfile</button>
+          <button onClick={unfileBook} className="book-button save-book-button">
+            <svg
+              width="15"
+              height="17"
+              viewBox="0 0 15 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.5 0.5V15.5L7.5 11.5L14.5 15.5V0.5H0.5Z"
+                fill="#626161"
+                stroke="#626161"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
         ) : (
-          <button onClick={fileBook}>file</button>
+          <button onClick={fileBook} className="book-button save-book-button">
+            <svg
+              width="15"
+              height="17"
+              viewBox="0 0 15 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.5 0.5V15.5L7.5 11.5L14.5 15.5V0.5H0.5Z"
+                stroke="#626161"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
         )}
       </div>
       <div className="book-notification">{fileResponse}</div>
@@ -95,7 +128,7 @@ function Booklist({ query, booklist }) {
   }, [books]);
 
   return (
-    <div className="search-results">
+    <div className="row space-between gap-m wrap">
       {books.map((book, index) =>
         index === books.length - 1 ? (
           <ResultBook
@@ -139,13 +172,17 @@ function App() {
 
   return (
     <>
-      <div className="content">
-        <form className="search-bar" action={searchAction}>
+      <NavBar />
+      <div className="guard-rail column gap-l">
+        <form className="search-bar row gap-sm" action={searchAction}>
           <input
             name="query"
             placeholder="Enter the title of your book e.g. the pragmatic programmer"
+            className="search line-seed-jp-regular"
           />
-          <button>search</button>
+          <button className="button line-seed-jp-regular search-button">
+            search
+          </button>
         </form>
         {searchActionResult}
       </div>

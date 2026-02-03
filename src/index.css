@@ -1,0 +1,294 @@
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  width: 70%;
+  max-width: 400px;
+  padding: 1rem;
+}
+
+.modal-close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-sm {
+  gap: 0.25rem;
+}
+
+.gap-m {
+  gap: 1rem;
+}
+
+.gap-l {
+  gap: 2rem;
+}
+
+p,
+span,
+h6 {
+  margin: 0;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+.gray-text {
+  color: #7e7e7e;
+}
+
+.progress-bar {
+  width: stretch;
+  height: 14px;
+  background-color: #99ed8b;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar-bar {
+  display: block;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #00560b;
+}
+
+.line-seed-jp-thin {
+  font-family: "LINE Seed JP", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.line-seed-jp-regular {
+  font-family: "LINE Seed JP", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.line-seed-jp-bold {
+  font-family: "LINE Seed JP", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.line-seed-jp-extrabold {
+  font-family: "LINE Seed JP", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+input {
+  border: 1px solid #d6d6d6;
+  border-radius: 0.25rem;
+  width: stretch;
+}
+
+.search {
+  padding-block: 0.75rem;
+  padding-inline: 0.25rem;
+  font-size: 1rem;
+}
+
+.search-bar {
+  position: relative;
+}
+
+.button {
+  width: fit-content;
+  border: 0px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  color: white;
+  background-color: #00560b;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.button:hover {
+  background-color: #096d17;
+}
+
+.w-45 {
+  width: 45%;
+}
+
+.search-button {
+  position: absolute;
+  right: 0.4rem;
+  top: 0.4rem;
+}
+
+.book {
+  width: 180px;
+  position: relative;
+}
+
+.book-cover {
+  border-radius: 0.75rem;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.font-sm {
+  font-size: 0.833rem;
+}
+
+.book-buttons {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.book-button {
+  display: flex;
+  border: 0px;
+  border-radius: 100%;
+  background-color: rgb(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.save-book-button {
+  padding: 0.5rem 0.6rem;
+}
+
+.options-book-button {
+  padding: 0.5rem 0.92rem;
+}
+
+.options {
+  width: 150px;
+  position: absolute;
+  top: 2.75rem;
+  right: 0.5rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.5rem;
+  background-color: #f3f2f2;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.option {
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  display: flex;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: white;
+}
+
+.error {
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid #deb8b7;
+  background-color: #fdf8f4;
+}
+
+.success {
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid #8fbfaf;
+  background-color: #f2fdf9;
+}
+
+.stretch {
+  width: stretch;
+}
+
+.book-notification {
+  position: absolute;
+  top: 0.5rem;
+}
+
+.missing-book-cover {
+  width: 180px;
+  height: 235px;
+  background-color: #7e7e7e;
+  border-radius: 0.75rem;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.guard-rail {
+  margin-inline: 16px;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+header {
+  align-items: center;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.nav-links {
+  margin: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 1.25rem;
+}
+
+@media screen and (min-width: 744px) {
+  .guard-rail {
+    margin-inline: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .guard-rail {
+    margin-inline: 160px;
+  }
+}
