@@ -19,7 +19,7 @@ import {
   pageProgress as implementationPageProgress,
   updatedBook as implementationUpdatedBook,
   unfiledBook as implementationUnfiledBook,
-} from "./webView";
+} from "../web_view/webView";
 
 function generateCoverURL(coverId) {
   return `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getMyBooks } from "../../controller";
-import "../index.css";
+import { getMyBooks } from "../../controller/controller";
+import "../../styles/global.css";
 
 import NavBar from "../NavBar";
 

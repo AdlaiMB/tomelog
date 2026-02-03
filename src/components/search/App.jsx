@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useActionState } from "react";
-import { find, record, remove } from "../../controller";
-import "../index.css";
+import { find, record, remove } from "../../controller/controller";
+import "../../styles/global.css";
 
 import NavBar from "../NavBar";
 

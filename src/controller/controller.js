@@ -1,5 +1,5 @@
-import { discoverySearch as interfaceDiscoverySearch } from "./searchInterface";
-import { discoverySearch as implementationDiscoverySearch } from "./searchImplementation";
+import { discoverySearch as interfaceDiscoverySearch } from "../interactor/searchInterface";
+import { discoverySearch as implementationDiscoverySearch } from "../interactor/searchImplementation";
 
 import {
   searchResultBooklist as interfaceSearchResultBooklist,
@@ -20,7 +20,7 @@ import {
   pageRatio as implementationPageRatio,
   updatedBook as implementationUpdatedBook,
   removedBook as implementationRemovedBook,
-} from "./screenPresenter";
+} from "../screen_presenter/screenPresenter";
 
 import {
   storeBook as interfaceStoreBook,
@@ -35,7 +35,7 @@ import {
   updateBookChapterBookmark as interfaceUpdateBookChapterBookmark,
   updateBookPageBookmark as interfaceUpdateBookPageBookmark,
   removeBook as interfaceRemoveBook,
-} from "./bookRepoInterface";
+} from "../interactor/bookRepoInterface";
 import {
   storeBook as implementationStoreBook,
   getMyBooks as implementationGetMyBooks,
@@ -49,7 +49,7 @@ import {
   updateBookChapterBookmark as implementationUpdateBookChapterBookmark,
   updateBookPageBookmark as implementationUpdateBookPageBookmark,
   removeBook as implementationRemoveBook,
-} from "./bookRepoImplementation";
+} from "../database/bookRepoImplementation";
 
 async function find(book, limit, page) {
   let resultBooksData = null;

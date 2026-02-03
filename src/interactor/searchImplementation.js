@@ -1,7 +1,7 @@
 const CLASS = "Implementation - search";
 
 import { queryByTitle as interfaceQueryByTitle } from "./bookRepoInterface";
-import { queryByTitle as implementationQueryByTitle } from "./bookRepoImplementation";
+import { queryByTitle as implementationQueryByTitle } from "../database/bookRepoImplementation";
 
 function searchByTitle(title, limit, page) {
   // console.log(CLASS)

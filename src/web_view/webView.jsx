@@ -8,7 +8,7 @@ import {
   updateBookPages,
   updateChapterBookmark,
   updatePageBookmark,
-} from "./controller";
+} from "../controller/controller";
 
 import exitIcon from "/exit.svg";
 
