@@ -1,18 +1,24 @@
 function NavBar({ page }) {
   return (
     <header className="row space-between guard-rail">
-      <a className="line-seed-jp-bold logo" href="/search/">
+      <a className="biorhyme-bold logo uppercase" href="/search/">
         tomelog
       </a>
       <nav>
         <ul className="nav-links row gap-m">
           <li>
-            <a className="line-seed-jp-regular" href="/search/">
+            <a
+              className={`${page === "search" ? "sen-bold" : "sen-regular"}`}
+              href="/search/"
+            >
               search
             </a>
           </li>
           <li>
-            <a className="line-seed-jp-regular" href="/bookshelf/">
+            <a
+              className={`${page === "bookshelf" ? "sen-bold" : "sen-regular"}`}
+              href="/bookshelf/"
+            >
               bookshelf
             </a>
           </li>

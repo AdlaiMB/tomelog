@@ -19,9 +19,9 @@ function App() {
 
   return (
     <>
-      <NavBar />
-      <div className="guard-rail column gap-l">
-        <h1 className="line-seed-jp-bold">My Books</h1>
+      <NavBar page="bookshelf" />
+      <div className="guard-rail column gap-m">
+        <h6 className="biorhyme-regular">My Books:</h6>
         {books}
       </div>
     </>

@@ -43,8 +43,8 @@ function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
         <img src={coverURL} alt="book cover" className="book-cover" />
       )}
       <div className="column gap-sm">
-        <p className="line-seed-jp-bold">{title}</p>
-        <p className="line-seed-jp-regular font-sm gray-text">{subtitle}</p>
+        <p className="sen-bold">{title}</p>
+        <p className="sen-regular font-sm">{subtitle}</p>
       </div>
       <div className="book-buttons">
         {file ? (
@@ -131,7 +131,7 @@ function Booklist({ query, booklist }) {
 
   return (
     <>
-      <div className="row space-between gap-m wrap">
+      <div className="row  gap-l wrap">
         {books.map((book, index) =>
           index === books.length - 1 ? (
             <ResultBook
@@ -177,18 +177,43 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar page="search" />
       <div className="guard-rail column gap-l">
-        <form className="search-bar row gap-sm" action={searchAction}>
-          <input
-            name="query"
-            placeholder="Enter the title of your book e.g. the pragmatic programmer"
-            className="search line-seed-jp-regular"
-          />
-          <button className="button line-seed-jp-regular search-button">
-            search
-          </button>
-        </form>
+        <div className="search-bar">
+          <form className=" row gap-sm" action={searchAction}>
+            <input
+              name="query"
+              placeholder="Enter the title of your book e.g. the pragmatic programmer"
+              className="search line-seed-jp-regular"
+            />
+            <button className="button line-seed-jp-regular search-button">
+              <svg
+                width="27"
+                height="21"
+                viewBox="0 0 27 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="9"
+                  stroke="#ffffff"
+                  stroke-width="1"
+                />
+                <line
+                  x1="18.4033"
+                  y1="13.8246"
+                  x2="25.8246"
+                  y2="19.5967"
+                  stroke="#ffffff"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
         {searchActionResult}
       </div>
     </>

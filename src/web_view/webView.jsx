@@ -10,8 +10,6 @@ import {
   updatePageBookmark,
 } from "../controller/controller";
 
-import exitIcon from "/exit.svg";
-
 function resultsBookList(booklist) {
   // console.log(CLASS);
   return booklist;
@@ -21,8 +19,8 @@ function error(errorMessage) {
   // console.log(CLASS);
   return (
     <div className="error column gap-sm">
-      <p className="line-seed-jp-bold">Error</p>
-      <p className="line-seed-jp-regular font-sm">{errorMessage}</p>
+      <p className="sen-bold">Error</p>
+      <p className="sen-regular font-sm">{errorMessage}</p>
     </div>
   );
 }
@@ -31,8 +29,8 @@ function filedBook(filedBooks) {
   // console.log(CLASS)
   return (
     <div className="success column gap-sm">
-      <p className="line-seed-jp-bold">Success</p>
-      <p className="line-seed-jp-regular font-sm">The book has been filed!</p>
+      <p className="sen-bold">Success</p>
+      <p className="sen-regular font-sm">The book has been filed!</p>
     </div>
   );
 }
@@ -41,8 +39,8 @@ function unfiledBook(unfiledBook) {
   // console.log(CLASS);
   return (
     <div className="success column gap-sm">
-      <p className="line-seed-jp-bold">Success</p>
-      <p className="line-seed-jp-regular font-sm">The book has been unfiled!</p>
+      <p className="sen-bold">Success</p>
+      <p className="sen-regular font-sm">The book has been unfiled!</p>
     </div>
   );
 }
@@ -106,7 +104,24 @@ function UpdateBookDetailModal({ bookID, removeModal }) {
       <div className="row space-between">
         <h6 className="capitalize line-seed-jp-regular">Details Update</h6>
         <button className="modal-close-button" onClick={removeModal}>
-          <img src={exitIcon} alt="exit icon" />
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 13 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.8137 11.8137L0.5 0.5"
+              stroke="#ffffff"
+              stroke-linecap="round"
+            />
+            <path
+              d="M0.500012 11.8137L11.8137 0.5"
+              stroke="#ffffff"
+              stroke-linecap="round"
+            />
+          </svg>
         </button>
       </div>
       {chaptersActionResult}
@@ -123,6 +138,7 @@ function UpdateBookDetailModal({ bookID, removeModal }) {
               name="chapters"
               type="number"
               className="line-seed-jp-regular"
+              placeholder="10"
               required
             />
             <button className="button line-seed-jp-bold">update</button>
@@ -140,12 +156,14 @@ function UpdateBookDetailModal({ bookID, removeModal }) {
                 name="startPage"
                 type="number"
                 className="line-seed-jp-regula w-45"
+                placeholder="1"
                 required
               />
               <input
                 name="endPage"
                 type="number"
                 className="line-seed-jp-regular w-45"
+                placeholder="100"
                 required
               />
             </div>
@@ -168,32 +186,61 @@ function UpdateBookBookmarkModal({ bookID, removeModal }) {
   return (
     <div className="modal column gap-l">
       <div className="row space-between">
-        <h6 className="capitalize line-seed-jp-regular">Bookmark Update</h6>
+        <h6 className="capitalize sen-bold">Bookmark Update</h6>
         <button className="modal-close-button" onClick={removeModal}>
-          <img src={exitIcon} alt="exit icon" />
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 13 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.8137 11.8137L0.5 0.5"
+              stroke="#ffffff"
+              stroke-linecap="round"
+            />
+            <path
+              d="M0.500012 11.8137L11.8137 0.5"
+              stroke="#ffffff"
+              stroke-linecap="round"
+            />
+          </svg>
         </button>
       </div>
       {chapterBookmarkActionResult}
       {pageBookmarkActionResult}
       <div className="column gap-m">
         <form className="column gap-sm" action={updateChapterBookmarkAction}>
-          <label htmlFor="chapterBookmark" className="line-seed-jp-thin">
+          <label htmlFor="chapterBookmark" className="sen-regular">
             chapter
           </label>
           <input name="bookID" value={bookID} type="hidden" />
           <div className="row gap-m">
-            <input id="chapterBookmark" name="chapter" type="number" required />
-            <button className="button line-seed-jp-bold">update</button>
+            <input
+              id="chapterBookmark"
+              name="chapter"
+              type="number"
+              placeholder="2"
+              required
+            />
+            <button className="button sen-bold">update</button>
           </div>
         </form>
         <form className="column gap-sm" action={updatePageBookmarkAction}>
-          <label htmlFor="pageBookmark" className="line-seed-jp-thin">
+          <label htmlFor="pageBookmark" className="sen-regular">
             page
           </label>
           <input name="bookID" value={bookID} type="hidden" />
           <div className="row gap-m">
-            <input id="pageBookmark" name="page" type="number" required />
-            <button className="button line-seed-jp-bold">update</button>
+            <input
+              id="pageBookmark"
+              name="page"
+              type="number"
+              placeholder="65"
+              required
+            />
+            <button className="button sen-bold">update</button>
           </div>
         </form>
       </div>
@@ -219,9 +266,26 @@ function BookShelfBook({
     displayModal(
       <div className="modal column gap-l">
         <div className="row space-between">
-          <h6 className="capitalize line-seed-jp-regular">progress</h6>
+          <h6 className="capitalize sen-bold">progress</h6>
           <button className="modal-close-button" onClick={removeModal}>
-            <img src={exitIcon} alt="exit icon" />
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.8137 11.8137L0.5 0.5"
+                stroke="#ffffff"
+                stroke-linecap="round"
+              />
+              <path
+                d="M0.500012 11.8137L11.8137 0.5"
+                stroke="#ffffff"
+                stroke-linecap="round"
+              />
+            </svg>
           </button>
         </div>
         <div className="column gap-m">
@@ -252,8 +316,8 @@ function BookShelfBook({
         <img src={coverURL} alt="book cover" className="book-cover" />
       )}
       <div className="column gap-sm">
-        <p className="line-seed-jp-bold">{title}</p>
-        <p className="line-seed-jp-regular font-sm gray-text">{subtitle}</p>
+        <p className="sen-bold book-title">{title}</p>
+        <p className="sen-regular font-sm book-title">{subtitle}</p>
       </div>
       <div className="book-buttons">
         <button
@@ -267,28 +331,22 @@ function BookShelfBook({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle cx="1.5" cy="1.5" r="1.5" fill="#626161" />
-            <circle cx="1.5" cy="7.5" r="1.5" fill="#626161" />
-            <circle cx="1.5" cy="13.5" r="1.5" fill="#626161" />
+            <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" />
+            <circle cx="1.5" cy="7.5" r="1.5" fill="#ffffff" />
+            <circle cx="1.5" cy="13.5" r="1.5" fill="#ffffff" />
           </svg>
         </button>
       </div>
       {options && (
         <div className="options">
-          <div
-            className="option line-seed-jp-bold"
-            onClick={displayProgressModal}
-          >
+          <div className="option sen-bold" onClick={displayProgressModal}>
             progress
           </div>
-          <div
-            className="option line-seed-jp-bold"
-            onClick={displayUpdateBookmarkModal}
-          >
+          <div className="option sen-bold" onClick={displayUpdateBookmarkModal}>
             bookmark
           </div>
           <div
-            className="option line-seed-jp-bold"
+            className="option sen-bold"
             onClick={displayUpdateBookDetailModal}
           >
             details
@@ -313,7 +371,7 @@ function BookShelf({ booklist }) {
   return (
     <>
       {modal}
-      <div className="row space-between gap-m wrap">
+      <div className="row gap-l wrap">
         {booklist.map((book) => (
           <BookShelfBook
             key={book.id}
@@ -339,8 +397,8 @@ function chapterProgress(completed, total) {
   return (
     <div className="column gap-sm">
       <div className="row space-between">
-        <p className="capitalize line-seed-jp-thin">chapters</p>
-        <span className="line-seed-jp-thin">{percentage}%</span>
+        <p className="capitalize sen-bold">chapters</p>
+        <span className="sen-regular">{percentage}%</span>
       </div>
       <div className="progress-bar">
         <span
@@ -348,7 +406,7 @@ function chapterProgress(completed, total) {
           style={{ width: `${percentage}%` }}
         ></span>
       </div>
-      <p className="gray-text line-seed-jp-thin">
+      <p className="sen-regular">
         {completed}chs of {total}chs
       </p>
     </div>
@@ -360,8 +418,8 @@ function pageProgress(completed, total) {
   return (
     <div className="column gap-sm">
       <div className="row space-between">
-        <p className="capitalize line-seed-jp-thin">pages</p>
-        <span className="line-seed-jp-thin">{percentage}%</span>
+        <p className="capitalize sen-bold">pages</p>
+        <span className="sen-regular">{percentage}%</span>
       </div>
       <div className="progress-bar">
         <span
@@ -369,7 +427,7 @@ function pageProgress(completed, total) {
           style={{ width: `${percentage}%` }}
         ></span>
       </div>
-      <p className="gray-text line-seed-jp-thin">
+      <p className="sen-regular">
         {completed}pgs of {total}pgs
       </p>
     </div>
@@ -379,8 +437,8 @@ function pageProgress(completed, total) {
 function updatedBook(updatedBook) {
   return (
     <div className="success column gap-sm stretch">
-      <p className="line-seed-jp-bold">Success</p>
-      <p className="line-seed-jp-regular font-sm">Book has been updated!</p>
+      <p className="sen-bold">Success</p>
+      <p className="sen-regular font-sm">Book has been updated!</p>
     </div>
   );
 }

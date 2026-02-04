@@ -12,7 +12,8 @@
 }
 
 .modal {
-  background-color: white;
+  background-color: #1f1e1c;
+  color: white;
   border-radius: 0.5rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   width: 70%;
@@ -75,7 +76,7 @@ h6 {
 .progress-bar {
   width: stretch;
   height: 14px;
-  background-color: #99ed8b;
+  background-color: #7d815b;
   border-radius: 20px;
   box-sizing: border-box;
   display: flex;
@@ -86,30 +87,36 @@ h6 {
   display: block;
   height: 100%;
   border-radius: 20px;
-  background-color: #00560b;
+  background-color: #63664b;
 }
 
-.line-seed-jp-thin {
-  font-family: "LINE Seed JP", sans-serif;
-  font-weight: 100;
+.biorhyme-regular {
+  font-family: "BioRhyme", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
   font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
-.line-seed-jp-regular {
-  font-family: "LINE Seed JP", sans-serif;
+.biorhyme-bold {
+  font-family: "BioRhyme", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.sen-regular {
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
-.line-seed-jp-bold {
-  font-family: "LINE Seed JP", sans-serif;
+.sen-bold {
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 700;
-  font-style: normal;
-}
-
-.line-seed-jp-extrabold {
-  font-family: "LINE Seed JP", sans-serif;
-  font-weight: 800;
   font-style: normal;
 }
 
@@ -120,12 +127,17 @@ input {
 }
 
 .search {
-  padding-block: 0.75rem;
-  padding-inline: 0.25rem;
+  border: 0px;
+  background-color: transparent;
+  width: 75%;
+  height: stretch;
   font-size: 1rem;
 }
 
 .search-bar {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background-color: white;
   position: relative;
 }
 
@@ -135,13 +147,13 @@ input {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   color: white;
-  background-color: #00560b;
+  background-color: #63664b;
   cursor: pointer;
-  transition: background-color 0.1s;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .button:hover {
-  background-color: #096d17;
+  background-color: #7d815b;
 }
 
 .w-45 {
@@ -151,12 +163,28 @@ input {
 .search-button {
   position: absolute;
   right: 0.4rem;
-  top: 0.4rem;
+  top: 0.45rem;
 }
 
 .book {
   width: 180px;
+  height: fit-content;
   position: relative;
+  border: 2px solid #1a1712;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: background-color 0.2s ease-in-out;
+  color: white;
+}
+
+.book:hover {
+  background-color: #11100e;
+}
+
+.book-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .book-cover {
@@ -170,15 +198,16 @@ input {
 
 .book-buttons {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 1.5rem;
+  right: 2rem;
 }
 
 .book-button {
   display: flex;
   border: 0px;
-  border-radius: 100%;
-  background-color: rgb(255, 255, 255, 0.85);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  background-color: #11100e;
   cursor: pointer;
 }
 
@@ -187,18 +216,17 @@ input {
 }
 
 .options-book-button {
-  padding: 0.5rem 0.92rem;
+  transform: rotate(90deg);
 }
 
 .options {
   width: 150px;
   position: absolute;
-  top: 2.75rem;
-  right: 0.5rem;
+  top: 3.5rem;
+  right: 1.5rem;
   border-radius: 0.25rem;
   padding: 0.5rem 0.5rem;
-  background-color: #f3f2f2;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #0a0700;
 }
 
 .option {
@@ -210,7 +238,7 @@ input {
 }
 
 .option:hover {
-  background-color: white;
+  background-color: #1f1e1c;
 }
 
 .error {
@@ -229,13 +257,19 @@ input {
   background-color: #f2fdf9;
 }
 
+.success,
+.error p {
+  color: black;
+}
+
 .stretch {
   width: stretch;
 }
 
 .book-notification {
   position: absolute;
-  top: 0.5rem;
+  top: 1.5rem;
+  left: 0.75rem;
 }
 
 .missing-book-cover {
@@ -255,10 +289,15 @@ input {
 }
 
 header {
+  background-color: #1f1e1c;
   align-items: center;
   border: 1px solid black;
   padding: 1rem;
   border-radius: 0.5rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .nav-links {
@@ -268,13 +307,26 @@ header {
 
 a {
   text-decoration: none;
-  color: black;
+  color: white;
+}
+
+h6 {
+  color: white;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 #root {
+  margin-block: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+body {
+  background-color: #0a0700;
 }
 
 .logo {
