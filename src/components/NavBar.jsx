@@ -17,7 +17,7 @@ function NavBar({ page }) {
           <li>
             <a
               className={`${page === "bookshelf" ? "sen-bold" : "sen-regular"}`}
-              href="/bookshelf/"
+              href="/tomelog/bookshelf/"
             >
               bookshelf
             </a>
