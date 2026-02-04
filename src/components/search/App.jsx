@@ -43,8 +43,8 @@ function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
         <img src={coverURL} alt="book cover" className="book-cover" />
       )}
       <div className="column gap-sm">
-        <p className="sen-bold">{title}</p>
-        <p className="sen-regular font-sm">{subtitle}</p>
+        <p className="sen-bold book-title">{title}</p>
+        <p className="sen-regular font-sm book-title">{subtitle}</p>
       </div>
       <div className="book-buttons">
         {file ? (
