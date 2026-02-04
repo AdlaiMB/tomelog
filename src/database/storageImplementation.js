@@ -28,9 +28,7 @@ function writeBookByBookID(bookID) {
 
   // precondition(s)
   if (books.has(bookID)) {
-    throw new Error(
-      `Book with ID ${bookID} is already stored cannot store twice`,
-    );
+    throw new Error(`Book has already been stored`);
   }
 
   const originalBookLength = books.size;
@@ -45,11 +43,11 @@ function writeBookByBookID(bookID) {
 
   // postcondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} was not stored`);
+    throw new Error(`Book was not stored`);
   }
 
   if (originalBookLength + 1 !== books.size) {
-    throw new Error("Book storage was not written to correctly.");
+    throw new Error("Book storage was not written to correctly");
   }
 
   updateBooksObjectInStorage(books);
@@ -64,7 +62,7 @@ function unwriteBookByBookID(bookID) {
   // precondition(s)
   if (!books.has(bookID)) {
     throw new Error(
-      `Book with ID ${bookID} is not stored cannot remove book that does not exist`,
+      `Book has not been stored, cannot remove book that does not exist`,
     );
   }
 
@@ -73,11 +71,11 @@ function unwriteBookByBookID(bookID) {
 
   // postcondition(s)
   if (books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} was not removed`);
+    throw new Error(`Book was not removed`);
   }
 
   if (originalBookLength - 1 !== books.size) {
-    throw new Error("Book storage was not unwritten to correctly");
+    throw new Error("Book storage was not written to correctly");
   }
 
   updateBooksObjectInStorage(books);
@@ -91,15 +89,13 @@ function writeBookChapterBookmark(bookID, chapter) {
 
   // precondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+    throw new Error(`Book does not exist in storage`);
   }
 
   const book = books.get(bookID);
 
   if (chapter > book.chapters) {
-    throw new Error(
-      `Chapter ${chapter} exceeds total chapters ${book.chapters} for book ID ${bookID}`,
-    );
+    throw new Error(`Bookmark cannot be placed past total chapters`);
   }
 
   book.bookmark.chapter = chapter;
@@ -107,9 +103,7 @@ function writeBookChapterBookmark(bookID, chapter) {
 
   // postcondition(s)
   if (!books.has(bookID)) {
-    throw new Error(
-      `Book with ID ${bookID} was not stored after updating chapter bookmark`,
-    );
+    throw new Error(`Book was not stored after updating chapter bookmark`);
   }
 
   updateBooksObjectInStorage(books);
@@ -123,15 +117,13 @@ function writeBookPageBookmark(bookID, page) {
 
   // precondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+    throw new Error(`Book does not exist in storage`);
   }
 
   const book = books.get(bookID);
 
   if (page > book.page.end || page < book.page.start) {
-    throw new Error(
-      `Page ${page} falls out of page range of ${book.page.start} - ${book.page.end} for book ID ${bookID}`,
-    );
+    throw new Error(`Bookmark cannot be placed past total pages`);
   }
 
   book.bookmark.page = page;
@@ -139,9 +131,7 @@ function writeBookPageBookmark(bookID, page) {
 
   // postcondition(s)
   if (!books.has(bookID)) {
-    throw new Error(
-      `Book with ID ${bookID} was not stored after writing to page bookmark`,
-    );
+    throw new Error(`Book  was not stored after updating page bookmark`);
   }
 
   updateBooksObjectInStorage(books);
@@ -155,15 +145,13 @@ function writeBookChapters(bookID, chapters) {
 
   // precondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+    throw new Error(`Book does not exist in storage`);
   }
 
   const book = books.get(bookID);
 
   if (book.bookmark.chapter !== 0 && chapters < book.bookmark.chapter) {
-    throw new Error(
-      `${chapters} chapters will leave the chapter bookmark at ${book.bookmark.chapter} out of range`,
-    );
+    throw new Error(`Chapters cannot leave the chapter bookmark out of range`);
   }
 
   book.chapters = chapters;
@@ -171,9 +159,7 @@ function writeBookChapters(bookID, chapters) {
 
   // postcondition(s)
   if (!books.has(bookID)) {
-    throw new Error(
-      `Book with ID ${bookID} was not stored after writing to book chapters`,
-    );
+    throw new Error(`Book was not stored after updating book chapters`);
   }
 
   updateBooksObjectInStorage(books);
@@ -187,7 +173,7 @@ function writeBookPages(bookID, startPage, endPage) {
 
   // precondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+    throw new Error(`Book does not exist in storage`);
   }
 
   const book = books.get(bookID);
@@ -196,9 +182,7 @@ function writeBookPages(bookID, startPage, endPage) {
     book.bookmark.page !== 0 &&
     (startPage > book.bookmark.page || book.bookmark.page > endPage)
   ) {
-    throw new Error(
-      `Page range ${startPage} - ${endPage} will leave the page bookmark at ${book.bookmark.page} out of range`,
-    );
+    throw new Error(`Pages cannot leave the page bookmark out of range`);
   }
 
   book.page.start = startPage;
@@ -207,9 +191,7 @@ function writeBookPages(bookID, startPage, endPage) {
 
   // postcondition(s)
   if (!books.has(bookID)) {
-    throw new Error(
-      `Book with ID ${bookID} was not stored after writing to book pages`,
-    );
+    throw new Error(`Book  was not stored after updating book pages`);
   }
 
   updateBooksObjectInStorage(books);
@@ -230,7 +212,7 @@ function fetchBookPageTotal(bookID) {
 
   // precondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+    throw new Error(`Book does not exist in storage`);
   }
 
   const book = books.get(bookID);
@@ -249,7 +231,7 @@ function fetchBookPageBookmark(bookID) {
 
   // precondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+    throw new Error(`Book does not exist in storage`);
   }
 
   const book = books.get(bookID);
@@ -263,7 +245,7 @@ function fetchBookChapterBookmark(bookID) {
 
   // precondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+    throw new Error(`Book does not exist in storage`);
   }
 
   const book = books.get(bookID);
@@ -277,7 +259,7 @@ function fetchBookChapterTotal(bookID) {
 
   // precondition(s)
   if (!books.has(bookID)) {
-    throw new Error(`Book with ID ${bookID} does not exist in storage`);
+    throw new Error(`Book does not exist in storage`);
   }
 
   const book = books.get(bookID);

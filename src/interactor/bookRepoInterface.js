@@ -4,19 +4,19 @@ async function queryByTitle(title, limit, page, implementation) {
   // console.log(CLASS);
   // precondition(s)
   if (!Number.isInteger(limit)) {
-    throw new Error(`limit ${limit} is not an integer`);
+    throw new Error(`limit is not an integer`);
   }
 
   if (!Number.isInteger(page)) {
-    throw new Error(`page ${page} is not an integer`);
+    throw new Error(`page is not an integer`);
   }
 
   if (limit <= 0) {
-    throw new Error(`limit ${limit} must be greater than zero`);
+    throw new Error(`limit must be greater than zero`);
   }
 
   if (page <= 0) {
-    throw new Error(`page ${page} must be greater than zero`);
+    throw new Error(`page must be greater than zero`);
   }
 
   // call any implementation
@@ -24,7 +24,7 @@ async function queryByTitle(title, limit, page, implementation) {
 
   // postcondition(s)
   if (!(books instanceof Array)) {
-    throw new Error("Books is not an array");
+    throw new Error("Books was not retrieved correctly");
   }
 
   return books;
@@ -49,7 +49,7 @@ async function getBookByBookID(bookID, implementation) {
 
   // postcondition(s)
   if (!(book instanceof Object)) {
-    throw new Error("Book is not an object");
+    throw new Error("Book was not retrieved correctly");
   }
 
   return book;

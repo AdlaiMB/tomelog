@@ -8,7 +8,7 @@ function writeBookByBookID(bookID, implementation) {
 
   // postcondition(s)
   if (!books.includes(bookID)) {
-    throw new Error(`Book with ID ${bookID} was not written to storage`);
+    throw new Error(`Book was not saved to storage`);
   }
 
   return books;
@@ -22,7 +22,7 @@ function unwriteBookByBookID(bookID, implementation) {
 
   // postcondition(s)
   if (books.includes(bookID)) {
-    throw new Error(`Book with ID ${bookID} was not unwritten in storage`);
+    throw new Error(`Book was not removed from storage`);
   }
 
   return books;
@@ -32,11 +32,11 @@ function writeBookChapterBookmark(bookID, chapter, implementation) {
   // console.log(CLASS);
   // precondition(s)
   if (!Number.isInteger(chapter)) {
-    throw new Error(`Chapter ${chapter} is not an integer`);
+    throw new Error(`Chapter bookmark is not an integer`);
   }
 
   if (chapter <= 0) {
-    throw new Error(`Chapter ${chapter} must be greater than zero`);
+    throw new Error(`Chapter bookmark must be greater than zero`);
   }
 
   // call any implementation
@@ -44,9 +44,7 @@ function writeBookChapterBookmark(bookID, chapter, implementation) {
 
   // postcondition(s)
   if (chapter !== book.bookmark.chapter) {
-    throw new Error(
-      `Book with ID ${bookID} has incorrect chapter bookmark after writing`,
-    );
+    throw new Error(`Book chapter bookmark has incorrect chapter after update`);
   }
 
   return book;
@@ -56,11 +54,11 @@ function writeBookPageBookmark(bookID, page, implementation) {
   // console.log(CLASS);
   // precondition(s)
   if (!Number.isInteger(page)) {
-    throw new Error(`Page ${page} is not an integer`);
+    throw new Error(`Page bookmark is not an integer`);
   }
 
   if (page <= 0) {
-    throw new Error(`Page ${page} must be greater than zero`);
+    throw new Error(`Page bookmark must be greater than zero`);
   }
 
   // call any implementation
@@ -69,7 +67,7 @@ function writeBookPageBookmark(bookID, page, implementation) {
   // postcondition(s)
   if (page !== book.bookmark.page) {
     throw new Error(
-      `Book with ID ${bookID} has incorrect page bookmark after writing`,
+      `Book page bookmark has incorrect page bookmark after update`,
     );
   }
 
@@ -84,7 +82,7 @@ function writeBookChapters(bookID, chapters, implementation) {
   }
 
   if (chapters <= 0) {
-    throw new Error(`Chapters ${chapters} must be greater that zero`);
+    throw new Error(`Chapters must be greater that zero`);
   }
 
   // call any implementation
@@ -92,9 +90,7 @@ function writeBookChapters(bookID, chapters, implementation) {
 
   // postcondition(s)
   if (chapters !== book.chapters) {
-    throw new Error(
-      `Book with ID ${bookID} has incorrect chapters after writing.`,
-    );
+    throw new Error(`Book has incorrect chapters after update.`);
   }
 
   return book;
@@ -112,9 +108,7 @@ function writeBookPages(bookID, startPage, endPage, implementation) {
   }
 
   if (endPage < startPage) {
-    throw new Error(
-      `End page ${endPage} must be greater than or equal to start page ${startPage}`,
-    );
+    throw new Error(`End page must be greater than or equal to start page`);
   }
 
   // call any implementation
@@ -122,15 +116,11 @@ function writeBookPages(bookID, startPage, endPage, implementation) {
 
   // postcondition(s)
   if (startPage !== book.page.start) {
-    throw new Error(
-      `Book with ID ${bookID} has incorrect start page after writing`,
-    );
+    throw new Error(`Book has incorrect start page after update`);
   }
 
   if (endPage !== book.page.end) {
-    throw new Error(
-      `Book with ID ${bookID} has incorrect end page after writing`,
-    );
+    throw new Error(`Book has incorrect end page after update`);
   }
 
   return book;
@@ -143,7 +133,7 @@ function fetchMyBooks(implementation) {
 
   // postcondition(s)
   if (!(books instanceof Array)) {
-    throw new Error("Books is not array");
+    throw new Error("Books was not stored correctly");
   }
 
   return books;
@@ -156,7 +146,7 @@ function fetchBookPageTotal(bookID, implementation) {
 
   // postcondition(s)
   if (!Number.isInteger(pages)) {
-    throw new Error(`Page total for book with ID ${bookID} is not an integer`);
+    throw new Error(`Page total is not an integer`);
   }
 
   return pages;
@@ -169,9 +159,7 @@ function fetchBookPageBookmark(bookID, implementation) {
 
   // postcondition(s)
   if (!Number.isInteger(pageBookmark)) {
-    throw new Error(
-      `Page bookmark for book with ID ${bookID} is not an integer`,
-    );
+    throw new Error(`Page bookmark is not an integer`);
   }
 
   return pageBookmark;
@@ -184,9 +172,7 @@ function fetchBookChapterBookmark(bookID, implementation) {
 
   // postcondition(s)
   if (!Number.isInteger(chapterBookmark)) {
-    throw new Error(
-      `Chapter bookmark for book with ID ${bookID} is not an integer`,
-    );
+    throw new Error(`Chapter bookmark is not an integer`);
   }
 
   return chapterBookmark;
@@ -199,9 +185,7 @@ function fetchBookChapterTotal(bookID, implementation) {
 
   // postcondition(s)
   if (!Number.isInteger(chapters)) {
-    throw new Error(
-      `Chapter total for book with ID ${bookID} is not an integer`,
-    );
+    throw new Error(`Chapter total is not an integer`);
   }
 
   return chapters;
@@ -214,7 +198,7 @@ function isBookWritten(bookID, implementation) {
 
   // postcondition(s)
   if (!(typeof bookWritten === "boolean")) {
-    throw new Error("Bookwritten is not a boolean");
+    throw new Error("Incorrect book stored status");
   }
 
   return bookWritten;

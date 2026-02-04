@@ -45,7 +45,7 @@ async function queryByTitle(title, limit, page) {
 
   // postcondition(s)
   if (!Object.hasOwn(openlibraryData, "docs")) {
-    throw new Error("Missing 'docs' property in response");
+    throw new Error("Missing fields in open library api response");
   }
 
   const results = [];
@@ -87,7 +87,7 @@ async function getBookByBookID(bookID) {
 
   // postcondition(s)
   if (Object.hasOwn(openLibraryResponse, "error")) {
-    throw new Error("Invalid BookID provided");
+    throw new Error("Invalid book id provided");
   }
 
   const book = {
