@@ -18,7 +18,7 @@ function resultsBookList(booklist) {
 function error(errorMessage) {
   // console.log(CLASS);
   return (
-    <div className="error column gap-sm">
+    <div className="error column gap-sm stretch">
       <p className="sen-bold">Error</p>
       <p className="sen-regular font-sm">{errorMessage}</p>
     </div>
@@ -28,9 +28,9 @@ function error(errorMessage) {
 function filedBook(filedBooks) {
   // console.log(CLASS)
   return (
-    <div className="success column gap-sm">
+    <div className="success column gap-sm book-width">
       <p className="sen-bold">Success</p>
-      <p className="sen-regular font-sm">The book has been filed!</p>
+      <p className="sen-regular font-sm">The book has been filed</p>
     </div>
   );
 }
@@ -38,9 +38,9 @@ function filedBook(filedBooks) {
 function unfiledBook(unfiledBook) {
   // console.log(CLASS);
   return (
-    <div className="success column gap-sm">
+    <div className="success column gap-sm book-width">
       <p className="sen-bold">Success</p>
-      <p className="sen-regular font-sm">The book has been unfiled!</p>
+      <p className="sen-regular font-sm">The book has been unfiled</p>
     </div>
   );
 }
@@ -102,7 +102,7 @@ function UpdateBookDetailModal({ bookID, removeModal }) {
   return (
     <div className="modal column gap-l">
       <div className="row space-between">
-        <h6 className="capitalize line-seed-jp-regular">Details Update</h6>
+        <h6 className="capitalize sen-bold">Details Update</h6>
         <button className="modal-close-button" onClick={removeModal}>
           <svg
             width="13"
@@ -128,7 +128,7 @@ function UpdateBookDetailModal({ bookID, removeModal }) {
       {pagesActionResult}
       <div className="column gap-m">
         <form className="column gap-sm" action={updateChaptersAction}>
-          <label htmlFor="chapters" className="line-seed-jp-thin">
+          <label htmlFor="chapters" className="sen-regular">
             chapters
           </label>
           <input name="bookID" value={bookID} type="hidden" />
@@ -137,15 +137,15 @@ function UpdateBookDetailModal({ bookID, removeModal }) {
               id="chapters"
               name="chapters"
               type="number"
-              className="line-seed-jp-regular"
+              className="sen-regular"
               placeholder="10"
               required
             />
-            <button className="button line-seed-jp-bold">update</button>
+            <button className="button sen-bold">update</button>
           </div>
         </form>
         <form className="column gap-sm" action={updatePagesAction}>
-          <label htmlFor="pages" className="line-seed-jp-thin">
+          <label htmlFor="pages" className="sen-regular">
             pages
           </label>
           <input name="bookID" value={bookID} type="hidden" />
@@ -155,19 +155,19 @@ function UpdateBookDetailModal({ bookID, removeModal }) {
                 id="pages"
                 name="startPage"
                 type="number"
-                className="line-seed-jp-regula w-45"
+                className="sen-regular w-45"
                 placeholder="1"
                 required
               />
               <input
                 name="endPage"
                 type="number"
-                className="line-seed-jp-regular w-45"
+                className="sen-regular w-45"
                 placeholder="100"
                 required
               />
             </div>
-            <button className="button line-seed-jp-bold">update</button>
+            <button className="button sen-bold">update</button>
           </div>
         </form>
       </div>
@@ -438,7 +438,7 @@ function updatedBook(updatedBook) {
   return (
     <div className="success column gap-sm stretch">
       <p className="sen-bold">Success</p>
-      <p className="sen-regular font-sm">Book has been updated!</p>
+      <p className="sen-regular font-sm">Book has been updated</p>
     </div>
   );
 }

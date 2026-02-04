@@ -1,7 +1,7 @@
 function NavBar({ page }) {
   return (
     <header className="row space-between guard-rail">
-      <a className="biorhyme-bold logo uppercase" href="/search/">
+      <a className="biorhyme-bold logo uppercase" href="/">
         tomelog
       </a>
       <nav>
@@ -9,7 +9,7 @@ function NavBar({ page }) {
           <li>
             <a
               className={`${page === "search" ? "sen-bold" : "sen-regular"}`}
-              href="/search/"
+              href="/"
             >
               search
             </a>
