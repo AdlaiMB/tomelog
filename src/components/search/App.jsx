@@ -180,13 +180,13 @@ function App() {
       <NavBar page="search" />
       <div className="guard-rail column gap-l">
         <div className="search-bar">
-          <form className=" row gap-sm" action={searchAction}>
+          <form className="row justify-between" action={searchAction}>
             <input
               name="query"
               placeholder="Enter the title of your book e.g. the pragmatic programmer"
               className="search line-seed-jp-regular"
             />
-            <button className="button line-seed-jp-regular search-button">
+            <button className="button line-seed-jp-regular">
               <svg
                 width="27"
                 height="21"

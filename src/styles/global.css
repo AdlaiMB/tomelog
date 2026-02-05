@@ -129,16 +129,13 @@ input {
 .search {
   border: 0px;
   background-color: transparent;
-  width: 75%;
-  height: stretch;
   font-size: 1rem;
 }
 
 .search-bar {
-  padding: 1rem;
+  padding: 0.25rem;
   border-radius: 0.25rem;
   background-color: white;
-  position: relative;
 }
 
 .button {
@@ -158,12 +155,6 @@ input {
 
 .w-45 {
   width: 45%;
-}
-
-.search-button {
-  position: absolute;
-  right: 0.4rem;
-  top: 0.45rem;
 }
 
 .book {
