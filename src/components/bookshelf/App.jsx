@@ -1,14 +1,21 @@
 import "../../styles/new_globals.css";
 import "../../styles/resets.css";
+import "../../styles/bookshelf/index.css";
 
 import NavBar from "../NavBar";
 import DropDownMenu from "../DropDownMenu";
 
 function App() {
   const menuItems = [
-    <button className="tab-menu-item">reading</button>,
-    <button className="tab-menu-item">read</button>,
-    <button className="tab-menu-item">all books</button>,
+    <button className="button-menu-item sen-regular background-gray background-gray-hover">
+      reading
+    </button>,
+    <button className="button-menu-item sen-regular background-gray background-gray-hover">
+      read
+    </button>,
+    <button className="button-menu-item sen-regular background-gray background-gray-hover">
+      all books
+    </button>,
   ];
 
   return (
@@ -16,22 +23,26 @@ function App() {
       <NavBar />
       <div className="page-content">
         <div className="page-content-margin">
-          <div className="title-section">
-            <h1 className="title">bookshelf</h1>
+          <div className="title-section border-beige">
+            <h1 className="capitalize sen-regular">bookshelf</h1>
           </div>
           <div className="tab-book-section">
-            <div className="tab-section">
-              <h2 className="tab-title">shelves</h2>
-              <div>
-                <div className="tabs-container">
-                  <div className="tabs">
-                    <button className="tab">reading</button>
-                    <button className="tab">read</button>
-                    <button className="tab">all books</button>
-                  </div>
+            <div className="tab-section border-beige">
+              <h2 className="sen-regular">shelves</h2>
+              <div className="tabs-container">
+                <div className="tabs">
+                  <button className="tab background-white sen-regular background-white-hover">
+                    reading
+                  </button>
+                  <button className="tab background-white sen-regular background-white-hover">
+                    read
+                  </button>
+                  <button className="tab background-white sen-regular background-white-hover">
+                    all books
+                  </button>
                 </div>
-                <DropDownMenu menuItems={menuItems} theme="light" />
               </div>
+              <DropDownMenu menuItems={menuItems} theme="light" />
             </div>
           </div>
         </div>
