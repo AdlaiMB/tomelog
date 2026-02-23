@@ -1,0 +1,159 @@
+:root {
+  --brown: #3b2d15;
+  --light-brown: #5c4012;
+  --gray: #f9f9f9;
+  --page-background-color: #f8f3ec;
+  --page-inline-margin: 1rem;
+}
+
+body {
+  background-color: var(--page-background-color);
+}
+
+.logo {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+
+  /* font settings */
+  font-family: "BioRhyme", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.navigation-bar {
+  background-color: var(--brown);
+  height: 4rem;
+}
+
+.navigation-bar-content {
+  display: flex;
+  height: 100%;
+  margin-inline: var(--page-inline-margin);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-nav {
+  display: none;
+}
+
+.navigation-nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.navigation-nav-link {
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+
+  /* font settings */
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.navigation-nav-link:hover {
+  background-color: var(--light-brown);
+}
+
+.drop-down-menu-section {
+  position: relative;
+}
+
+.drop-down-menu-position-contianer {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+}
+
+.drop-down-menu-container {
+  width: 160px;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s ease-in-out;
+}
+
+.drop-down-menu-container.showing {
+  grid-template-rows: 1fr;
+}
+
+.drop-down-menu-content {
+  overflow: hidden;
+}
+
+.drop-down-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.drop-down-menu-item {
+  display: block;
+  padding-block: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 0.25rem;
+  color: black;
+  transition: background-color 0.2s ease-in-out;
+
+  /* font settings */
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.drop-down-menu-item:hover {
+  background-color: var(--gray);
+}
+
+.drop-down-menu-button {
+  background-color: var(--brown);
+  border: 0;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+
+  /* font settings */
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.drop-down-menu-button:hover {
+  background-color: var(--light-brown);
+}
+
+.white-text {
+  color: white;
+}
+
+@media screen and (min-width: 834px) {
+  :root {
+    --page-inline-margin: 2rem;
+  }
+
+  .drop-down-menu-section {
+    display: none;
+  }
+
+  .navigation-nav {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    --page-inline-margin: 10rem;
+  }
+}

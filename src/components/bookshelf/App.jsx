@@ -1,29 +1,26 @@
 import { useEffect, useState } from "react";
 import { getMyBooks } from "../../controller/controller";
-import "../../styles/global.css";
+import "../../styles/new_globals.css";
+import "../../styles/resets.css";
 
 import NavBar from "../NavBar";
 
 function App() {
-  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    async function retrieveMyBooks() {
-      const { error, view } = await getMyBooks();
+  // useEffect(() => {
+  //   async function retrieveMyBooks() {
+  //     const { error, view } = await getMyBooks();
 
-      setBooks(view);
-    }
+  //     setBooks(view);
+  //   }
 
-    retrieveMyBooks();
-  }, []);
+  //   retrieveMyBooks();
+  // }, []);
 
   return (
     <>
       <NavBar page="bookshelf" />
-      <div className="guard-rail column gap-m">
-        <h6 className="biorhyme-regular">My Books:</h6>
-        {books}
-      </div>
     </>
   );
 }
