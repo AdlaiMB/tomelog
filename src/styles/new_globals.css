@@ -90,38 +90,8 @@ body {
   overflow: hidden;
 }
 
-.drop-down-menu {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-}
-
-.drop-down-menu-item {
-  display: block;
-  padding-block: 0.5rem;
-  padding-left: 0.5rem;
-  border-radius: 0.25rem;
-  color: black;
-  transition: background-color 0.2s ease-in-out;
-
-  /* font settings */
-  font-family: "Sen", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.drop-down-menu-item:hover {
-  background-color: var(--gray);
-}
-
 .drop-down-menu-button {
-  background-color: var(--brown);
   border: 0;
-  color: white;
   font-size: 1rem;
   padding: 0.5rem;
   border-radius: 0.25rem;
@@ -134,7 +104,88 @@ body {
   font-style: normal;
 }
 
-.drop-down-menu-button:hover {
+.drop-down-menu {
+  background-color: var(--light-brown);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.drop-down-menu-item {
+  padding-block: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 0.25rem;
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.menu-button-light {
+  background-color: white;
+}
+
+.menu-button-light:hover {
+  background-color: var(--gray);
+}
+
+.menu-button-dark {
+  color: white;
+  background-color: var(--brown);
+}
+
+.menu-button-dark:hover {
+  background-color: var(--light-brown);
+}
+
+.menu-light {
+  background-color: var(--gray);
+}
+
+.menu-dark {
+  background-color: var(--brown);
+}
+
+.tab-menu-item {
+  border: 0;
+  font-size: 1rem;
+  width: 100%;
+  text-align: start;
+  padding-block: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--gray);
+
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.tab-menu-item:hover {
+  background-color: white;
+}
+
+.link-menu-item {
+  display: block;
+  color: white;
+  background-color: var(--brown);
+  padding-block: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 0.25rem;
+
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.link-menu-item:hover {
   background-color: var(--light-brown);
 }
 

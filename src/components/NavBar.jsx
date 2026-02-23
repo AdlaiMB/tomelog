@@ -1,7 +1,14 @@
-import { useState } from "react";
+import DropDownMenu from "./DropDownMenu";
 
-function NavBar({ page }) {
-  const [isMenuShowing, setIsMenuShowing] = useState(false);
+function NavBar() {
+  const menuItems = [
+    <a href="/tomelog/search/" className="link-menu-item">
+      search
+    </a>,
+    <a href="/tomelog/bookshelf/" className="link-menu-item">
+      bookshelf
+    </a>,
+  ];
 
   return (
     <header className="navigation-bar">
@@ -24,40 +31,7 @@ function NavBar({ page }) {
               </li>
             </ul>
           </nav>
-          <div className="drop-down-menu-section">
-            <button
-              onClick={() => setIsMenuShowing(!isMenuShowing)}
-              className="drop-down-menu-button"
-            >
-              dropdown
-            </button>
-            <div className="drop-down-menu-position-contianer">
-              <div
-                className={`drop-down-menu-container ${isMenuShowing ? "showing" : ""}`}
-              >
-                <div className="drop-down-menu-content">
-                  <ul className="drop-down-menu">
-                    <li>
-                      <a
-                        href="/tomelog/search/"
-                        className="drop-down-menu-item"
-                      >
-                        search
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/tomelog/bookshelf/"
-                        className="drop-down-menu-item"
-                      >
-                        bookshelf
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+          <DropDownMenu menuItems={menuItems} theme="dark" />
         </div>
       </div>
     </header>

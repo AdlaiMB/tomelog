@@ -16,3 +16,7 @@ h2 {
 a {
   text-decoration: none;
 }
+
+button {
+  padding: 0;
+}

@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
-import { getMyBooks } from "../../controller/controller";
 import "../../styles/new_globals.css";
 import "../../styles/resets.css";
 
 import NavBar from "../NavBar";
+import DropDownMenu from "../DropDownMenu";
 
 function App() {
-  // const [books, setBooks] = useState([]);
-
-  // useEffect(() => {
-  //   async function retrieveMyBooks() {
-  //     const { error, view } = await getMyBooks();
-
-  //     setBooks(view);
-  //   }
-
-  //   retrieveMyBooks();
-  // }, []);
-  const [isMenuShowing, setIsMenuShowing] = useState(false);
+  const menuItems = [
+    <button className="tab-menu-item">reading</button>,
+    <button className="tab-menu-item">read</button>,
+    <button className="tab-menu-item">all books</button>,
+  ];
 
   return (
     <>
-      <NavBar page="bookshelf" />
+      <NavBar />
       <div className="page-content">
         <div className="page-content-margin">
           <div className="title-section">
@@ -38,39 +30,7 @@ function App() {
                     <button className="tab">all books</button>
                   </div>
                 </div>
-                <div className="drop-down-menu-section">
-                  <button
-                    onClick={() => setIsMenuShowing(!isMenuShowing)}
-                    className="tab-drop-down-menu-button"
-                  >
-                    dropdown
-                  </button>
-                  <div className="drop-down-menu-position-contianer">
-                    <div
-                      className={`drop-down-menu-container ${isMenuShowing ? "showing" : ""}`}
-                    >
-                      <div className="drop-down-menu-content">
-                        <ul className="drop-down-menu">
-                          <li>
-                            <button className="drop-down-menu-item-button">
-                              reading
-                            </button>
-                          </li>
-                          <li>
-                            <button className="drop-down-menu-item-button">
-                              read
-                            </button>
-                          </li>
-                          <li>
-                            <button className="drop-down-menu-item-button">
-                              all books
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DropDownMenu menuItems={menuItems} theme="light" />
               </div>
             </div>
           </div>
