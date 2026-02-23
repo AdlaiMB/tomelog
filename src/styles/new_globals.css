@@ -14,11 +14,15 @@ body {
   background-color: var(--page-background-color);
 }
 
-.logo {
-  font-size: 1.5rem;
-  text-transform: uppercase;
+.biorhyme-regular {
+  font-family: "BioRhyme", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
 
-  /* font settings */
+.biorhyme-bold {
   font-family: "BioRhyme", serif;
   font-optical-sizing: auto;
   font-weight: 700;
@@ -26,42 +30,14 @@ body {
   font-variation-settings: "wdth" 100;
 }
 
-.navigation-bar {
-  background-color: var(--brown);
-  height: 4rem;
-}
-
-.navigation-bar-content {
-  display: flex;
-  height: 100%;
-  margin-inline: var(--page-inline-margin);
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navigation-nav {
-  display: none;
-}
-
-.navigation-nav-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.navigation-nav-link {
-  color: white;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s ease-in-out;
-
-  /* font settings */
+.sen-regular {
   font-family: "Sen", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
-.navigation-nav-link:hover {
+.background-light-brown-hover:hover {
   background-color: var(--light-brown);
 }
 
@@ -105,7 +81,6 @@ body {
 }
 
 .drop-down-menu {
-  background-color: var(--light-brown);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -168,25 +143,6 @@ body {
 
 .tab-menu-item:hover {
   background-color: white;
-}
-
-.link-menu-item {
-  display: block;
-  color: white;
-  background-color: var(--brown);
-  padding-block: 0.5rem;
-  padding-left: 0.5rem;
-  border-radius: 0.25rem;
-
-  font-family: "Sen", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.link-menu-item:hover {
-  background-color: var(--light-brown);
 }
 
 .white-text {
@@ -320,10 +276,6 @@ body {
 
   .drop-down-menu-section {
     display: none;
-  }
-
-  .navigation-nav {
-    display: block;
   }
 
   .tabs-container {

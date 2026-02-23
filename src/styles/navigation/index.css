@@ -1,0 +1,50 @@
+.logo-text {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.navigation-bar {
+  background-color: var(--brown);
+  height: 4rem;
+}
+
+.navigation-bar-content {
+  margin-inline: var(--page-inline-margin);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-nav {
+  display: none;
+}
+
+.navigation-nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.navigation-nav-link {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.link-menu-item {
+  display: block;
+  padding-block: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.link-menu-item:hover {
+  background-color: var(--light-brown);
+}
+
+@media screen and (min-width: 834px) {
+  .navigation-nav {
+    display: block;
+  }
+}
