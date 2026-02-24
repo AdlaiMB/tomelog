@@ -80,6 +80,7 @@
 }
 
 .book-image {
+  flex-shrink: 0;
   width: 132px;
   height: 200px;
 }

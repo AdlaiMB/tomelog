@@ -90,6 +90,18 @@ async function getBookByBookID(bookID) {
     throw new Error("Invalid book id provided");
   }
 
+  const authorID = getIDFromOpenLibraryKey(
+    openlibraryData.authors[0].author.key,
+  );
+
+  const openlibraryAuthorResponse = await fetch(
+    API_BASE_URL + `/authors/${authorID}.json`,
+  );
+
+  const openLibraryAuthorData = await openlibraryAuthorResponse.json();
+
+  const authorName = openLibraryAuthorData.name;
+
   const book = {
     id: getIDFromOpenLibraryKey(openlibraryData.key),
     title: openlibraryData.title,
@@ -99,6 +111,7 @@ async function getBookByBookID(bookID) {
     coverID: Object.hasOwn(openlibraryData, "covers")
       ? openlibraryData.covers[0]
       : null,
+    authorName,
   };
 
   return book;

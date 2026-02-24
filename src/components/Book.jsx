@@ -21,7 +21,11 @@ function Book({ id, coverURL, title, subtitle, author }) {
 
   return (
     <div className="book background-gray">
-      <img src={coverURL} alt="book cover" className="book-image" />
+      {coverURL ? (
+        <img src={coverURL} alt="book cover" className="book-image" />
+      ) : (
+        <div className="book-image background-white"></div>
+      )}
       <div className="book-content-metadata">
         <div className="book-titles capitalize sen-regular">
           <span>{title}</span>

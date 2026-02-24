@@ -68,6 +68,7 @@ function storedBooksBooklist(booklist) {
       title: book.title,
       subtitle: book.subtitle,
       coverURL: book.coverID !== null ? generateCoverURL(book.coverID) : null,
+      authorName: book.authorName,
     };
     result.push(processedBook);
   }

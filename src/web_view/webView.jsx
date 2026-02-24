@@ -380,6 +380,7 @@ function BookShelf({ booklist }) {
           id={book.id}
           coverURL={book.coverURL}
           title={book.title}
+          author={book.authorName}
           // displayModal={displayModal}
           // removeModal={removeModal}
         />
