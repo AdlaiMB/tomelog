@@ -6,7 +6,15 @@ import { useEffect, useState } from "react";
 import Overlay from "./Overlay";
 import Modal from "./Modal";
 
-function Book({ id, coverURL, title, subtitle, author }) {
+function Book({
+  id,
+  coverURL,
+  title,
+  subtitle,
+  author,
+  displayModal,
+  removeModal,
+}) {
   const [pageProgress, setPageProgress] = useState(null);
   const [chapterProgress, setChapterProgress] = useState(null);
 
@@ -22,11 +30,12 @@ function Book({ id, coverURL, title, subtitle, author }) {
     fetchProgressDetails();
   }, []);
 
+  const testModal = () => {
+    displayModal(<Modal removeModal={removeModal} />);
+  };
+
   return (
     <>
-      <Overlay>
-        <Modal />
-      </Overlay>
       <div className="book background-gray">
         {coverURL ? (
           <img src={coverURL} alt="book cover" className="book-image" />
@@ -45,7 +54,10 @@ function Book({ id, coverURL, title, subtitle, author }) {
           </div>
         </div>
         <div className="book-buttons">
-          <button className="book-button white-text sen-regular uppercase background-blue">
+          <button
+            onClick={testModal}
+            className="book-button white-text sen-regular uppercase background-blue"
+          >
             bookmark
           </button>
           <button className="book-button white-text sen-regular uppercase background-blue">

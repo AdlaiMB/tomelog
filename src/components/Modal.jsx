@@ -1,11 +1,14 @@
 import "../styles/modal/index.css";
 
-function Modal() {
+function Modal({ removeModal }) {
   return (
     <div className="modal background-white">
       <div className="modal-title-section border-beige">
         <h2 className="sen-regular capitalize">book info</h2>
-        <button className="sen-bold small-text background-white background-white-hover modal-close-button">
+        <button
+          onClick={removeModal}
+          className="sen-bold small-text background-white background-white-hover modal-close-button"
+        >
           close
         </button>
       </div>

@@ -12,6 +12,7 @@ import {
 
 import Book from "../components/Book";
 import ProgressBar from "../components/ProgressBar";
+import Overlay from "../components/Overlay";
 
 function resultsBookList(booklist) {
   // console.log(CLASS);
@@ -368,7 +369,7 @@ function BookShelf({ booklist }) {
   }
 
   function displayModal(modal) {
-    setModal(<div className="modal-container">{modal}</div>);
+    setModal(<Overlay>{modal}</Overlay>);
   }
 
   return (
@@ -381,6 +382,8 @@ function BookShelf({ booklist }) {
           coverURL={book.coverURL}
           title={book.title}
           author={book.authorName}
+          displayModal={displayModal}
+          removeModal={removeModal}
           // displayModal={displayModal}
           // removeModal={removeModal}
         />
