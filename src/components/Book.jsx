@@ -1,39 +1,36 @@
-function Book({
-  id,
-  coverURL,
-  title,
-  subtitle,
-  author,
-  pageProgress,
-  chapterProgress,
-}) {
+import { getPageRatioDetails } from "../controller/controller";
+import { getChapterRatioDetails } from "../controller/controller";
+
+import { useEffect, useState } from "react";
+
+function Book({ id, coverURL, title, subtitle, author }) {
+  const [pageProgress, setPageProgress] = useState(null);
+  const [chapterProgress, setChapterProgress] = useState(null);
+
+  useEffect(() => {
+    async function fetchProgressDetails() {
+      const { view: pageProgress } = getPageRatioDetails(id);
+      const { view: chapterProgress } = getChapterRatioDetails(id);
+
+      setPageProgress(pageProgress);
+      setChapterProgress(chapterProgress);
+    }
+
+    fetchProgressDetails();
+  }, []);
+
   return (
     <div className="book background-gray">
-      <img src="/tomelog/image.png" alt="book cover" className="book-image" />
+      <img src={coverURL} alt="book cover" className="book-image" />
       <div className="book-content-metadata">
         <div className="book-titles capitalize sen-regular">
-          <span>american dirt</span>
+          <span>{title}</span>
+          <span>{subtitle}</span>
         </div>
-        <span className="capitalize sen-regular">by: jeannie cummins</span>
+        <span className="capitalize sen-regular">by: {author}</span>
         <div className="sen-regular small-text">
-          <div className="book-progress">
-            <span>pages progress: 20%</span>
-            <div className="progress-bar-container background-dark-gray">
-              <div
-                className="progress-bar background-light-blue"
-                style={{ width: "20%" }}
-              ></div>
-            </div>
-          </div>
-          <div className="book-progress">
-            <span>chapters progress: 40%</span>
-            <div className="progress-bar-container background-dark-gray">
-              <div
-                className="progress-bar background-light-blue"
-                style={{ width: "40%" }}
-              ></div>
-            </div>
-          </div>
+          {pageProgress}
+          {chapterProgress}
         </div>
       </div>
       <div className="book-buttons">

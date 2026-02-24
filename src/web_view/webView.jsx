@@ -10,6 +10,9 @@ import {
   updatePageBookmark,
 } from "../controller/controller";
 
+import Book from "../components/Book";
+import ProgressBar from "../components/ProgressBar";
+
 function resultsBookList(booklist) {
   // console.log(CLASS);
   return booklist;
@@ -371,19 +374,16 @@ function BookShelf({ booklist }) {
   return (
     <>
       {modal}
-      <div className="row gap-l wrap">
-        {booklist.map((book) => (
-          <BookShelfBook
-            key={book.id}
-            id={book.id}
-            title={book.title}
-            subtitle={book.subtitle}
-            coverURL={book.coverURL}
-            displayModal={displayModal}
-            removeModal={removeModal}
-          />
-        ))}
-      </div>
+      {booklist.map((book) => (
+        <Book
+          key={book.id}
+          id={book.id}
+          coverURL={book.coverURL}
+          title={book.title}
+          // displayModal={displayModal}
+          // removeModal={removeModal}
+        />
+      ))}
     </>
   );
 }
@@ -394,44 +394,12 @@ function bookShelf(booklist) {
 
 function chapterProgress(completed, total) {
   const percentage = total > 0 ? Math.ceil((completed / total) * 100) : 0;
-  return (
-    <div className="column gap-sm">
-      <div className="row space-between">
-        <p className="capitalize sen-bold">chapters</p>
-        <span className="sen-regular">{percentage}%</span>
-      </div>
-      <div className="progress-bar">
-        <span
-          className="progress-bar-bar"
-          style={{ width: `${percentage}%` }}
-        ></span>
-      </div>
-      <p className="sen-regular">
-        {completed}chs of {total}chs
-      </p>
-    </div>
-  );
+  return <ProgressBar progressType="chapter" percentage={percentage} />;
 }
 
 function pageProgress(completed, total) {
   const percentage = total > 0 ? Math.ceil((completed / total) * 100) : 0;
-  return (
-    <div className="column gap-sm">
-      <div className="row space-between">
-        <p className="capitalize sen-bold">pages</p>
-        <span className="sen-regular">{percentage}%</span>
-      </div>
-      <div className="progress-bar">
-        <span
-          className="progress-bar-bar"
-          style={{ width: `${percentage}%` }}
-        ></span>
-      </div>
-      <p className="sen-regular">
-        {completed}pgs of {total}pgs
-      </p>
-    </div>
-  );
+  return <ProgressBar progressType="page" percentage={percentage} />;
 }
 
 function updatedBook(updatedBook) {

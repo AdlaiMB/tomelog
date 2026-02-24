@@ -9,7 +9,21 @@ import TabBookSection from "./TabBookSection";
 import TabSection from "./TabSection";
 import BookSection from "./BookSection";
 
+import { useEffect, useState } from "react";
+import { getMyBooks } from "../../controller/controller";
+
 function App() {
+  const [books, setBooks] = useState([]);
+  useEffect(() => {
+    async function fetchBooks() {
+      const { view: books } = await getMyBooks();
+
+      setBooks(books);
+    }
+
+    fetchBooks();
+  }, []);
+
   return (
     <>
       <Navigation />
@@ -17,7 +31,7 @@ function App() {
         <TitleSection />
         <TabBookSection>
           <TabSection />
-          <BookSection />
+          <BookSection books={books} />
         </TabBookSection>
       </PageContent>
     </>
