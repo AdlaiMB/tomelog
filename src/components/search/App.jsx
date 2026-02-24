@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useActionState } from "react";
 import { find, record, remove } from "../../controller/controller";
 import "../../styles/global.css";
 
-import NavBar from "../NavBar";
+import Navigation from "../Navigation";
 
 function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
   const [file, setFile] = useState(filed);
@@ -177,7 +177,7 @@ function App() {
 
   return (
     <>
-      <NavBar page="search" />
+      <Navigation />
       <div className="guard-rail column gap-l">
         <div className="search-bar">
           <form className="row justify-between" action={searchAction}>

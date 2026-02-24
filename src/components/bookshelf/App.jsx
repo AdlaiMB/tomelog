@@ -2,7 +2,7 @@ import "../../styles/globals.css";
 import "../../styles/resets.css";
 import "../../styles/bookshelf/index.css";
 
-import NavBar from "../NavBar";
+import Navigation from "../Navigation";
 import DropDownMenu from "../DropDownMenu";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <Navigation />
       <div className="page-content">
         <div className="page-content-margin">
           <div className="title-section border-beige">

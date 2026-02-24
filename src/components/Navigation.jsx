@@ -1,7 +1,7 @@
 import DropDownMenu from "./DropDownMenu";
 import "../styles/navigation/index.css";
 
-function NavBar() {
+function Navigation() {
   const menuItems = [
     <a
       href="/tomelog/search/"
@@ -49,4 +49,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default Navigation;
