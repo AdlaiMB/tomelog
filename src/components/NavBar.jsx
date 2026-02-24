@@ -5,13 +5,13 @@ function NavBar() {
   const menuItems = [
     <a
       href="/tomelog/search/"
-      className="link-menu-item white-text sen-regular background-light-brown-hover"
+      className="link-menu-item white-text sen-regular background-brown-hover"
     >
       search
     </a>,
     <a
       href="/tomelog/bookshelf/"
-      className="link-menu-item white-text sen-regular background-light-brown-hover"
+      className="link-menu-item white-text sen-regular background-brown-hover"
     >
       bookshelf
     </a>,
@@ -29,7 +29,7 @@ function NavBar() {
               <li>
                 <a
                   href="/tomelog/search/"
-                  className="navigation-nav-link white-text sen-regular background-light-brown-hover"
+                  className="navigation-nav-link white-text sen-regular background-brown-hover"
                 >
                   search
                 </a>
@@ -37,14 +37,14 @@ function NavBar() {
               <li>
                 <a
                   href="/tomelog/bookshelf/"
-                  className="navigation-nav-link white-text sen-regular background-light-brown-hover"
+                  className="navigation-nav-link white-text sen-regular background-brown-hover"
                 >
                   bookshelf
                 </a>
               </li>
             </ul>
           </nav>
-          <DropDownMenu menuItems={menuItems} theme="dark" />
+          <DropDownMenu menuItems={menuItems} theme="brown" />
         </div>
       </div>
     </header>

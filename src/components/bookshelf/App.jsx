@@ -42,7 +42,7 @@ function App() {
                   </button>
                 </div>
               </div>
-              <DropDownMenu menuItems={menuItems} theme="light" />
+              <DropDownMenu menuItems={menuItems} theme="white" />
             </div>
           </div>
         </div>

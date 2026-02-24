@@ -36,95 +36,12 @@ body {
   font-style: normal;
 }
 
-.background-light-brown-hover:hover {
+.background-brown-hover:hover {
   background-color: var(--light-brown);
 }
 
 .background-white-hover:hover {
   background-color: var(--gray);
-}
-
-.drop-down-menu-section {
-  position: relative;
-}
-
-.drop-down-menu-position-contianer {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-}
-
-.drop-down-menu-container {
-  width: 160px;
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.2s ease-in-out;
-}
-
-.drop-down-menu-container.showing {
-  grid-template-rows: 1fr;
-}
-
-.drop-down-menu-content {
-  overflow: hidden;
-}
-
-.drop-down-menu-button {
-  border: 0;
-  font-size: 1rem;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s ease-in-out;
-
-  /* font settings */
-  font-family: "Sen", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.drop-down-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-}
-
-.drop-down-menu-item {
-  padding-block: 0.5rem;
-  padding-left: 0.5rem;
-  border-radius: 0.25rem;
-  font-family: "Sen", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.menu-button-light {
-  background-color: white;
-}
-
-.menu-button-light:hover {
-  background-color: var(--gray);
-}
-
-.menu-button-dark {
-  color: white;
-  background-color: var(--brown);
-}
-
-.menu-button-dark:hover {
-  background-color: var(--light-brown);
-}
-
-.menu-light {
-  background-color: var(--gray);
-}
-
-.menu-dark {
-  background-color: var(--brown);
 }
 
 .white-text {
@@ -171,6 +88,10 @@ body {
   background-color: white;
 }
 
+.background-brown {
+  background-color: var(--brown);
+}
+
 .background-gray {
   background-color: var(--gray);
 }
@@ -191,10 +112,6 @@ body {
   :root {
     --page-inline-margin: 2rem;
     --page-content-inline-margin: 2rem;
-  }
-
-  .drop-down-menu-section {
-    display: none;
   }
 
   .page-content {

@@ -1,22 +1,33 @@
 import { useState } from "react";
+import "../styles/dropdown/index.css";
 
 function DropDownMenu({ menuItems, theme }) {
   const [isShowing, setIsShowing] = useState(false);
+  const themes = {
+    white: {
+      button: "background-white background-white-hover",
+      menu: "background-gray",
+    },
+    brown: {
+      button: "background-brown background-brown-hover white-text",
+      menu: "background-brown",
+    },
+  };
 
   return (
     <div className="drop-down-menu-section">
       <button
         onClick={() => setIsShowing(!isShowing)}
-        className={`drop-down-menu-button menu-button-${theme}`}
+        className={`drop-down-menu-button sen-regular ${themes[theme].button}`}
       >
         dropdown
       </button>
-      <div className="drop-down-menu-position-contianer">
+      <div className="drop-down-menu-position-container">
         <div
           className={`drop-down-menu-container ${isShowing ? "showing" : ""}`}
         >
           <div className="drop-down-menu-content">
-            <ul className={`drop-down-menu menu-${theme}`}>
+            <ul className={`drop-down-menu ${themes[theme].menu}`}>
               {menuItems.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
