@@ -3,8 +3,89 @@ import { getChapterRatioDetails } from "../controller/controller";
 
 import { useEffect, useState } from "react";
 
-import Overlay from "./Overlay";
 import Modal from "./Modal";
+import Form from "./Form";
+
+function getDetailsInputSection() {
+  return [
+    <>
+      <label className="sen-bold small-text" for="chapters">
+        chapters
+      </label>
+      <div className="form-fields">
+        <input
+          id="chapters"
+          name="chapters"
+          placeholder="e.x. 20"
+          className="sen-regular border-beige input form-field"
+          type="number"
+        />
+      </div>
+    </>,
+    <>
+      <span className="sen-bold small-text">pages</span>
+      <div className="form-fields">
+        <div className="form-subfield">
+          <label className="sen-regular small-text" for="startPage">
+            start page
+          </label>
+          <input
+            id="startPage"
+            name="startPage"
+            placeholder="e.x. 5"
+            className="sen-regular border-beige form-field"
+            type="number"
+          />
+        </div>
+        <div className="form-subfield">
+          <label className="sen-regular small-text" for="endPage">
+            end page
+          </label>
+          <input
+            id="endPage"
+            name="endPage"
+            placeholder="e.x. 200"
+            className="sen-regular border-beige form-field"
+            type="number"
+          />
+        </div>
+      </div>
+    </>,
+  ];
+}
+
+function getBookmarkInputSections() {
+  return [
+    <>
+      <label className="sen-bold small-text" for="chapters">
+        chapters
+      </label>
+      <div className="form-fields">
+        <input
+          id="chapters"
+          name="chapters"
+          placeholder="e.x. 20"
+          className="sen-regular border-beige input form-field"
+          type="number"
+        />
+      </div>
+    </>,
+    <>
+      <label className="sen-bold small-text" for="pages">
+        pages
+      </label>
+      <div className="form-fields">
+        <input
+          id="pages"
+          name="pages"
+          placeholder="e.x. 20"
+          className="sen-regular border-beige input form-field"
+          type="number"
+        />
+      </div>
+    </>,
+  ];
+}
 
 function Book({
   id,
@@ -30,8 +111,20 @@ function Book({
     fetchProgressDetails();
   }, []);
 
-  const testModal = () => {
-    displayModal(<Modal removeModal={removeModal} />);
+  const handleDetailsClick = () => {
+    displayModal(
+      <Modal removeModal={removeModal} title="book info">
+        <Form id={id} inputSections={getDetailsInputSection()} />
+      </Modal>,
+    );
+  };
+
+  const handleBookmarkClick = () => {
+    displayModal(
+      <Modal removeModal={removeModal} title="book bookmarks">
+        <Form id={id} inputSections={getBookmarkInputSections()} />
+      </Modal>,
+    );
   };
 
   return (
@@ -55,12 +148,15 @@ function Book({
         </div>
         <div className="book-buttons">
           <button
-            onClick={testModal}
+            onClick={handleBookmarkClick}
             className="book-button white-text sen-regular uppercase background-blue"
           >
             bookmark
           </button>
-          <button className="book-button white-text sen-regular uppercase background-blue">
+          <button
+            onClick={handleDetailsClick}
+            className="book-button white-text sen-regular uppercase background-blue"
+          >
             details
           </button>
         </div>
