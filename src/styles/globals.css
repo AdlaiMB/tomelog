@@ -4,6 +4,9 @@
   --light-brown: #5c4012;
   --gray: #f9f9f9;
   --beige: #babbae;
+  --blue: #1e2749;
+  --dark-gray: #d9d9d9;
+  --light-blue: #7a82ab;
 
   /* spacing  */
   --page-background-color: #f8f3ec;
@@ -54,6 +57,14 @@ body {
   text-transform: capitalize;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
+.small-text {
+  font-size: 0.75rem;
+}
+
 .white-text {
   color: white;
 }
@@ -76,6 +87,18 @@ body {
 
 .background-gray {
   background-color: var(--gray);
+}
+
+.background-dark-gray {
+  background-color: var(--dark-gray);
+}
+
+.background-light-blue {
+  background-color: var(--light-blue);
+}
+
+.background-blue {
+  background-color: var(--blue);
 }
 
 .background-gray-hover:hover {
