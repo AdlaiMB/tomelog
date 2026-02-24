@@ -1,8 +1,11 @@
 :root {
+  /* colors  */
   --brown: #3b2d15;
   --light-brown: #5c4012;
   --gray: #f9f9f9;
   --beige: #babbae;
+
+  /* spacing  */
   --page-background-color: #f8f3ec;
   --page-inline-margin: 1rem;
   --page-content-margin-top: 3rem;
@@ -11,6 +14,17 @@
 
 body {
   background-color: var(--page-background-color);
+}
+
+.page-content {
+  background-color: white;
+  margin-top: var(--page-content-margin-top);
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.page-content-margin {
+  margin-inline: var(--page-content-inline-margin);
 }
 
 .biorhyme-regular {
@@ -36,51 +50,19 @@ body {
   font-style: normal;
 }
 
-.background-brown-hover:hover {
-  background-color: var(--light-brown);
-}
-
-.background-white-hover:hover {
-  background-color: var(--gray);
+.capitalize {
+  text-transform: capitalize;
 }
 
 .white-text {
   color: white;
 }
 
-.page-content {
-  background-color: white;
-  margin-top: var(--page-content-margin-top);
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+.background-brown-hover:hover {
+  background-color: var(--light-brown);
 }
 
-.page-content-margin {
-  margin-inline: var(--page-content-inline-margin);
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
-
-.drop-down-menu-item-button {
-  text-align: start;
-  width: 100%;
-  background-color: white;
-  border: 0;
-  font-size: 1rem;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s ease-in-out;
-
-  /* font settings */
-  font-family: "Sen", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.drop-down-menu-item-button:hover {
+.background-white-hover:hover {
   background-color: var(--gray);
 }
 
@@ -104,10 +86,6 @@ body {
   border-color: var(--beige);
 }
 
-.tab-drop-down-menu-button:hover {
-  background-color: var(--gray);
-}
-
 @media screen and (min-width: 834px) {
   :root {
     --page-inline-margin: 2rem;
@@ -123,6 +101,5 @@ body {
   :root {
     --page-inline-margin: 10rem;
     --page-content-margin-top: 5rem;
-    --tab-section-inline-padding: 1rem;
   }
 }

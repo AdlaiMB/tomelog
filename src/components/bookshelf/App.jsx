@@ -1,4 +1,4 @@
-import "../../styles/new_globals.css";
+import "../../styles/globals.css";
 import "../../styles/resets.css";
 import "../../styles/bookshelf/index.css";
 
