@@ -1,0 +1,73 @@
+:root {
+  --modal-inline-padding: 1rem;
+}
+
+.modal {
+  padding-inline: var(--modal-inline-padding);
+  padding-block: 2rem;
+  box-sizing: border-box;
+  height: 317px;
+  max-width: 358px;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.modal-title-section {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+
+.modal-close-button {
+  border: 0;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-section {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  height: 4.5rem;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+
+.form-fields {
+  width: 73%;
+  display: flex;
+  gap: 1rem;
+}
+
+.form-subfield {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-button {
+  margin-top: auto;
+  border: 0;
+  font-size: 1rem;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+.form-field {
+  border-width: 1px;
+  border-radius: 0.25rem;
+  padding-left: 0.5rem;
+}

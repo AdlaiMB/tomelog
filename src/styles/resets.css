@@ -20,3 +20,9 @@ a {
 button {
   padding: 0;
 }
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  height: fit-content;
+}
