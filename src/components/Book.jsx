@@ -9,7 +9,7 @@ import Form from "./Form";
 function getDetailsInputSection() {
   return [
     <>
-      <label className="sen-bold small-text" for="chapters">
+      <label className="sen-bold" for="chapters">
         chapters
       </label>
       <div className="form-fields">
@@ -23,7 +23,7 @@ function getDetailsInputSection() {
       </div>
     </>,
     <>
-      <span className="sen-bold small-text">pages</span>
+      <span className="sen-bold ">pages</span>
       <div className="form-fields">
         <div className="form-subfield">
           <label className="sen-regular small-text" for="startPage">
@@ -57,7 +57,7 @@ function getDetailsInputSection() {
 function getBookmarkInputSections() {
   return [
     <>
-      <label className="sen-bold small-text" for="chapters">
+      <label className="sen-bold" for="chapters">
         chapters
       </label>
       <div className="form-fields">
@@ -71,7 +71,7 @@ function getBookmarkInputSections() {
       </div>
     </>,
     <>
-      <label className="sen-bold small-text" for="pages">
+      <label className="sen-bold" for="pages">
         pages
       </label>
       <div className="form-fields">
