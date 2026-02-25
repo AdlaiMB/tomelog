@@ -8,27 +8,25 @@ import TitleSection from "./TitleSection";
 import TabBookSection from "./TabBookSection";
 import TabSection from "./TabSection";
 import BookSection from "./BookSection";
-import Toast from "../Toast";
 
 import { useEffect, useState } from "react";
 import { getMyBooks } from "../../controller/controller";
 
 function App() {
   const [books, setBooks] = useState([]);
-  // useEffect(() => {
-  //   async function fetchBooks() {
-  //     const { view: books } = await getMyBooks();
+  useEffect(() => {
+    async function fetchBooks() {
+      const { view: books } = await getMyBooks();
 
-  //     setBooks(books);
-  //   }
+      setBooks(books);
+    }
 
-  //   fetchBooks();
-  // }, []);
+    fetchBooks();
+  }, []);
 
   return (
     <>
       <Navigation />
-      <Toast />
       <PageContent>
         <TitleSection />
         <TabBookSection>

@@ -1,4 +1,7 @@
-import { getPageRatioDetails } from "../controller/controller";
+import {
+  getPageRatioDetails,
+  updateBookBookmarks,
+} from "../controller/controller";
 import { getChapterRatioDetails } from "../controller/controller";
 
 import { useEffect, useState } from "react";
@@ -9,7 +12,7 @@ import Form from "./Form";
 function getDetailsInputSection() {
   return [
     <>
-      <label className="sen-bold" for="chapters">
+      <label className="sen-bold" htmlFor="chapters">
         chapters
       </label>
       <div className="form-fields">
@@ -26,7 +29,7 @@ function getDetailsInputSection() {
       <span className="sen-bold ">pages</span>
       <div className="form-fields">
         <div className="form-subfield">
-          <label className="sen-regular small-text" for="startPage">
+          <label className="sen-regular small-text" htmlFor="startPage">
             start page
           </label>
           <input
@@ -38,7 +41,7 @@ function getDetailsInputSection() {
           />
         </div>
         <div className="form-subfield">
-          <label className="sen-regular small-text" for="endPage">
+          <label className="sen-regular small-text" htmlFor="endPage">
             end page
           </label>
           <input
@@ -57,7 +60,7 @@ function getDetailsInputSection() {
 function getBookmarkInputSections() {
   return [
     <>
-      <label className="sen-bold" for="chapters">
+      <label className="sen-bold" htmlFor="chapters">
         chapters
       </label>
       <div className="form-fields">
@@ -71,7 +74,7 @@ function getBookmarkInputSections() {
       </div>
     </>,
     <>
-      <label className="sen-bold" for="pages">
+      <label className="sen-bold" htmlFor="pages">
         pages
       </label>
       <div className="form-fields">
@@ -85,6 +88,19 @@ function getBookmarkInputSections() {
       </div>
     </>,
   ];
+}
+
+function updateBookmarksAction(prevState, formData) {
+  const bookID = formData.get("bookID");
+  const formChapters = formData.get("chapters");
+  const formPages = formData.get("pages");
+
+  const chapters = formChapters === "" ? null : Number(formChapters);
+  const pages = formPages === "" ? null : Number(formPages);
+
+  const { view } = updateBookBookmarks(bookID, chapters, pages);
+
+  return view;
 }
 
 function Book({
@@ -122,7 +138,11 @@ function Book({
   const handleBookmarkClick = () => {
     displayModal(
       <Modal removeModal={removeModal} title="book bookmarks">
-        <Form id={id} inputSections={getBookmarkInputSections()} />
+        <Form
+          id={id}
+          inputSections={getBookmarkInputSections()}
+          action={updateBookmarksAction}
+        />
       </Modal>,
     );
   };

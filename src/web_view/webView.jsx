@@ -13,6 +13,7 @@ import {
 import Book from "../components/Book";
 import ProgressBar from "../components/ProgressBar";
 import Overlay from "../components/Overlay";
+import Toast from "../components/Toast";
 
 function resultsBookList(booklist) {
   // console.log(CLASS);
@@ -21,12 +22,7 @@ function resultsBookList(booklist) {
 
 function error(errorMessage) {
   // console.log(CLASS);
-  return (
-    <div className="error column gap-sm stretch">
-      <p className="sen-bold">Error</p>
-      <p className="sen-regular font-sm">{errorMessage}</p>
-    </div>
-  );
+  return <Toast key={errorMessage} message={errorMessage} />;
 }
 
 function filedBook(filedBooks) {
@@ -407,12 +403,8 @@ function pageProgress(completed, total) {
 }
 
 function updatedBook(updatedBook) {
-  return (
-    <div className="success column gap-sm stretch">
-      <p className="sen-bold">Success</p>
-      <p className="sen-regular font-sm">Book has been updated</p>
-    </div>
-  );
+  const key = JSON.stringify(updatedBook);
+  return <Toast key={key} message="The book has been successfully updated." />;
 }
 
 export {

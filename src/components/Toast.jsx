@@ -2,7 +2,7 @@ import "../styles/Toast/index.css";
 
 import { useState } from "react";
 
-function Toast() {
+function Toast({ message }) {
   const [animation, setAnimation] = useState("slide-in");
 
   //   setTimeout(() => {
@@ -12,7 +12,7 @@ function Toast() {
   return (
     <div className={`toast background-light-green border-green ${animation}`}>
       <div className="toast-title">
-        <span className="sen-semibold capitalize">success</span>{" "}
+        <span className="sen-semibold capitalize">success</span>
         <button
           onClick={() => setAnimation("slide-out")}
           className="small-text sen-bold toast-button background-light-green background-light-green-hover"
@@ -20,9 +20,7 @@ function Toast() {
           close
         </button>
       </div>
-      <p className="sen-regular">
-        The book as been successfully filed in to your bookshelf.
-      </p>
+      <p className="sen-regular">{message}</p>
     </div>
   );
 }

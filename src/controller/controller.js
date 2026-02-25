@@ -167,6 +167,41 @@ async function getMyBooks() {
   return response;
 }
 
+function updateBookBookmarks(bookID, chapters, pages) {
+  let updatedChapterBookmark = null;
+  let updatedPageBookmark = null;
+
+  try {
+    if (chapters !== null) {
+      updatedChapterBookmark = interfaceUpdateBookChapterBookmark(
+        bookID,
+        chapters,
+        implementationUpdateBookChapterBookmark,
+      );
+    }
+    if (pages !== null) {
+      updatedPageBookmark = interfaceUpdateBookPageBookmark(
+        bookID,
+        pages,
+        implementationUpdateBookPageBookmark,
+      );
+    }
+  } catch (error) {
+    return {
+      error: true,
+      view: interfaceErrorMeassage(error.message, implementationErrorMessage),
+    };
+  }
+
+  return {
+    error: false,
+    view: interfaceUpdatedBook(
+      { updatedChapterBookmark, updatedPageBookmark },
+      implementationUpdatedBook,
+    ),
+  };
+}
+
 function updateChapterBookmark(bookID, chapter) {
   let updatedBook = null;
   let errorMessage;
@@ -367,4 +402,5 @@ export {
   updateChapterBookmark,
   updatePageBookmark,
   remove,
+  updateBookBookmarks,
 };
