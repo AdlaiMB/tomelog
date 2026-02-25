@@ -1,0 +1,66 @@
+:root {
+  --toast-padding-inline: 1rem;
+}
+
+.toast {
+  z-index: 10;
+  position: fixed;
+  top: 5rem;
+  left: var(--page-inline-margin);
+  right: var(--page-inline-margin);
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+  border-width: 2px;
+  border-style: solid;
+  padding-inline: var(--toast-padding-inline);
+  padding-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.toast-button {
+  border: 0;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.toast.slide-in {
+  animation: 0.5s ease-out forwards slide-in;
+}
+
+.toast.slide-out {
+  animation: 0.5s ease-out forwards slide-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(150%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(150%);
+  }
+}
+
+@media screen and (min-width: 834px) {
+  .toast {
+    left: auto;
+    width: 352px;
+  }
+}

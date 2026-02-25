@@ -8,6 +8,8 @@
   --dark-gray: #d9d9d9;
   --light-blue: #7a82ab;
   --page-background-color: #f8f3ec;
+  --green: #b2c5b1;
+  --light-green: #e7f3e5;
 
   /* spacing  */
   --page-inline-margin: 1rem;
@@ -57,6 +59,13 @@ body {
   font-family: "Sen", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
+  font-style: normal;
+}
+
+.sen-semibold {
+  font-family: "Sen", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -117,6 +126,18 @@ body {
 
 .background-gray-hover:hover {
   background-color: white;
+}
+
+.background-light-green {
+  background-color: var(--light-green);
+}
+
+.background-light-green-hover:hover {
+  background-color: var(--green);
+}
+
+.border-green {
+  border-color: var(--green);
 }
 
 .border-beige {
