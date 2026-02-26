@@ -103,6 +103,7 @@ function Book({
 }) {
   const [pageProgress, setPageProgress] = useState(null);
   const [chapterProgress, setChapterProgress] = useState(null);
+  const [successfulFormSubmissions, setSuccessfulFormSubmissions] = useState(0);
 
   useEffect(() => {
     async function fetchProgressDetails() {
@@ -114,7 +115,7 @@ function Book({
     }
 
     fetchProgressDetails();
-  }, []);
+  }, [successfulFormSubmissions]);
 
   const updateBookmarkFormAction = (formData) => {
     const bookID = formData.get("bookID");
@@ -127,6 +128,9 @@ function Book({
 
     if (response.error === false) {
       updateToast("success", "update success", response.response);
+      setSuccessfulFormSubmissions(
+        (successfulFormSubmissions) => successfulFormSubmissions + 1,
+      );
     } else {
       if (response.partial) {
         updateToast("partial", "partial update", response.response);
@@ -156,6 +160,9 @@ function Book({
 
     if (response.error === false) {
       updateToast("success", "update success", response.response);
+      setSuccessfulFormSubmissions(
+        (successfulFormSubmissions) => successfulFormSubmissions + 1,
+      );
     } else {
       if (response.partial) {
         updateToast("partial", "partial update", response.response);
