@@ -39,7 +39,7 @@ async function queryByTitle(title, limit, page) {
   const openLibraryResponse = await fetch(
     API_BASE_URL +
       "/search.json" +
-      `?q=${title}&limit=${limit}&page=${page}&fields=key,title,subtitle,cover_i`,
+      `?q=${title}&limit=${limit}&page=${page}&fields=key,title,subtitle,author_name,cover_i`,
   );
   const openlibraryData = await openLibraryResponse.json();
 
@@ -58,6 +58,7 @@ async function queryByTitle(title, limit, page) {
       subtitle: Object.hasOwn(book, "subtitle") ? book.subtitle : null,
       coverID: Object.hasOwn(book, "cover_i") ? book.cover_i : null,
       stored: interfaceIsBookWritten(bookID, implementationIsBookWritten),
+      authorName: book.author_name[0],
     };
 
     results.push(bookRepoBookDS);

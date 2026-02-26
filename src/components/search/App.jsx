@@ -8,7 +8,8 @@ import "../../styles/search/index.css";
 import Navigation from "../Navigation";
 import PageContent from "../PageContent";
 import TitleSection from "../bookshelf/TitleSection";
-import Book from "../Book";
+import Book from "./Book";
+import Toast from "../Toast";
 
 function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
   const [file, setFile] = useState(filed);
@@ -169,13 +170,69 @@ function Booklist({ query, booklist }) {
 
 function App() {
   const [books, setBooks] = useState([]);
+  const [toastConfig, setToastConfig] = useState({
+    theme: "success",
+    title: "",
+    message: "",
+    animation: "",
+  });
+  const [isToastPresent, setIsToastPresent] = useState(false);
+
+  const slideInToast = () => {
+    setToastConfig((toastConfig) => ({
+      ...toastConfig,
+      animation: "slide-in",
+    }));
+  };
+
+  const slideOutToast = () => {
+    setToastConfig((toastConfig) => ({
+      ...toastConfig,
+      animation: "slide-out",
+    }));
+  };
+
+  const updateToast = (theme, title, message) => {
+    setToastConfig((toastConfig) => ({
+      ...toastConfig,
+      theme,
+      title,
+      message,
+    }));
+  };
 
   async function searchAction(formData) {
     const query = formData.get("query");
     const response = await find(query, 50, 1);
 
     if (response.error) {
-      return console.log(response.error.view);
+      setIsToastPresent(true);
+      updateToast("error", "search error", response.view);
+      slideInToast();
+      setTimeout(() => {
+        slideOutToast();
+      }, 3000);
+      setTimeout(() => {
+        setIsToastPresent(false);
+      }, 3500);
+      return;
+    }
+
+    if (response.books.length === 0) {
+      setIsToastPresent(true);
+      updateToast(
+        "partial",
+        "no books found",
+        "There were no books found matching your query",
+      );
+      slideInToast();
+      setTimeout(() => {
+        slideOutToast();
+      }, 3000);
+      setTimeout(() => {
+        setIsToastPresent(false);
+      }, 3500);
+      return;
     }
 
     setBooks(response.books);
@@ -184,6 +241,7 @@ function App() {
   return (
     <>
       <Navigation />
+      <Toast toastConfig={toastConfig} slideOutToast={slideOutToast} />
       <PageContent>
         <TitleSection title="search books" />
         <div className="search-bar-container">
@@ -193,8 +251,11 @@ function App() {
               placeholder="Enter the title of your book (e.g. How to Hide an Empires)"
               className="search-bar-input sen-regular"
             />
-            <button className="search-bar-button white-text sen-regular background-brown background-brown-hover">
-              search
+            <button
+              disabled={isToastPresent}
+              className={`search-bar-button white-text sen-regular background-brown ${isToastPresent ? "" : "background-brown-hover"}`}
+            >
+              {isToastPresent ? "disable" : "search"}
             </button>
           </form>
         </div>
@@ -205,7 +266,9 @@ function App() {
               id={book.id}
               title={book.title}
               subtitle={book.subtitle}
+              author={book.authorName}
               coverURL={book.coverURL}
+              filed={book.recorded}
             />
           ))}
         </div>
