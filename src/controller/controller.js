@@ -173,7 +173,8 @@ function updateBookBookmarks(bookID, chapter, page) {
   if (chapter === null && page === null) {
     return {
       error: true,
-      view: interfaceErrorMeassage(
+      partial: false,
+      response: interfaceErrorMeassage(
         "No chapter or page bookmark provided to update.",
         implementationErrorMessage,
       ),

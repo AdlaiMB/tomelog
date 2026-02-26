@@ -20,7 +20,7 @@ import { getMyBooks } from "../../controller/controller";
 function App() {
   const [books, setBooks] = useState([]);
   const [toastConfig, setToastConfig] = useState({
-    theme: "",
+    theme: "success",
     title: "",
     message: "",
     animation: "",

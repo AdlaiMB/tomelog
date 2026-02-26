@@ -10,6 +10,10 @@
   --page-background-color: #f8f3ec;
   --green: #b2c5b1;
   --light-green: #e7f3e5;
+  --red: #dfb5b6;
+  --light-red: #fde4e0;
+  --orange: #edd3ae;
+  --light-orange: #fff0d9;
 
   /* spacing  */
   --page-inline-margin: 1rem;
@@ -136,8 +140,32 @@ body {
   background-color: var(--green);
 }
 
+.background-light-red {
+  background: var(--light-red);
+}
+
+.background-light-red:hover {
+  background-color: var(--red);
+}
+
+.background-light-orange {
+  background-color: var(--light-orange);
+}
+
+.background-light-orange-hover:hover {
+  background-color: var(--orange);
+}
+
 .border-green {
   border-color: var(--green);
+}
+
+.border-red {
+  border-color: var(--red);
+}
+
+.border-orange {
+  border-color: var(--orange);
 }
 
 .border-beige {
