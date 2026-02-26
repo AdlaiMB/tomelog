@@ -125,6 +125,10 @@ body {
   background-color: var(--light-blue);
 }
 
+.background-medium-blue {
+  background-color: var(--medium-blue);
+}
+
 .background-blue {
   background-color: var(--blue);
 }

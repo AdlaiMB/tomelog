@@ -175,7 +175,7 @@ function updateBookBookmarks(bookID, chapter, page) {
       error: true,
       partial: false,
       response: interfaceErrorMeassage(
-        "No chapter or page bookmark provided to update.",
+        "No bookmarks provided to update.",
         implementationErrorMessage,
       ),
     };
@@ -336,7 +336,7 @@ function updateBookDetails(bookID, chapters, startPage, endPage) {
       error: true,
       partial: false,
       response: interfaceErrorMeassage(
-        "No chapter or page bookmark provided to update.",
+        "No book details provided to update.",
         implementationErrorMessage,
       ),
     };

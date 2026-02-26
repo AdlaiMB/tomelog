@@ -138,10 +138,10 @@ function Book({
     slideInToast();
     setTimeout(() => {
       slideOutToast();
-    }, 4000);
+    }, 3000);
   };
 
-  const updateBookMarkFormAction = (formData) => {
+  const updateBookDetailsFormAction = (formData) => {
     const bookID = formData.get("bookID");
     const chapters =
       formData.get("chapters") === "" ? null : Number(formData.get("chapters"));
@@ -167,7 +167,7 @@ function Book({
     slideInToast();
     setTimeout(() => {
       slideOutToast();
-    }, 4000);
+    }, 3000);
   };
 
   const handleBookmarkClick = () => {
@@ -187,7 +187,7 @@ function Book({
       <Form
         id={id}
         inputSections={getDetailsInputSection()}
-        action={updateBookMarkFormAction}
+        action={updateBookDetailsFormAction}
       />,
     );
   };
