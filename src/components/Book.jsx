@@ -214,13 +214,13 @@ function Book({
         <div className="book-buttons">
           <button
             onClick={handleBookmarkClick}
-            className="book-button white-text sen-regular uppercase background-blue"
+            className="book-button white-text sen-regular uppercase background-blue background-blue-hover"
           >
             bookmark
           </button>
           <button
             onClick={handleDetailsClick}
-            className="book-button white-text sen-regular uppercase background-blue"
+            className="book-button white-text sen-regular uppercase background-blue background-blue-hover"
           >
             details
           </button>

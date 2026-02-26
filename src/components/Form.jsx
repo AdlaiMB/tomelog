@@ -7,7 +7,7 @@ function Form({ id, inputSections, action }) {
           {inputSection}
         </div>
       ))}
-      <button className="uppercase sen-regular background-blue white-text form-button">
+      <button className="uppercase sen-regular background-blue background-blue-hover white-text form-button">
         update
       </button>
     </form>

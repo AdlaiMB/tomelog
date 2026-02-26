@@ -9,7 +9,7 @@ function BookSection({
 }) {
   return (
     <div className="book-section">
-      <span className="sen-regular">shelves {">"} reading</span>
+      <span className="sen-regular">shelves {">"} all books</span>
       <div className="books">
         {books.map((book) => (
           <Book

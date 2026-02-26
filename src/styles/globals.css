@@ -5,6 +5,7 @@
   --gray: #f9f9f9;
   --beige: #babbae;
   --blue: #1e2749;
+  --medium-blue: #3c4460;
   --dark-gray: #d9d9d9;
   --light-blue: #7a82ab;
   --page-background-color: #f8f3ec;
@@ -126,6 +127,10 @@ body {
 
 .background-blue {
   background-color: var(--blue);
+}
+
+.background-blue-hover:hover {
+  background-color: var(--medium-blue);
 }
 
 .background-gray-hover:hover {
