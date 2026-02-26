@@ -1,7 +1,5 @@
 import "../styles/Toast/index.css";
 
-import { useState } from "react";
-
 function Toast({ toastConfig, slideOutToast }) {
   return (
     <div

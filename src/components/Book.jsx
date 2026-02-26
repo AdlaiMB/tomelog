@@ -103,15 +103,7 @@ function updateBookmarksAction(prevState, formData) {
   return view;
 }
 
-function Book({
-  id,
-  coverURL,
-  title,
-  subtitle,
-  author,
-  displayModal,
-  removeModal,
-}) {
+function Book({ id, coverURL, title, subtitle, author, displayModal }) {
   const [pageProgress, setPageProgress] = useState(null);
   const [chapterProgress, setChapterProgress] = useState(null);
 
@@ -127,23 +119,17 @@ function Book({
     fetchProgressDetails();
   }, []);
 
-  const handleDetailsClick = () => {
+  const handleBookmarkClick = () => {
     displayModal(
-      <Modal removeModal={removeModal} title="book info">
-        <Form id={id} inputSections={getDetailsInputSection()} />
-      </Modal>,
+      "book bookmarks",
+      <Form id={id} inputSections={getBookmarkInputSections()} />,
     );
   };
 
-  const handleBookmarkClick = () => {
+  const handleDetailsClick = () => {
     displayModal(
-      <Modal removeModal={removeModal} title="book bookmarks">
-        <Form
-          id={id}
-          inputSections={getBookmarkInputSections()}
-          action={updateBookmarksAction}
-        />
-      </Modal>,
+      "book details",
+      <Form id={id} inputSections={getDetailsInputSection()} />,
     );
   };
 

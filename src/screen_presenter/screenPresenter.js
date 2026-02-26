@@ -60,7 +60,7 @@ function removedBook(removedBook) {
 
 function storedBooksBooklist(booklist) {
   // console.log(CLASS);
-  const result = [];
+  const results = [];
 
   for (const book of booklist) {
     const processedBook = {
@@ -70,10 +70,10 @@ function storedBooksBooklist(booklist) {
       coverURL: book.coverID !== null ? generateCoverURL(book.coverID) : null,
       authorName: book.authorName,
     };
-    result.push(processedBook);
+    results.push(processedBook);
   }
 
-  return interfaceBookShelf(result, implementationBookShelf);
+  return results;
 }
 
 function pageRatio(completed, total) {

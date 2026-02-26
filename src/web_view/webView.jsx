@@ -22,7 +22,8 @@ function resultsBookList(booklist) {
 
 function error(errorMessage) {
   // console.log(CLASS);
-  return <Toast key={errorMessage} message={errorMessage} />;
+  // return <Toast key={errorMessage} message={errorMessage} />;
+  return "error";
 }
 
 function filedBook(filedBooks) {

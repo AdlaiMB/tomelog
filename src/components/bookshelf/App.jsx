@@ -9,18 +9,38 @@ import TabBookSection from "./TabBookSection";
 import TabSection from "./TabSection";
 import BookSection from "./BookSection";
 import Toast from "../Toast";
+import Overlay from "../Overlay";
+import Modal from "../Modal";
 
 import { useEffect, useState } from "react";
 import { getMyBooks } from "../../controller/controller";
 
 function App() {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([
+    { id: 1, coverURL: null, title: "test", author: "john dow" },
+  ]);
   const [toastConfig, setToastConfig] = useState({
     theme: "",
     title: "",
     message: "",
-    animation: "slide-in",
+    animation: "",
   });
+  const [modal, setModal] = useState(null);
+
+  // useEffect(() => {
+  //   async function fetchBooks() {
+  //     const response = await getMyBooks();
+
+  //     if (response.error) {
+  //       console.log("error");
+  //       return;
+  //     }
+
+  //     setBooks(books);
+  //   }
+
+  //   fetchBooks();
+  // }, []);
 
   const slideInToast = () => {
     setToastConfig({ ...toastConfig, animation: "slide-in" });
@@ -34,25 +54,34 @@ function App() {
     setToastConfig({ ...toastConfig, theme, title, message });
   };
 
-  // useEffect(() => {
-  //   async function fetchBooks() {
-  //     const { view: books } = await getMyBooks();
+  const removeModal = () => {
+    setModal(null);
+  };
 
-  //     setBooks(books);
-  //   }
-
-  //   fetchBooks();
-  // }, []);
+  const displayModal = (title, content) => {
+    setModal(
+      <Overlay>
+        <Modal title={title} removeModal={removeModal}>
+          {content}
+        </Modal>
+      </Overlay>,
+    );
+  };
 
   return (
     <>
       <Navigation />
-      <Toast toastConfig={toastConfig} slideOutToast={slideOutToast} />
+      {/* <Toast toastConfig={toastConfig} slideOutToast={slideOutToast} /> */}
+      {modal}
       <PageContent>
         <TitleSection />
         <TabBookSection>
           <TabSection />
-          <BookSection books={books} />
+          <BookSection
+            books={books}
+            slideOutToast={slideOutToast}
+            displayModal={displayModal}
+          />
         </TabBookSection>
       </PageContent>
     </>

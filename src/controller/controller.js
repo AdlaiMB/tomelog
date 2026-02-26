@@ -154,11 +154,11 @@ async function getMyBooks() {
   let view;
 
   if (recordedBooks !== null) {
-    view = interfaceStoredBooksBooklist(
+    const books = interfaceStoredBooksBooklist(
       recordedBooks,
       implementationStoredBooksBooklist,
     );
-    response = { error: false, view };
+    response = { error: false, books };
   } else {
     view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
     response = { error: true, view };
