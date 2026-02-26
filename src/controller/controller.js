@@ -70,11 +70,11 @@ async function find(book, limit, page) {
   let view;
 
   if (resultBooksData !== null) {
-    view = interfaceSearchResultBooklist(
+    const books = interfaceSearchResultBooklist(
       resultBooksData.books,
       implementationSearchResultBooklist,
     );
-    response = { error: false, view };
+    response = { error: false, books };
   } else {
     view = interfaceErrorMeassage(errorMessage, implementationErrorMessage);
     response = { error: true, view };

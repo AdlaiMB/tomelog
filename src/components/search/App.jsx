@@ -8,6 +8,7 @@ import "../../styles/search/index.css";
 import Navigation from "../Navigation";
 import PageContent from "../PageContent";
 import TitleSection from "../bookshelf/TitleSection";
+import Book from "../Book";
 
 function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
   const [file, setFile] = useState(filed);
@@ -166,19 +167,19 @@ function Booklist({ query, booklist }) {
   );
 }
 
-async function search(prevState, formData) {
-  const query = formData.get("query");
-  const { error, view } = await find(query, 50, 1);
-
-  if (error) {
-    return view;
-  }
-
-  return <Booklist key={query} query={query} booklist={view} />;
-}
-
 function App() {
-  const [searchActionResult, searchAction] = useActionState(search, null);
+  const [books, setBooks] = useState([]);
+
+  async function searchAction(formData) {
+    const query = formData.get("query");
+    const response = await find(query, 50, 1);
+
+    if (response.error) {
+      return console.log(response.error.view);
+    }
+
+    setBooks(response.books);
+  }
 
   return (
     <>
@@ -197,7 +198,17 @@ function App() {
             </button>
           </form>
         </div>
-        {searchActionResult}
+        <div className="books">
+          {books.map((book) => (
+            <Book
+              key={book.id}
+              id={book.id}
+              title={book.title}
+              subtitle={book.subtitle}
+              coverURL={book.coverURL}
+            />
+          ))}
+        </div>
       </PageContent>
     </>
   );

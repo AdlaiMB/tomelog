@@ -27,7 +27,7 @@ function generateCoverURL(coverId) {
 
 function searchResultBooklist(bookList) {
   // console.log(CLASS);
-  const result = [];
+  const results = [];
 
   for (const book of bookList) {
     const processedBook = {
@@ -37,10 +37,10 @@ function searchResultBooklist(bookList) {
       coverURL: book.coverID !== null ? generateCoverURL(book.coverID) : null,
       recorded: book.stored,
     };
-    result.push(processedBook);
+    results.push(processedBook);
   }
 
-  return interfaceResultsBooklist(result, implementationResultsBookList);
+  return results;
 }
 
 function errorMessage(errorMessage) {
