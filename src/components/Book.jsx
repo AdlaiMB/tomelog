@@ -103,7 +103,17 @@ function updateBookmarksAction(prevState, formData) {
   return view;
 }
 
-function Book({ id, coverURL, title, subtitle, author, displayModal }) {
+function Book({
+  id,
+  coverURL,
+  title,
+  subtitle,
+  author,
+  updateToast,
+  slideInToast,
+  slideOutToast,
+  displayModal,
+}) {
   const [pageProgress, setPageProgress] = useState(null);
   const [chapterProgress, setChapterProgress] = useState(null);
 
@@ -122,14 +132,26 @@ function Book({ id, coverURL, title, subtitle, author, displayModal }) {
   const handleBookmarkClick = () => {
     displayModal(
       "book bookmarks",
-      <Form id={id} inputSections={getBookmarkInputSections()} />,
+      <Form
+        id={id}
+        inputSections={getBookmarkInputSections()}
+        updateToast={updateToast}
+        slideInToast={slideInToast}
+        slideOutToast={slideOutToast}
+      />,
     );
   };
 
   const handleDetailsClick = () => {
     displayModal(
       "book details",
-      <Form id={id} inputSections={getDetailsInputSection()} />,
+      <Form
+        id={id}
+        inputSections={getDetailsInputSection()}
+        updateToast={updateToast}
+        slideInToast={slideInToast}
+        slideOutToast={slideOutToast}
+      />,
     );
   };
 

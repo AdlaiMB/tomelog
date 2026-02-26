@@ -32,11 +32,11 @@
 }
 
 .toast.slide-in {
-  animation: 0.5s ease-out forwards slide-in;
+  animation: 0.4s ease-out forwards slide-in;
 }
 
 .toast.slide-out {
-  animation: 0.5s ease-out forwards slide-out;
+  animation: 0.4s ease-out forwards slide-out;
 }
 
 @keyframes slide-in {

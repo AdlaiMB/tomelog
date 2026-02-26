@@ -1,6 +1,12 @@
 import Book from "../Book";
 
-function BookSection({ books, displayModal }) {
+function BookSection({
+  books,
+  slideInToast,
+  updateToast,
+  slideOutToast,
+  displayModal,
+}) {
   return (
     <div className="book-section">
       <span className="sen-regular">shelves {">"} reading</span>
@@ -12,6 +18,9 @@ function BookSection({ books, displayModal }) {
             coverURL={book.coverURL}
             title={book.title}
             author={book.author}
+            updateToast={updateToast}
+            slideInToast={slideInToast}
+            slideOutToast={slideOutToast}
             displayModal={displayModal}
           />
         ))}

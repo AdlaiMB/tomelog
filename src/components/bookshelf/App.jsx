@@ -43,15 +43,26 @@ function App() {
   // }, []);
 
   const slideInToast = () => {
-    setToastConfig({ ...toastConfig, animation: "slide-in" });
+    setToastConfig((toastConfig) => ({
+      ...toastConfig,
+      animation: "slide-in",
+    }));
   };
 
   const slideOutToast = () => {
-    setToastConfig({ ...toastConfig, animation: "slide-out" });
+    setToastConfig((toastConfig) => ({
+      ...toastConfig,
+      animation: "slide-out",
+    }));
   };
 
   const updateToast = (theme, title, message) => {
-    setToastConfig({ ...toastConfig, theme, title, message });
+    setToastConfig((toastConfig) => ({
+      ...toastConfig,
+      theme,
+      title,
+      message,
+    }));
   };
 
   const removeModal = () => {
@@ -71,7 +82,7 @@ function App() {
   return (
     <>
       <Navigation />
-      {/* <Toast toastConfig={toastConfig} slideOutToast={slideOutToast} /> */}
+      <Toast toastConfig={toastConfig} slideOutToast={slideOutToast} />
       {modal}
       <PageContent>
         <TitleSection />
@@ -79,6 +90,8 @@ function App() {
           <TabSection />
           <BookSection
             books={books}
+            updateToast={updateToast}
+            slideInToast={slideInToast}
             slideOutToast={slideOutToast}
             displayModal={displayModal}
           />
