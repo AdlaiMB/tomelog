@@ -12,13 +12,13 @@ import Toast from "../Toast";
 import Overlay from "../Overlay";
 import Modal from "../Modal";
 
+const dummyBook = { id: 1, coverURL: null, title: "test", author: "john dow" };
+
 import { useEffect, useState } from "react";
 import { getMyBooks } from "../../controller/controller";
 
 function App() {
-  const [books, setBooks] = useState([
-    { id: 1, coverURL: null, title: "test", author: "john dow" },
-  ]);
+  const [books, setBooks] = useState([]);
   const [toastConfig, setToastConfig] = useState({
     theme: "",
     title: "",
@@ -27,20 +27,22 @@ function App() {
   });
   const [modal, setModal] = useState(null);
 
-  // useEffect(() => {
-  //   async function fetchBooks() {
-  //     const response = await getMyBooks();
+  console.log(books);
 
-  //     if (response.error) {
-  //       console.log("error");
-  //       return;
-  //     }
+  useEffect(() => {
+    async function fetchBooks() {
+      const response = await getMyBooks();
 
-  //     setBooks(books);
-  //   }
+      if (response.error) {
+        console.log("error");
+        return;
+      }
 
-  //   fetchBooks();
-  // }, []);
+      setBooks(response.books);
+    }
+
+    fetchBooks();
+  }, []);
 
   const slideInToast = () => {
     setToastConfig((toastConfig) => ({

@@ -10,6 +10,7 @@ import {
   pageRatio as interfacePageRatio,
   updatedBook as interfaceUpdatedBook,
   removedBook as interfaceRemovedBook,
+  partialError as interfacePartialError,
 } from "./presenterInterface";
 import {
   searchResultBooklist as implementationSearchResultBooklist,
@@ -20,6 +21,7 @@ import {
   pageRatio as implementationPageRatio,
   updatedBook as implementationUpdatedBook,
   removedBook as implementationRemovedBook,
+  partialError as implementationPartialError,
 } from "../screen_presenter/screenPresenter";
 
 import {
@@ -167,39 +169,108 @@ async function getMyBooks() {
   return response;
 }
 
-function updateBookBookmarks(bookID, chapters, pages) {
-  let updatedChapterBookmark = null;
-  let updatedPageBookmark = null;
-
-  try {
-    if (chapters !== null) {
-      updatedChapterBookmark = interfaceUpdateBookChapterBookmark(
-        bookID,
-        chapters,
-        implementationUpdateBookChapterBookmark,
-      );
-    }
-    if (pages !== null) {
-      updatedPageBookmark = interfaceUpdateBookPageBookmark(
-        bookID,
-        pages,
-        implementationUpdateBookPageBookmark,
-      );
-    }
-  } catch (error) {
+function updateBookBookmarks(bookID, chapter, page) {
+  if (chapter === null && page === null) {
     return {
       error: true,
-      view: interfaceErrorMeassage(error.message, implementationErrorMessage),
+      view: interfaceErrorMeassage(
+        "No chapter or page bookmark provided to update.",
+        implementationErrorMessage,
+      ),
     };
   }
 
-  return {
-    error: false,
-    view: interfaceUpdatedBook(
-      { updatedChapterBookmark, updatedPageBookmark },
-      implementationUpdatedBook,
-    ),
-  };
+  let wasChapterBookmarkUpdateAttempted = false;
+  let wasChapterUpdateError = false;
+  let chapterUpdateErrorMessage = null;
+  let wasPageBookmarkUpdateAttempted = false;
+  let wasPageUpdateError = false;
+  let pageUpdateErrorMessage = null;
+
+  if (chapter !== null) {
+    wasChapterBookmarkUpdateAttempted = true;
+    const { error: chapterError, view: chapterResponse } =
+      updateChapterBookmark(bookID, chapter);
+
+    if (chapterError) {
+      wasChapterUpdateError = true;
+      chapterUpdateErrorMessage = chapterResponse;
+    }
+  }
+
+  if (page !== null) {
+    wasPageBookmarkUpdateAttempted = true;
+    const { error: pageError, view: pageResponse } = updatePageBookmark(
+      bookID,
+      page,
+    );
+
+    if (pageError) {
+      wasPageUpdateError = true;
+      pageUpdateErrorMessage = pageResponse;
+    }
+  }
+
+  if (wasChapterBookmarkUpdateAttempted && wasPageBookmarkUpdateAttempted) {
+    if (wasChapterUpdateError === false && wasPageUpdateError === false) {
+      return {
+        error: false,
+        response: interfaceUpdatedBook(
+          "The book has updated successfully",
+          implementationUpdatedBook,
+        ),
+      };
+    } else {
+      return {
+        error: true,
+        partial: true,
+        response: interfacePartialError(
+          { chapter: chapterUpdateErrorMessage, page: pageUpdateErrorMessage },
+          implementationPartialError,
+        ),
+      };
+    }
+  } else {
+    if (wasChapterBookmarkUpdateAttempted) {
+      if (wasChapterUpdateError === false) {
+        return {
+          error: false,
+          response: interfaceUpdatedBook(
+            "The book has updated successfully",
+            implementationUpdatedBook,
+          ),
+        };
+      } else {
+        return {
+          error: true,
+          partial: false,
+          response: interfaceErrorMeassage(
+            chapterUpdateErrorMessage,
+            implementationErrorMessage,
+          ),
+        };
+      }
+    } else {
+      if (wasPageUpdateError === false) {
+        return {
+          error: false,
+          response: interfaceUpdatedBook(
+            "The book has updated successfully",
+            implementationUpdatedBook,
+          ),
+        };
+      } else {
+        return {
+          error: true,
+          partial: false,
+          response: interfaceErrorMeassage(
+            pageUpdateErrorMessage,
+            implementationErrorMessage,
+          ),
+        };
+      }
+    }
+  }
 }
 
 function updateChapterBookmark(bookID, chapter) {

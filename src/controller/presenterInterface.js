@@ -48,6 +48,12 @@ function removedBook(removedBook, implementation) {
   return implementation(removedBook);
 }
 
+function partialError(updatedBook, implementation) {
+  // console.log(CLASS);
+  // call any implementation
+  return implementation(updatedBook);
+}
+
 export {
   searchResultBooklist,
   errorMessage,
@@ -57,4 +63,5 @@ export {
   pageRatio,
   updatedBook,
   removedBook,
+  partialError,
 };

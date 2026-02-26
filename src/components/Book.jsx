@@ -6,7 +6,6 @@ import { getChapterRatioDetails } from "../controller/controller";
 
 import { useEffect, useState } from "react";
 
-import Modal from "./Modal";
 import Form from "./Form";
 
 function getDetailsInputSection() {
@@ -90,19 +89,6 @@ function getBookmarkInputSections() {
   ];
 }
 
-function updateBookmarksAction(prevState, formData) {
-  const bookID = formData.get("bookID");
-  const formChapters = formData.get("chapters");
-  const formPages = formData.get("pages");
-
-  const chapters = formChapters === "" ? null : Number(formChapters);
-  const pages = formPages === "" ? null : Number(formPages);
-
-  const { view } = updateBookBookmarks(bookID, chapters, pages);
-
-  return view;
-}
-
 function Book({
   id,
   coverURL,
@@ -129,15 +115,38 @@ function Book({
     fetchProgressDetails();
   }, []);
 
+  const updateBookmarkFormAction = (formData) => {
+    const bookID = formData.get("bookID");
+    const chapter =
+      formData.get("chapters") === "" ? null : Number(formData.get("chapters"));
+    const page =
+      formData.get("pages") === "" ? null : Number(formData.get("pages"));
+
+    const response = updateBookBookmarks(bookID, chapter, page);
+
+    if (response.error === false) {
+      updateToast("success", "update success", response.response);
+    } else {
+      if (response.partial) {
+        updateToast("partial", "partial update", response.response);
+      } else {
+        updateToast("error", "update unsuccessful", response.response);
+      }
+    }
+
+    slideInToast();
+    setTimeout(() => {
+      slideOutToast();
+    }, 4000);
+  };
+
   const handleBookmarkClick = () => {
     displayModal(
       "book bookmarks",
       <Form
         id={id}
         inputSections={getBookmarkInputSections()}
-        updateToast={updateToast}
-        slideInToast={slideInToast}
-        slideOutToast={slideOutToast}
+        action={updateBookmarkFormAction}
       />,
     );
   };
@@ -145,13 +154,7 @@ function Book({
   const handleDetailsClick = () => {
     displayModal(
       "book details",
-      <Form
-        id={id}
-        inputSections={getDetailsInputSection()}
-        updateToast={updateToast}
-        slideInToast={slideInToast}
-        slideOutToast={slideOutToast}
-      />,
+      <Form id={id} inputSections={getDetailsInputSection()} />,
     );
   };
 

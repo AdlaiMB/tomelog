@@ -45,7 +45,7 @@ function searchResultBooklist(bookList) {
 
 function errorMessage(errorMessage) {
   // console.log(CLASS);
-  return interfaceError(errorMessage, implementationError);
+  return errorMessage;
 }
 
 function recordedBook(recordedBook) {
@@ -92,7 +92,16 @@ function chapterRatio(completed, total) {
 
 function updatedBook(updatedBook) {
   // console.log(CLASS);
-  return interfaceUpdatedBook(updatedBook, implementationUpdatedBook);
+  return "The Book has been successfully updated";
+}
+
+function partialError(updatedBook) {
+  // console.log(CLASS);
+  if (updatedBook.chapter === null) {
+    return "The chapter bookmark was updated successfully. " + updatedBook.page;
+  } else {
+    return "The page bookmark was updated successfully. " + updatedBook.chapter;
+  }
 }
 
 export {
@@ -104,4 +113,5 @@ export {
   pageRatio,
   updatedBook,
   removedBook,
+  partialError,
 };
