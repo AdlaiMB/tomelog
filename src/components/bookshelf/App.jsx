@@ -8,25 +8,46 @@ import TitleSection from "./TitleSection";
 import TabBookSection from "./TabBookSection";
 import TabSection from "./TabSection";
 import BookSection from "./BookSection";
+import Toast from "../Toast";
 
 import { useEffect, useState } from "react";
 import { getMyBooks } from "../../controller/controller";
 
 function App() {
   const [books, setBooks] = useState([]);
-  useEffect(() => {
-    async function fetchBooks() {
-      const { view: books } = await getMyBooks();
+  const [toastConfig, setToastConfig] = useState({
+    theme: "",
+    title: "",
+    message: "",
+    animation: "slide-in",
+  });
 
-      setBooks(books);
-    }
+  const slideInToast = () => {
+    setToastConfig({ ...toastConfig, animation: "slide-in" });
+  };
 
-    fetchBooks();
-  }, []);
+  const slideOutToast = () => {
+    setToastConfig({ ...toastConfig, animation: "slide-out" });
+  };
+
+  const updateToast = (theme, title, message) => {
+    setToastConfig({ ...toastConfig, theme, title, message });
+  };
+
+  // useEffect(() => {
+  //   async function fetchBooks() {
+  //     const { view: books } = await getMyBooks();
+
+  //     setBooks(books);
+  //   }
+
+  //   fetchBooks();
+  // }, []);
 
   return (
     <>
       <Navigation />
+      <Toast toastConfig={toastConfig} slideOutToast={slideOutToast} />
       <PageContent>
         <TitleSection />
         <TabBookSection>

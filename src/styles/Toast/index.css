@@ -1,22 +1,21 @@
-:root {
-  --toast-padding-inline: 1rem;
-}
-
 .toast {
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+  border-width: 2px;
+  border-style: solid;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   z-index: 10;
   position: fixed;
   top: 5rem;
   left: var(--page-inline-margin);
   right: var(--page-inline-margin);
-  box-sizing: border-box;
-  border-radius: 0.25rem;
-  border-width: 2px;
-  border-style: solid;
-  padding-inline: var(--toast-padding-inline);
-  padding-block: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+}
+
+.out-view-position {
+  transform: translateX(150%);
 }
 
 .toast-title {
