@@ -1,8 +1,13 @@
 import { useState, useEffect, useRef, useActionState } from "react";
 import { find, record, remove } from "../../controller/controller";
-import "../../styles/global.css";
+import "../../styles/resets.css";
+import "../../styles/globals.css";
+import "../../styles/bookshelf/index.css";
+import "../../styles/search/index.css";
 
 import Navigation from "../Navigation";
+import PageContent from "../PageContent";
+import TitleSection from "../bookshelf/TitleSection";
 
 function ResultBook({ ref, id, title, subtitle, coverURL, filed }) {
   const [file, setFile] = useState(filed);
@@ -178,44 +183,22 @@ function App() {
   return (
     <>
       <Navigation />
-      <div className="guard-rail column gap-l">
-        <div className="search-bar">
-          <form className="row justify-between" action={searchAction}>
+      <PageContent>
+        <TitleSection title="search books" />
+        <div className="search-bar-container">
+          <form className="search-bar border-beige" action={searchAction}>
             <input
               name="query"
-              placeholder="Enter the title of your book e.g. the pragmatic programmer"
-              className="search line-seed-jp-regular"
+              placeholder="Enter the title of your book (e.g. How to Hide an Empires)"
+              className="search-bar-input sen-regular"
             />
-            <button className="button line-seed-jp-regular">
-              <svg
-                width="27"
-                height="21"
-                viewBox="0 0 27 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="9"
-                  stroke="#ffffff"
-                  stroke-width="1"
-                />
-                <line
-                  x1="18.4033"
-                  y1="13.8246"
-                  x2="25.8246"
-                  y2="19.5967"
-                  stroke="#ffffff"
-                  stroke-width="1"
-                  stroke-linecap="round"
-                />
-              </svg>
+            <button className="search-bar-button white-text sen-regular background-brown background-brown-hover">
+              search
             </button>
           </form>
         </div>
         {searchActionResult}
-      </div>
+      </PageContent>
     </>
   );
 }

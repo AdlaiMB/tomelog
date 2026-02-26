@@ -87,7 +87,7 @@ function App() {
       <Toast toastConfig={toastConfig} slideOutToast={slideOutToast} />
       {modal}
       <PageContent>
-        <TitleSection />
+        <TitleSection title="bookshelf" />
         <TabBookSection>
           <TabSection />
           <BookSection
