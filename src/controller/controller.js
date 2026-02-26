@@ -330,6 +330,114 @@ function updatePageBookmark(bookID, page) {
   return response;
 }
 
+function updateBookDetails(bookID, chapters, startPage, endPage) {
+  if (chapters === null && startPage === null && endPage === null) {
+    return {
+      error: true,
+      partial: false,
+      response: interfaceErrorMeassage(
+        "No chapter or page bookmark provided to update.",
+        implementationErrorMessage,
+      ),
+    };
+  }
+
+  let wasChaptersUpdateAttempted = false;
+  let wasChaptersUpdateError = false;
+  let chaptersUpdateErrorMessage = null;
+  let wasPagesUpdateAttempted = false;
+  let wasPagesUpdateError = false;
+  let pagesUpdateErrorMessage = null;
+
+  if (chapters !== null) {
+    wasChaptersUpdateAttempted = true;
+    const { error: chaptersError, view: chaptersResponse } = updateBookChapters(
+      bookID,
+      chapters,
+    );
+
+    if (chaptersError) {
+      wasChaptersUpdateError = true;
+      chaptersUpdateErrorMessage = chaptersResponse;
+    }
+  }
+
+  if (startPage !== null || endPage !== null) {
+    wasPagesUpdateAttempted = true;
+    const { error: pagesError, view: pagesResponse } = updateBookPages(
+      bookID,
+      startPage,
+      endPage,
+    );
+
+    if (pagesError) {
+      wasPagesUpdateError = true;
+      pagesUpdateErrorMessage = pagesResponse;
+    }
+  }
+
+  if (wasChaptersUpdateAttempted && wasPagesUpdateAttempted) {
+    if (wasChaptersUpdateError === false && wasPagesUpdateError === false) {
+      return {
+        error: false,
+        response: interfaceUpdatedBook(
+          "The book has been successfully updated.",
+          implementationUpdatedBook,
+        ),
+      };
+    } else {
+      return {
+        error: true,
+        partial: true,
+        response: interfacePartialError({
+          chapter: chaptersUpdateErrorMessage,
+          page: pagesUpdateErrorMessage,
+        }),
+      };
+    }
+  } else {
+    if (wasChaptersUpdateAttempted) {
+      if (wasChaptersUpdateError === false) {
+        return {
+          error: false,
+          response: interfaceUpdatedBook(
+            "The book has been successfully updated.",
+            implementationUpdatedBook,
+          ),
+        };
+      } else {
+        return {
+          error: true,
+          partial: false,
+          response: interfaceErrorMeassage(
+            chaptersUpdateErrorMessage,
+            implementationErrorMessage,
+          ),
+        };
+      }
+    } else {
+      if (wasPagesUpdateError === false) {
+        return {
+          error: false,
+          response: interfaceUpdatedBook(
+            "The book has been successfully updated.",
+            implementationUpdatedBook,
+          ),
+        };
+      } else {
+        return {
+          error: true,
+          partial: false,
+          response: interfaceErrorMeassage(
+            pagesUpdateErrorMessage,
+            implementationErrorMessage,
+          ),
+        };
+      }
+    }
+  }
+}
+
 function updateBookPages(bookID, startPage, EndPage) {
   let updatedBook = null;
   let errorMessage;
@@ -475,4 +583,5 @@ export {
   updatePageBookmark,
   remove,
   updateBookBookmarks,
+  updateBookDetails,
 };

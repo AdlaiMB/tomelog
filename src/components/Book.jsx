@@ -1,6 +1,7 @@
 import {
   getPageRatioDetails,
   updateBookBookmarks,
+  updateBookDetails,
 } from "../controller/controller";
 import { getChapterRatioDetails } from "../controller/controller";
 
@@ -140,6 +141,35 @@ function Book({
     }, 4000);
   };
 
+  const updateBookMarkFormAction = (formData) => {
+    const bookID = formData.get("bookID");
+    const chapters =
+      formData.get("chapters") === "" ? null : Number(formData.get("chapters"));
+    const startPage =
+      formData.get("startPage") === ""
+        ? null
+        : Number(formData.get("startPage"));
+    const endPage =
+      formData.get("endPage") === "" ? null : Number(formData.get("endPage"));
+
+    const response = updateBookDetails(bookID, chapters, startPage, endPage);
+
+    if (response.error === false) {
+      updateToast("success", "update success", response.response);
+    } else {
+      if (response.partial) {
+        updateToast("partial", "partial update", response.response);
+      } else {
+        updateToast("error", "update unsuccessful", response.response);
+      }
+    }
+
+    slideInToast();
+    setTimeout(() => {
+      slideOutToast();
+    }, 4000);
+  };
+
   const handleBookmarkClick = () => {
     displayModal(
       "book bookmarks",
@@ -154,7 +184,11 @@ function Book({
   const handleDetailsClick = () => {
     displayModal(
       "book details",
-      <Form id={id} inputSections={getDetailsInputSection()} />,
+      <Form
+        id={id}
+        inputSections={getDetailsInputSection()}
+        action={updateBookMarkFormAction}
+      />,
     );
   };
 
@@ -173,8 +207,8 @@ function Book({
           </div>
           <span className="capitalize sen-regular">by: {author}</span>
           <div className="sen-regular small-text">
-            {pageProgress}
             {chapterProgress}
+            {pageProgress}
           </div>
         </div>
         <div className="book-buttons">

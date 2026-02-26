@@ -17,7 +17,7 @@ function BookSection({
             id={book.id}
             coverURL={book.coverURL}
             title={book.title}
-            author={book.author}
+            author={book.authorName}
             updateToast={updateToast}
             slideInToast={slideInToast}
             slideOutToast={slideOutToast}

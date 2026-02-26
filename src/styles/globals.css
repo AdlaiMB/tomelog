@@ -144,7 +144,7 @@ body {
   background: var(--light-red);
 }
 
-.background-light-red:hover {
+.background-light-red-hover:hover {
   background-color: var(--red);
 }
 
