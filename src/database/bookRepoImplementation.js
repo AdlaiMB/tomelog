@@ -58,7 +58,9 @@ async function queryByTitle(title, limit, page) {
       subtitle: Object.hasOwn(book, "subtitle") ? book.subtitle : null,
       coverID: Object.hasOwn(book, "cover_i") ? book.cover_i : null,
       stored: interfaceIsBookWritten(bookID, implementationIsBookWritten),
-      authorName: book.author_name[0],
+      authorName: Object.hasOwn(book, "author_name")
+        ? book.author_name[0]
+        : "john doe",
     };
 
     results.push(bookRepoBookDS);

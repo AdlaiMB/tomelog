@@ -2,6 +2,7 @@ import { useState } from "react";
 import { record, remove } from "../../controller/controller";
 
 function Book({
+  ref,
   id,
   title,
   subtitle,
@@ -20,10 +21,10 @@ function Book({
     setIsToastPresent(true);
 
     if (error) {
-      updateToast("error", "file error", view);
+      updateToast("error", "error", view);
     } else {
       updatedFile(id, true);
-      updateToast("success", "successfully filed book", view);
+      updateToast("success", "success", view);
     }
 
     setIsToastPresent(true);
@@ -41,10 +42,10 @@ function Book({
     setIsToastPresent(true);
 
     if (error) {
-      updateToast("error", "file error", view);
+      updateToast("error", "error", view);
     } else {
       updatedFile(id, false);
-      updateToast("success", "successfully unfiled book", view);
+      updateToast("success", "success", view);
     }
 
     slideInToast();
@@ -58,7 +59,7 @@ function Book({
 
   return (
     <>
-      <div className="book background-gray">
+      <div ref={ref} className="book background-gray">
         {coverURL ? (
           <img src={coverURL} alt="book cover" className="book-image" />
         ) : (

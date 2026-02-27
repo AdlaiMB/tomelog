@@ -177,15 +177,69 @@ function App() {
     animation: "",
   });
   const [isToastPresent, setIsToastPresent] = useState(false);
+  const bookRef = useRef(null);
+
+  const booksLength = books.length;
+
+  useEffect(() => {
+    if (bookRef.current === null) {
+      return;
+    }
+
+    if (booksLength % 50 !== 0) {
+      return;
+    }
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    const callback = (entries) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          // console.log("hit");
+          const nextPage = booksLength / 50 + 1;
+          const response = await find("the watchmen", 50, nextPage);
+
+          if (response.error) {
+            setIsToastPresent(true);
+            updateToast("error", "search error", response.view);
+            slideInToast();
+            setTimeout(() => {
+              slideOutToast();
+            }, 3000);
+            setTimeout(() => {
+              setIsToastPresent(false);
+            }, 3500);
+            observer.disconnect();
+            return;
+          }
+
+          setBooks((books) => [...books, ...response.books]);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(bookRef.current);
+    return () => {
+      observer.disconnect();
+    };
+  }, [booksLength]);
 
   const updatedFile = (id, fileType) => {
     setBooks((books) => {
+      const newBooks = [];
       for (const book of books) {
+        let newBook = { ...book };
         if (book.id === id) {
-          book.recorded = fileType;
+          newBook.recorded = fileType;
         }
-        return books;
+        newBooks.push(newBook);
       }
+      return newBooks;
     });
   };
 
@@ -271,8 +325,9 @@ function App() {
           </form>
         </div>
         <div className="books">
-          {books.map((book) => (
+          {books.map((book, index) => (
             <Book
+              ref={index === booksLength - 1 ? bookRef : null}
               key={book.id}
               id={book.id}
               title={book.title}
