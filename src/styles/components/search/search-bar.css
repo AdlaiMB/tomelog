@@ -4,6 +4,7 @@
 
 .search-bar {
   box-sizing: border-box;
+  height: 32px;
   display: flex;
   gap: 0.5rem;
   padding-block: 0.25rem;

@@ -5,7 +5,7 @@ import DropDownMenu from "./DropDownMenu";
 function Navigation() {
   const menuItems = [
     <a
-      href="/tomelog/search/"
+      href="/tomelog/"
       className="link-menu-item white-text sen-regular background-brown-hover"
     >
       search
@@ -28,7 +28,7 @@ function Navigation() {
           <ul className="navigation-nav-links">
             <li>
               <a
-                href="/tomelog/search/"
+                href="/tomelog/"
                 className="navigation-nav-link white-text sen-regular background-brown-hover"
               >
                 search
