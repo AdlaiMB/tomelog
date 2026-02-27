@@ -8,8 +8,8 @@ import TitleSection from "./TitleSection";
 import BookContainer from "./BookContainer";
 import SearchBar from "./SearchBar";
 
-import { useState, useEffect, useRef } from "react";
 import { find } from "../../controller/controller";
+import { useState, useEffect, useRef } from "react";
 
 function App() {
   const [books, setBooks] = useState([]);

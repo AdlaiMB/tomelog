@@ -11,10 +11,8 @@ import TabBookSection from "./TabBookSection";
 import TabSection from "./TabSection";
 import BookSection from "./BookSection";
 
-const dummyBook = { id: 1, coverURL: null, title: "test", author: "john dow" };
-
-import { useEffect, useState } from "react";
 import { getMyBooks } from "../../controller/controller";
+import { useEffect, useState } from "react";
 
 function App() {
   const [books, setBooks] = useState([]);

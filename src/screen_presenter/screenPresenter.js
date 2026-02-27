@@ -1,24 +1,12 @@
 const CLASS = "Implementation - screenPrensenter";
 
 import {
-  resultsBookList as interfaceResultsBooklist,
-  error as interfaceError,
-  filedBook as interfaceFiledBook,
-  bookShelf as interfaceBookShelf,
   chapterProgress as interfaceChapterProgress,
   pageProgress as interfacePageProgress,
-  updatedBook as interfaceUpdatedBook,
-  unfiledBook as interfaceUnfiledBook,
 } from "./screenViewInterface";
 import {
-  resultsBookList as implementationResultsBookList,
-  error as implementationError,
-  filedBook as implementationFiledBook,
-  bookShelf as implementationBookShelf,
   chapterProgress as implementationChapterProgress,
   pageProgress as implementationPageProgress,
-  updatedBook as implementationUpdatedBook,
-  unfiledBook as implementationUnfiledBook,
 } from "../web_view/webView";
 
 function generateCoverURL(coverId) {
