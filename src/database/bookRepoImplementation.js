@@ -115,6 +115,20 @@ async function getBookByBookID(bookID) {
     authorName,
   };
 
+  if (book.coverID === null) {
+    const openLibraryEditionsResponse = await fetch(
+      API_BASE_URL + `/works/${bookID}/editions.json`,
+    );
+    const openLibraryEditionsData = await openLibraryEditionsResponse.json();
+
+    for (const entry of openLibraryEditionsData.entries) {
+      if (Object.hasOwn(entry, "covers")) {
+        book.coverID = entry.covers[0];
+        break;
+      }
+    }
+  }
+
   return book;
 }
 
