@@ -1,13 +1,14 @@
+import "../../styles/components/bookshelf/book.css";
+
+import Form from "../Form";
+
 import {
+  getChapterRatioDetails,
   getPageRatioDetails,
   updateBookBookmarks,
   updateBookDetails,
 } from "../../controller/controller";
-import { getChapterRatioDetails } from "../../controller/controller";
-
 import { useEffect, useState } from "react";
-
-import Form from "../Form";
 
 function getDetailsInputSection() {
   return [

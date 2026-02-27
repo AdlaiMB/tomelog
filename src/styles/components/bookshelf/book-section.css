@@ -1,0 +1,19 @@
+:root {
+  --book-section-inline-padding: 1rem;
+}
+
+.book-section {
+  box-sizing: border-box;
+  padding-inline: var(--book-section-inline-padding);
+  padding-top: 1rem;
+}
+
+@media screen and (min-width: 834px) {
+  :root {
+    --book-section-inline-padding: 2rem;
+  }
+
+  .book-section {
+    width: 100%;
+  }
+}

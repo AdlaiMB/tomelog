@@ -1,16 +1,15 @@
 import "../../styles/resets.css";
 import "../../styles/globals.css";
-import "../../styles/bookshelf/index.css";
 
 import Navigation from "../Navigation";
 import PageContent from "../PageContent";
+import Toast from "../Toast";
+import Overlay from "../Overlay";
+import Modal from "../Modal";
 import TitleSection from "./TitleSection";
 import TabBookSection from "./TabBookSection";
 import TabSection from "./TabSection";
 import BookSection from "./BookSection";
-import Toast from "../Toast";
-import Overlay from "../Overlay";
-import Modal from "../Modal";
 
 const dummyBook = { id: 1, coverURL: null, title: "test", author: "john dow" };
 

@@ -1,3 +1,5 @@
+import "../../styles/components/bookshelf/tab-section.css";
+
 import DropDownMenu from "../DropDownMenu";
 
 function TabSection() {

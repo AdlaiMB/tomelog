@@ -1,0 +1,10 @@
+.tab-book-section {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 1440px) {
+  .tab-book-section {
+    flex-direction: row;
+  }
+}

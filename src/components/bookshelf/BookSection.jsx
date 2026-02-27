@@ -1,4 +1,6 @@
-import Book from "../Book";
+import "../../styles/components/bookshelf/book-section.css";
+
+import Book from "./Book";
 
 function BookSection({
   books,

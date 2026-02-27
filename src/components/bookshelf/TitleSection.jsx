@@ -1,3 +1,5 @@
+import "../../styles/components/bookshelf/title-section.css";
+
 function TitleSection({ title }) {
   return (
     <div className="title-section border-beige">
