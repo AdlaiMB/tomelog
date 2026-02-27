@@ -16,6 +16,7 @@
 
 .modal-title-section {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding-bottom: 1rem;
   border-width: 0 0 1px 0;
@@ -26,6 +27,9 @@
   border: 0;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
