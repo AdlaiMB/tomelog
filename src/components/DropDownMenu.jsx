@@ -1,5 +1,6 @@
+import "../styles/components/drop-down-menu.css";
+
 import { useState } from "react";
-import "../styles/dropdown/index.css";
 
 function DropDownMenu({ menuItems, theme }) {
   const [isShowing, setIsShowing] = useState(false);

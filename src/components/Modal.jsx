@@ -1,4 +1,4 @@
-import "../styles/modal/index.css";
+import "../styles/components/modal.css";
 
 function Modal({ children, title, removeModal }) {
   return (

@@ -1,0 +1,33 @@
+:root {
+  --page-inline-margin: 1rem;
+  --page-content-margin-top: 3rem;
+  --page-content-inline-margin: 1rem;
+}
+
+.page-content {
+  margin-top: var(--page-content-margin-top);
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.page-content-margin {
+  margin-inline: var(--page-content-inline-margin);
+}
+
+@media screen and (min-width: 834px) {
+  :root {
+    --page-inline-margin: 2rem;
+    --page-content-inline-margin: 2rem;
+  }
+
+  .page-content {
+    margin-inline: var(--page-inline-margin);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    --page-inline-margin: 10rem;
+    --page-content-margin-top: 5rem;
+  }
+}

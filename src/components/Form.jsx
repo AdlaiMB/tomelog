@@ -1,3 +1,5 @@
+import "../styles/components/form.css";
+
 import { useState } from "react";
 
 function Form({ id, inputSections, action }) {

@@ -1,4 +1,4 @@
-import "../styles/Toast/index.css";
+import "../styles/components/toast.css";
 
 function Toast({ toastConfig, slideOutToast }) {
   const themes = {

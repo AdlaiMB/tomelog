@@ -1,4 +1,4 @@
-import "../styles/overlay/index.css";
+import "../styles/components/overlay.css";
 
 function Overlay({ children }) {
   return (

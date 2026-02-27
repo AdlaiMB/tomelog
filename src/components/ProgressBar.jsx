@@ -1,3 +1,5 @@
+import "../styles/components/progress-bar.css";
+
 function ProgressBar({ progressType, percentage }) {
   return (
     <div className="book-progress">

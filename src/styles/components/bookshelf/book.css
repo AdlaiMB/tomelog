@@ -35,23 +35,6 @@
   flex-direction: column;
 }
 
-.book-progress {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.progress-bar-container {
-  width: 100%;
-  height: 6px;
-  border-radius: 0.25rem;
-}
-
-.progress-bar {
-  height: 100%;
-  border-radius: 0.25rem;
-}
-
 .book-buttons {
   width: 100%;
   display: flex;

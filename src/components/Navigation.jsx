@@ -1,5 +1,6 @@
+import "../styles/components/navigation.css";
+
 import DropDownMenu from "./DropDownMenu";
-import "../styles/navigation/index.css";
 
 function Navigation() {
   const menuItems = [
