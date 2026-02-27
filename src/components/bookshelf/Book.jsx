@@ -128,7 +128,7 @@ function Book({
     const response = updateBookBookmarks(bookID, chapter, page);
 
     if (response.error === false) {
-      updateToast("success", "update success", response.response);
+      updateToast("success", "success", response.response);
       setSuccessfulFormSubmissions(
         (successfulFormSubmissions) => successfulFormSubmissions + 1,
       );
@@ -136,7 +136,7 @@ function Book({
       if (response.partial) {
         updateToast("partial", "partial update", response.response);
       } else {
-        updateToast("error", "update unsuccessful", response.response);
+        updateToast("error", "error", response.response);
       }
     }
 
@@ -160,7 +160,7 @@ function Book({
     const response = updateBookDetails(bookID, chapters, startPage, endPage);
 
     if (response.error === false) {
-      updateToast("success", "update success", response.response);
+      updateToast("success", "success", response.response);
       setSuccessfulFormSubmissions(
         (successfulFormSubmissions) => successfulFormSubmissions + 1,
       );
@@ -168,7 +168,7 @@ function Book({
       if (response.partial) {
         updateToast("partial", "partial update", response.response);
       } else {
-        updateToast("error", "update unsuccessful", response.response);
+        updateToast("error", "error", response.response);
       }
     }
 

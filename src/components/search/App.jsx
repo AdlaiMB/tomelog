@@ -131,7 +131,7 @@ function App() {
       updateToast(
         "partial",
         "no books found",
-        "There were no books found matching your query",
+        "There were no books found matching your query.",
       );
       slideInToast();
       setTimeout(() => {

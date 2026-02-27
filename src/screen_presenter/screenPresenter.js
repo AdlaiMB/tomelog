@@ -81,7 +81,7 @@ function chapterRatio(completed, total) {
 
 function updatedBook(updatedBook) {
   // console.log(CLASS);
-  return "The Book has been successfully updated";
+  return "The Book has been successfully updated.";
 }
 
 function partialError(updatedBook) {
