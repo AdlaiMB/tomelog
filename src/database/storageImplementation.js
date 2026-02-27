@@ -236,7 +236,7 @@ function fetchBookPageBookmark(bookID) {
 
   const book = books.get(bookID);
 
-  return book.bookmark.page;
+  return book.bookmark.page - book.page.start + 1;
 }
 
 function fetchBookChapterBookmark(bookID) {
