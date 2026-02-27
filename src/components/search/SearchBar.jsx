@@ -13,7 +13,7 @@ function SearchBar({ action, isToastPresent }) {
           disabled={isToastPresent}
           className={`search-bar-button white-text sen-regular background-brown ${isToastPresent ? "" : "background-brown-hover"}`}
         >
-          {isToastPresent ? "disable" : "search"}
+          search
         </button>
       </form>
     </div>

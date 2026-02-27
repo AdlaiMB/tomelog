@@ -15,9 +15,9 @@ function Book({
   slideInToast,
   slideOutToast,
   updatedFile,
+  isToastPresent,
+  setIsToastPresent,
 }) {
-  const [isToastPresent, setIsToastPresent] = useState(false);
-
   const fileBook = () => {
     const { error, view } = record(id);
     setIsToastPresent(true);

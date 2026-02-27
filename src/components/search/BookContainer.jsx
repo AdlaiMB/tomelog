@@ -9,6 +9,8 @@ function BookContainer({
   slideInToast,
   slideOutToast,
   updatedFile,
+  isToastPresent,
+  setIsToastPresent,
 }) {
   return (
     <div className="books">
@@ -26,6 +28,8 @@ function BookContainer({
           slideInToast={slideInToast}
           slideOutToast={slideOutToast}
           updatedFile={updatedFile}
+          isToastPresent={isToastPresent}
+          setIsToastPresent={setIsToastPresent}
         />
       ))}
     </div>

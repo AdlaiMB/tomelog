@@ -12,6 +12,7 @@ import { find } from "../../controller/controller";
 import { useState, useEffect, useRef } from "react";
 
 function App() {
+  const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [toastConfig, setToastConfig] = useState({
     theme: "success",
@@ -43,7 +44,7 @@ function App() {
       entries.forEach(async (entry) => {
         if (entry.isIntersecting) {
           const nextPage = booksLength / 50 + 1;
-          const response = await find("the watchmen", 50, nextPage);
+          const response = await find(query, 50, nextPage);
 
           if (response.error) {
             setIsToastPresent(true);
@@ -69,7 +70,7 @@ function App() {
     return () => {
       observer.disconnect();
     };
-  }, [booksLength]);
+  }, [booksLength, query]);
 
   const updatedFile = (id, fileType) => {
     setBooks((books) => {
@@ -142,6 +143,7 @@ function App() {
       return;
     }
 
+    setQuery(query);
     setBooks(response.books);
   }
 
@@ -159,6 +161,8 @@ function App() {
           slideInToast={slideInToast}
           slideOutToast={slideOutToast}
           updatedFile={updatedFile}
+          isToastPresent={isToastPresent}
+          setIsToastPresent={setIsToastPresent}
         />
       </PageContent>
     </>
