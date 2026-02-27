@@ -178,6 +178,17 @@ function App() {
   });
   const [isToastPresent, setIsToastPresent] = useState(false);
 
+  const updatedFile = (id, fileType) => {
+    setBooks((books) => {
+      for (const book of books) {
+        if (book.id === id) {
+          book.recorded = fileType;
+        }
+        return books;
+      }
+    });
+  };
+
   const slideInToast = () => {
     setToastConfig((toastConfig) => ({
       ...toastConfig,
@@ -269,6 +280,10 @@ function App() {
               author={book.authorName}
               coverURL={book.coverURL}
               filed={book.recorded}
+              updateToast={updateToast}
+              slideInToast={slideInToast}
+              slideOutToast={slideOutToast}
+              updatedFile={updatedFile}
             />
           ))}
         </div>

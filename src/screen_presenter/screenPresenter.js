@@ -51,12 +51,12 @@ function errorMessage(errorMessage) {
 
 function recordedBook(recordedBook) {
   // console.log(CLASS);
-  return interfaceFiledBook(recordedBook, implementationFiledBook);
+  return "The book has been filed in to your bookshelf.";
 }
 
 function removedBook(removedBook) {
   // console.log(CLASS);
-  return interfaceUnfiledBook(removedBook, implementationUnfiledBook);
+  return "The book has been unfiled from your bookshelf.";
 }
 
 function storedBooksBooklist(booklist) {

@@ -89,7 +89,6 @@ function record(bookID) {
 
   try {
     recordedBooks = interfaceStoreBook(bookID, implementationStoreBook);
-    console.log(recordedBooks);
   } catch (error) {
     errorMessage = error.message;
   }
